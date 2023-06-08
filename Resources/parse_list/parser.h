@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 20:00:34 by mouaammo          #+#    #+#             */
-/*   Updated: 2022/10/27 14:49:51 by mouaammo         ###   ########.fr       */
+/*   Created: 2023/06/08 04:28:32 by mouaammo          #+#    #+#             */
+/*   Updated: 2023/06/08 18:51:39 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	char	*str;
-	char	*dest;
-	size_t	i;
+t_command	*allocate_and_fill(t_voidlst	*cmds);
+int			fill_command(t_voidlst *cmds, t_voidlst *redirs,
+				t_voidlst **new_list);
+t_voidlst	*parse_to_args(t_voidlst *h_list);
 
-	if (!dst && !src)
-		return (NULL);
-	str = (char *)src;
-	dest = (char *)dst;
-	i = 0;
-	while (i < n)
-	{
-		dest[i] = str[i];
-		i++;
-	}
-	return (dst);
-}
+#endif

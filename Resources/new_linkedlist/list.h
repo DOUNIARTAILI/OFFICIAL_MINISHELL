@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 20:00:34 by mouaammo          #+#    #+#             */
-/*   Updated: 2022/10/27 14:49:51 by mouaammo         ###   ########.fr       */
+/*   Created: 2023/06/08 02:08:26 by mouaammo          #+#    #+#             */
+/*   Updated: 2023/06/08 02:08:38 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIST_H
+# define  LIST_H
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+typedef struct list
 {
-	char	*str;
-	char	*dest;
-	size_t	i;
+	void			*content;
+	struct list		*next;
+	struct list		*prev;
+}	t_voidlst;
 
-	if (!dst && !src)
-		return (NULL);
-	str = (char *)src;
-	dest = (char *)dst;
-	i = 0;
-	while (i < n)
-	{
-		dest[i] = str[i];
-		i++;
-	}
-	return (dst);
-}
+void		add_back(t_voidlst **lst, t_voidlst *new);
+void		add_front(t_voidlst **lst, t_voidlst *new);
+t_voidlst	*new_node(void *content);
+t_voidlst	*last_node(t_voidlst *lst);
+int			list_size(t_voidlst *lst);
+
+#endif

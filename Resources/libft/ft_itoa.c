@@ -3,54 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 22:06:47 by drtaili           #+#    #+#             */
-/*   Updated: 2022/11/16 23:21:57 by drtaili          ###   ########.fr       */
+/*   Created: 2022/10/15 23:00:40 by mouaammo          #+#    #+#             */
+/*   Updated: 2022/10/25 03:10:31 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlenint(long n)
+static char	*swap(char *str, int len, int n)
 {
-	size_t	i;
+	int		i;
+	char	temp;
 
 	i = 0;
-	while (n / 10 != 0)
-	{
-		n = n / 10;
-		i++;
-	}
 	if (n < 0)
-		i++;
-	return (i + 1);
+		len++;
+	while (i < (len / 2))
+	{
+		temp = str[len - 1 - i];
+		str[len - 1 - i] = str[i];
+		str[i++] = temp;
+	}
+	if (n == 147483648)
+	{
+		str[0] = '-';
+		str[1] = '2';
+	}
+	return (str);
+}
+
+static int	ft_nb(int n)
+{
+	int	count;
+
+	count = 0;
+	if (n == -2147483648)
+		return (11);
+	else if (n == 0)
+		return (1);
+	if (n < 0)
+	{
+		n *= -1;
+		count = 1;
+	}
+	while (n > 0)
+	{
+		count++;
+		n = n / 10;
+	}
+	return (count);
+}
+
+static char	*allocate_str(int *len, int *n)
+{
+	char	*str;
+
+	str = malloc(sizeof (char) * ((*len) + 1));
+	if (!str)
+		return (0);
+	str[*len] = '\0';
+	if (*n < 0)
+	{
+		*n = (*n) * (-1);
+		str[(*len) - 1] = '-';
+		(*len)--;
+	}
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
-	size_t		i;
-	char		*a;
-	long		nb;
+	int		len;
+	int		i;
+	char	*str;
+	int		nbr;
 
-	nb = (long)n;
-	i = ft_strlenint(nb);
-	a = malloc(ft_strlenint(nb) + 1);
-	if (a == NULL)
+	len = ft_nb(n);
+	if (n == -2147483648)
+		n = 147483648;
+	nbr = n;
+	str = allocate_str(&len, &n);
+	if (!str)
 		return (NULL);
-	a[i--] = 0;
-	if (nb == 0)
-		a[0] = '0';
-	if (nb < 0)
+	i = 0;
+	while (i < len)
 	{
-		a[0] = '-';
-		nb = nb * -1;
+		str[i++] = (n % 10) + '0';
+		n /= 10;
 	}
-	while (nb > 0)
-	{
-		a[i] = (nb % 10) + 48;
-		nb = nb / 10;
-		i--;
-	}
-	return (a);
+	return (swap(str, len, nbr));
 }

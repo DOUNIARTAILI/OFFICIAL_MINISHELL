@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 18:04:17 by drtaili           #+#    #+#             */
-/*   Updated: 2022/11/19 02:12:47 by drtaili          ###   ########.fr       */
+/*   Created: 2022/10/16 10:07:34 by mouaammo          #+#    #+#             */
+/*   Updated: 2022/10/26 15:07:48 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,21 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
-	size_t	maxlen;
-	size_t	slen;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
-	slen = ft_strlen(s);
-	if (slen < start)
+	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
-	maxlen = slen - start;
-	if (len < slen - start)
-		maxlen = len;
-	sub = (char *)malloc(maxlen + 1);
-	if (sub == NULL)
+	if ((start + len) >= ft_strlen(s))
+		sub = malloc(sizeof(char) * (ft_strlen(s) - start + 1));
+	else
+		sub = (char *) malloc(sizeof(char) * (len + 1));
+	if (!sub)
 		return (NULL);
-	ft_strlcpy(sub, s + start, maxlen + 1);
+	i = 0;
+	while (i < len && s[start])
+		sub[i++] = s[start++];
+	sub[i] = '\0';
 	return (sub);
 }
