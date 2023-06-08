@@ -6,7 +6,7 @@
 #    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/08 02:18:58 by drtaili          ###   ########.fr        #
+#    Updated: 2023/06/08 08:36:08 by drtaili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 # Source files
 SRC := main.c cd.c tools.c execute.c env_functions.c pwd.c exit.c echo.c env.c unset.c is_builtin.c export.c \
-	tools_env.c tools_env_.c check_arg_export.c export_tools.c valid_args_export.c export_all_cases.c pipe.c \
+	tools_env.c tools_env_.c check_arg_export.c export_tools.c valid_args_export.c export_all_cases.c pipe.c redirections.c \
 	$(addprefix Resources/linked_lst/, ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c) \
 	$(addprefix Resources/new_linkedlist/, list.c) \

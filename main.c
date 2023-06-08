@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 01:40:23 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 05:25:57 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/08 10:32:27 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,18 +392,13 @@ int	main(int ac, char **av, char **env)
 		commands = bash_concate(expander_list);
 		commands = parse_to_args(commands);
 		// signal(SIGQUIT, &handle_interrupt);
-		// display_args(commands);
+		display_args(commands);
 		// display(commands);
 		tmp = commands->content;
 		cmds = tmp->args;
-		// print_cmds(cmds);
-		// if (is_builtin(cmds))
-		// 	global_exit.exit_status =  builtin_functions(&new_env, &m_export, cmds);
-		// else
-		// 	execution();
-			// execute(&new_env, cmds);
-		//	pipe :
 		ft_pipe(&m_export,  commands, &new_env);
+		commands = NULL;
+		head = NULL;
 		// free_big_list(commands);
 		// free_all(cmds);
 		printf("status = %d\n",global_exit.exit_status);

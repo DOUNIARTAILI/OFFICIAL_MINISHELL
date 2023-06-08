@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 05:11:46 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/08 10:26:10 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,7 @@ int			check_key_value_isvalid_export(char *cmd);
 void		ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env);
 void		exit_status(int status);
 void		ft_kill(t_exit *glob);
+void		execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export);
+void		redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env);
+
 #endif
