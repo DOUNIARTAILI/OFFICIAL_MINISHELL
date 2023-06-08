@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/03 20:00:18 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/08 05:26:08 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,10 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 
 	if (!cmd_parsed || !cmd_parsed[0])
 		return ;
-	id = fork();
+	if (global_exit.size == 1)
+		id = fork();
+	else
+		id = 0;
 	i = 0;
 	int j = 0;
 	if (id == 0)
@@ -156,9 +159,6 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 		exit(global_exit.exit_status);
 		// perror("bash: ./test:  ");
 	}
-	else
-		global_exit.pid[j++] = id;
-	global_exit.len = j;
 	waitpid(-1, &status, 0);
 	exit_status(status);
 	// printf("status=%d, exit_status_glob=%d\n",status, global_exit.exit_status);

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 01:40:23 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 03:29:03 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/08 05:25:57 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -391,26 +391,21 @@ int	main(int ac, char **av, char **env)
 		expander_list = bash_expander(head, myenv);
 		commands = bash_concate(expander_list);
 		commands = parse_to_args(commands);
-		// cmd_parsed = ft_split(cmd, ' ');
-		// cmd_parsed[0] = cmd;
-		// cmd_parsed[1] = NULL;		 
-		// cmd_parsed = {"/bin/ls", NULL};
 		// signal(SIGQUIT, &handle_interrupt);
 		// display_args(commands);
 		// display(commands);
 		tmp = commands->content;
 		cmds = tmp->args;
 		// print_cmds(cmds);
-		// // t_voidlst *red = tmp->redirections;
-		if (is_builtin(cmds))
-			global_exit.exit_status =  builtin_functions(&new_env, &m_export, cmds);
-		else
-			execute(&new_env, cmds);
-		// //	pipe :
-		int fd[2];
-		ft_pipe(&m_export, fd, len_cmds(cmds), cmds, &new_env);
+		// if (is_builtin(cmds))
+		// 	global_exit.exit_status =  builtin_functions(&new_env, &m_export, cmds);
+		// else
+		// 	execution();
+			// execute(&new_env, cmds);
+		//	pipe :
+		ft_pipe(&m_export,  commands, &new_env);
 		// free_big_list(commands);
-		free_all(cmds);
+		// free_all(cmds);
 		printf("status = %d\n",global_exit.exit_status);
 	}
 	return (0);

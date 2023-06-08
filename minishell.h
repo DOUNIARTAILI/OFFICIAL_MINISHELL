@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 02:03:46 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/08 05:11:46 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_exit
 	pid_t	pid[1024];
 	int		len;
 	int		killed;
+	int		size;
 }t_exit;
 
 t_exit	global_exit;
@@ -96,7 +97,7 @@ int			check_equal_existance(char *cmd1);
 int			ft_strcmp(char *s1, char *s2);
 int			check_plus_existance(char *cmd);
 int			check_key_value_isvalid_export(char *cmd);
-void		ft_pipe(t_list_env **m_export, int *fd, int ac, char **av, t_list_env **new_env);
+void		ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env);
 void		exit_status(int status);
 void		ft_kill(t_exit *glob);
 #endif
