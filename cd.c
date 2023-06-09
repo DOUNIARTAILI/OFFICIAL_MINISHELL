@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:32:29 by drtaili           #+#    #+#             */
-/*   Updated: 2023/05/31 03:48:45 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 11:13:23 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,17 @@ int	cd_to_path(t_list_env **env, char **cmd)
 
 int	ft_cd(t_list_env **env, char **cmd)
 {
-	if (!ft_strcmp(cmd[1], "-"))
+	if (!cmd[1])
+	{
+		if (get_value_of_key(env, "HOME") == NULL)
+		{
+			printf("minishell: cd: HOME not set\n");
+			return (1);	
+		}
+		else if (chdir(get_value_of_key(env, "HOME")) == -1)
+			perror("chdir");
+	}
+	else if (!ft_strcmp(cmd[1], "-"))
 	{
 		return (ft_cd_get_back_again(env));
 	}

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 05:26:08 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 11:24:09 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	exit_status(int status)
 {
 	int	exit_status;
 
+	if (status == 1 || status == 127)
+		return ;
 	if (WIFEXITED(status)) 
 	{
 		exit_status = WEXITSTATUS(status);
@@ -119,20 +121,18 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 	{
 		global_exit.killed = 2;
 		signal(SIGQUIT, SIG_DFL);
-		// TODO: handle redirections
-		// dup2(cmd->fdout, STDOUT);
-		// dup2(cmd->fdin, STDIN)
 		if (!check_slash(cmd_parsed[0]))
 		{
-			// printf("ha fin dkhal");
 			if (!access(cmd_parsed[0], F_OK) && !access(cmd_parsed[0], X_OK))
 				execve(cmd_parsed[0], cmd_parsed, env_arr(new_env));
 			else
-				printf("bsh!!!!");
+			{
+				printf("minishell : %s: Permission denied\n", cmd_parsed[0]);
+				global_exit.exit_status = 126;
+			}
 		}
 		else
 		{
-			// printf("la dkhal hna");
 			value = get_path_value(new_env);
 			while (value[i] != NULL)
 			{

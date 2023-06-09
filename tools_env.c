@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:23:31 by drtaili           #+#    #+#             */
-/*   Updated: 2023/05/31 03:53:33 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 11:08:20 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*get_value_of_key(t_list_env **envr, char *key)
 	char	*value;
 
 	env = *envr;
+	value = NULL;
 	while (env != NULL)
 	{
 		if (ft_strcmp(env->data.key, key) == 0)

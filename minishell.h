@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 10:26:10 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 10:28:12 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "./ft_printf/ft_printf.h"
 # include "Resources/parsing.h"
 # include "Resources/linked_lst/linked_lst.h"
+# include "Resources/expander/expander.h"
 
 typedef struct s_exit
 {
@@ -102,5 +103,7 @@ void		exit_status(int status);
 void		ft_kill(t_exit *glob);
 void		execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export);
 void		redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env);
+int			size_cmd(char **cmd);
+int			main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd);
 
 #endif

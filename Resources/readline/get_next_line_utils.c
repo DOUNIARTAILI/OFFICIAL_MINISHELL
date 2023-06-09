@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:47:03 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/05/18 16:24:53 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/08 02:30:18 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_(const char *str)
 {
 	size_t	i;
 
@@ -30,7 +30,7 @@ char	*ft_strdup(const char *s1)
 
 	if (!s1)
 		return (NULL);
-	len = ft_strlen(s1);
+	len = ft_strlen_(s1);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
@@ -48,10 +48,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen(s))
+	if (start >= ft_strlen_(s))
 		return (ft_strdup(""));
-	if ((start + len) >= ft_strlen(s))
-		sub = (char *)malloc(sizeof(char) * (ft_strlen(s) - start + 1));
+	if ((start + len) >= ft_strlen_(s))
+		sub = (char *)malloc(sizeof(char) * (ft_strlen_(s) - start + 1));
 	else
 		sub = (char *)malloc(sizeof(char) * (len + 1));
 	if (!sub)
@@ -74,7 +74,7 @@ char	*str_join(char *s1, char *s2)
 		s1 = ft_strdup("");
 	if (!s2)
 		return (NULL);
-	total = ft_strlen(s1) + ft_strlen(s2);
+	total = ft_strlen_(s1) + ft_strlen_(s2);
 	join = (char *)malloc(sizeof(char) * (total + 1));
 	if (!join)
 		return (NULL);
@@ -98,7 +98,7 @@ char	*get_reminder(char **str, int len)
 	if (!str || !(*str))
 		return (NULL);
 	tmp = NULL;
-	rlen = ft_strlen(*str + len);
+	rlen = ft_strlen_(*str + len);
 	tmp = ft_substr(*str, len, rlen);
 	return (free(*str), *str = NULL, tmp);
 }

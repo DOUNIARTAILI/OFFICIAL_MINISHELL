@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 04:45:35 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/01 05:44:49 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 10:48:05 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,126 +42,36 @@ void	ft_unset(t_list_env **env, char *key)
 	global_exit.exit_status = 1;
 }
 
+int	main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd)
+{
+	int	len;
+	int	i;
+	int	err;
 
-// void deleteN(Node** head, int position)
-// {
-//     Node* temp;
-//     Node* prev;
-//     temp = *head;
-//     prev = *head;
-//     for (int i = 0; i < position; i++) {
-//         if (i == 0 && position == 1) {
-//             *head = (*head)->next;
-//             free(temp);
-//         }
-//         else {
-//             if (i == position - 1 && temp) {
-//                 prev->next = temp->next;
-//                 free(temp);
-//             }
-//             else {
-//                 prev = temp;
- 
-//                 // Position was greater than
-//                 // number of nodes in the list
-//                 if (prev == NULL)
-//                     break;
-//                 temp = temp->next;
-//             }
-//         }
-//     }
-// }
-
-// void deleteN(t_list_env **env, char *key)
-// {
-// 	t_list_env	*temp;
-// 	t_list_env	*prev;
-
-//     temp = *env;
-//     prev = *env;
-//     int i = 0;
-    
-//     while (i < position) {
-//         if (i == 0 && position == 1) {
-//             *head = (*head)->next;
-//             free(temp);
-//         }
-//         else {
-//             if (i == position - 1 && temp) {
-//                 prev->next = temp->next;
-//                 free(temp);
-//             }
-//             else {
-//                 prev = temp;
- 
-//                 // Position was greater than
-//                 // number of nodes in the list
-//                 if (prev == NULL)
-//                     break;
-//                 temp = temp->next;
-//             }
-//         }
-        
-//         i++;
-//     }
-// }
-
-// void deleteNode(struct Node** head_ref, int key)
-// {
-//     // Store head node
-//     struct Node *temp = *head_ref, *prev;
- 
-//     // If head node itself holds the key to be deleted
-//     if (temp != NULL && temp->data == key) {
-//         *head_ref = temp->next; // Changed head
-//         free(temp); // free old head
-//         return;
-//     }
- 
-//     // Search for the key to be deleted, keep track of the
-//     // previous node as we need to change 'prev->next'
-//     while (temp != NULL && temp->data != key) {
-//         prev = temp;
-//         temp = temp->next;
-//     }
- 
-//     // If key was not present in linked list
-//     if (temp == NULL)
-//         return;
- 
-//     // Unlink the node from linked list
-//     prev->next = temp->next;
- 
-//     free(temp); // Free memory
-// }
-
-// void ft_unset(t_list_env **env, char *key)
-// {
-//     // Store head node
-//     t_list_env *temp;
-// 	t_list_env *prev;
-
-// 	temp = *env;
-//     // If head node itself holds the key to be deleted
-//     if (temp != NULL && ft_strcmp(temp->data.key, key) == 0) {
-//         *env = temp->next; // Changed head
-//         free(temp); // free old head
-//         return;
-//     }
- 
-//     // Search for the key to be deleted, keep track of the
-//     // previous node as we need to change 'prev->next'
-//     while (temp != NULL && ft_strcmp(temp->data.key, key) == 0) {
-//         prev = temp;
-//         temp = temp->next;
-//     }
- 
-//     // If key was not present in linked list
-//     if (temp == NULL)
-//         return;
- 
-//     // Unlink the node from linked list
-//     prev->next = temp->next;
- 
-//     free(temp); // Free memory
-// }
+	err = 0;
+	len = size_cmd(cmd);
+	i = 1;
+	while (i < len)
+	{
+		if (check_key_value_isvalid_export(cmd[i]))
+		{
+			ft_unset(new_env, cmd[i]);
+			ft_unset(export_list, cmd[i]);
+		}
+		else
+		{
+			if (cmd[i][0] == '-')
+				ft_printf("minishell : unset: invalid option\n");
+			else if (cmd[i][0] == '!')
+				ft_printf("minishell : unset: event not found\n");
+			else	
+				ft_printf("minishell : unset: `%s': not a valid identifier\n", cmd[i]);
+			if (cmd[i][0] != '!')
+				err = 1;
+		}
+		i++;
+	}
+	if (err == 1)
+		return (1);
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 05:22:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 03:21:43 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 11:18:31 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,23 @@ int	builtin_functions(t_list_env **new_env,
 		return (ft_echo(cmd_parsed));
 	else if (!ft_strcmp(cmd_parsed[0], "env"))
 	{
-		return (ft_env(new_env));
+		if (!cmd_parsed[1] && get_value_of_key(new_env, "PATH") != NULL)
+			return (ft_env(new_env));
+		else
+		{
+			printf("minishell: env: No such file or directory\n");
+			return (127);
+		}	
 	}
 	else if (!ft_strcmp(cmd_parsed[0], "unset"))
 	{
-		ft_unset(new_env, cmd_parsed[1]);
-		ft_unset(export_list, cmd_parsed[1]);
-		if (global_exit.exit_status)
-			perror("ft_unset");
-			// printf("minishell: unset: `%s': not a valid identifier\n", cmd_parsed[1]);
-		return (global_exit.exit_status);
+		return (main_unset(new_env, export_list, cmd_parsed));
+		// ft_unset(new_env, cmd_parsed[1]);
+		// ft_unset(export_list, cmd_parsed[1]);
+		// if (global_exit.exit_status)
+		// 	perror("ft_unset");
+		// 	// printf("minishell: unset: `%s': not a valid identifier\n", cmd_parsed[1]);
+		// return (global_exit.exit_status);
 	}
 	else if (!ft_strcmp(cmd_parsed[0], "export"))
 	{

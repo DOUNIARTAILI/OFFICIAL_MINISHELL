@@ -9,6 +9,7 @@
 		"compiler.h": "c",
 		"expander.h": "c",
 		"readline.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"parsing.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 02:20:33 by drtaili           #+#    #+#             */
-/*   Updated: 2022/12/04 02:22:29 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 05:51:09 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ size_t	ft_strlen(const char *s)
 	size_t	len;
 
 	len = 0;
+	if (!s)
+		return 0;
 	while (s[len] != '\0')
 		len++;
 	return (len);

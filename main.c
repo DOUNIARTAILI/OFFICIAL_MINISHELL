@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 01:40:23 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 10:32:27 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 09:59:14 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	display(t_voidlst *h_list)
 		while (cmds)
 		{
 			t_token *token1 = cmds->content;
+	puts("here");
 			printf("\t[%s]  token: %d\n", token1->str, token1->token);
 			cmds = cmds->next;
 		}
@@ -392,7 +393,7 @@ int	main(int ac, char **av, char **env)
 		commands = bash_concate(expander_list);
 		commands = parse_to_args(commands);
 		// signal(SIGQUIT, &handle_interrupt);
-		display_args(commands);
+		// display_args(commands);
 		// display(commands);
 		tmp = commands->content;
 		cmds = tmp->args;

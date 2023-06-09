@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:58:19 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/08 04:39:40 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/09 05:36:56 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,14 @@
 # define PREV 0
 # define NEXT 1
 # define BOTH 2
+
+char		*search_and_replace(t_token **mytoken, t_voidlst *myenv);
+char		*replace_all(char *old_str, t_voidlst *myenv);
+char		*var_string(char *str, int i, int start);
+int			string_index(char *str, char c, int i);
+char		*string_replace(char *phrase, char *oldstring, char *newstring);
+int			ft_str_search_index(const char *haystack,
+				const char *needle, size_t len);
+
 
 #endif

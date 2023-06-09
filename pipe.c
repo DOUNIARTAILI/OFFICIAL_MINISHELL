@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 10:25:08 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 10:56:27 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export)
 		global_exit.exit_status =  builtin_functions(new_env, m_export, cmds);
 	else
 		execute(new_env, cmds);
+	// printf("global_exit.exit_status = %d", global_exit.exit_status);
 }
 
 void first_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_env **m_export)
@@ -34,7 +35,7 @@ void first_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_en
 			perror("dup2 failed");
 		close(fd[1]);
 		redirections(commands, ((t_command *)commands->content)->redirections, m_export, new_env);
-		exit(0);
+		exit(global_exit.exit_status);
 	}
 	old_fd_in = fd[0];
 	old_fd_out = fd[1];
@@ -61,7 +62,7 @@ t_voidlst	*in_between_commands(t_voidlst *head_bet, int *fd, t_list_env **new_en
 				perror("dup2 failed");
 			close(fd[1]);
 			redirections(head_bet, ((t_command *)head_bet->content)->redirections, m_export, new_env);
-			exit(0);
+			exit(global_exit.exit_status);
 		}
 		close(fd[1]);
 		close(save_fd);
