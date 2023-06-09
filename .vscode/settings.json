@@ -10,6 +10,8 @@
 		"expander.h": "c",
 		"readline.h": "c",
 		"sstream": "c",
-		"parsing.h": "c"
+		"parsing.h": "c",
+		"libft.h": "c",
+		"__node_handle": "c"
 	}
 }
