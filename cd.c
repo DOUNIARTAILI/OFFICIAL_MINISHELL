@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:32:29 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/09 11:13:23 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 11:30:53 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ int	ft_cd(t_list_env **env, char **cmd)
 	{
 		return (cd_to_path(env, cmd));
 	}
+	return (0);
 }
