@@ -12,6 +12,8 @@
 		"sstream": "c",
 		"parsing.h": "c",
 		"libft.h": "c",
-		"__node_handle": "c"
+		"__node_handle": "c",
+		"parser.h": "c",
+		"concate.h": "c"
 	}
 }

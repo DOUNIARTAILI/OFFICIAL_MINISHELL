@@ -6,7 +6,7 @@
 #    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/08 08:36:08 by drtaili          ###   ########.fr        #
+#    Updated: 2023/06/10 09:49:29 by drtaili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,11 @@ SRC := main.c cd.c tools.c execute.c env_functions.c pwd.c exit.c echo.c env.c u
 	$(addprefix Resources/tokenizer/, tokenizer.c utils.c) \
 	$(addprefix Resources/compiler/, compiler.c) \
 	$(addprefix Resources/utils/, functions_token_1.c functions_token_2.c utils.c check_syntax.c) \
-	$(addprefix Resources/expander/, command.c expander.c heredoc.c utils.c string_replace.c env.c) \
-	$(addprefix Resources/readline/, get_next_line.c get_next_line_utils.c)
+	$(addprefix Resources/expander/, command.c expander.c heredoc.c utils1.c string_replace.c utils2.c exit_status_and_dbdollar.c env.c ) \
+	$(addprefix Resources/concate/, concate.c ) \
+	$(addprefix Resources/parsing/, parse_to_double_char.c parsing.c ) \
+	$(addprefix Resources/gnl/, get_next_line.c get_next_line_utils.c)
+
 
 # Object files
 OBJS := $(SRC:.c=.o)

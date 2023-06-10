@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/09 11:54:17 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 12:38:15 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@
 # include <stdio.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "Resources/libft/libft.h"
 # include "./ft_printf/ft_printf.h"
 # include "Resources/parsing.h"
 # include "Resources/linked_lst/linked_lst.h"
-# include "Resources/expander/expander.h"
+# include "Resources/utils/utils.h"
+# include "Resources/tokenizer/tokenizer.h"
+
+
+
 
 typedef struct s_exit
 {
@@ -32,6 +37,7 @@ typedef struct s_exit
 	int		len;
 	int		killed;
 	int		size;
+	int		exit;
 }t_exit;
 
 t_exit	global_exit;
@@ -47,19 +53,6 @@ typedef struct s_list_env
 	t_env				data;
 	struct s_list_env	*next;
 }t_list_env;
-
-typedef struct s_red
-{
-	char *filetype;
-	int type;
-}t_red;
-
-
-typedef struct  s_cmd
-{
-	char **args;
-	t_list redirections;
-}t_cmd;
 
 
 t_list_env	*get_env(char **env);

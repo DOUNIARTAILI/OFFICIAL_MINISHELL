@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/09 10:56:27 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 13:02:25 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export)
 {
 	if (is_builtin(cmds))
+	{
 		global_exit.exit_status =  builtin_functions(new_env, m_export, cmds);
+		printf("[%d]\n",global_exit.exit);
+	}
 	else
 		execute(new_env, cmds);
 	// printf("global_exit.exit_status = %d", global_exit.exit_status);
@@ -26,7 +29,9 @@ void first_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_en
 	pid_t pid;
 	int old_fd_in;
 	int old_fd_out;
-
+	
+	if(is_builtin(((t_command *)commands->content)->args))
+			global_exit.exit = 1;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -49,6 +54,8 @@ t_voidlst	*in_between_commands(t_voidlst *head_bet, int *fd, t_list_env **new_en
 
 	while (head_bet->next != NULL)
 	{
+		if(is_builtin(((t_command *)head_bet->content)->args))
+			global_exit.exit = 1;
 		save_fd = fd[0]; // Save the previous read end of the pipe + Update the read end of the pipe for the next iteration
 		pipe(fd);
 		pid = fork();
@@ -77,6 +84,8 @@ void last_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_env
 	pid_t pid;
 
 	old_fd_in = fd[0];
+	if(is_builtin(((t_command *)commands->content)->args))
+			global_exit.exit = 1;
 	pid = fork();
 	if (pid == 0)
 	{

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   concate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 02:40:37 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/08 04:45:06 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/10 09:40:55 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
+#include "concate.h"
 
 char	*concate_strings(t_list **command)
 {
@@ -67,7 +68,7 @@ int	fill_mylist(t_list **expander, t_cmds **mynode_cmd)
 	return (1);
 }
 
-t_voidlst	*bash_concate(t_list *expander)
+t_voidlst	*bash_concate_(t_list *expander)
 {
 	t_cmds		*mynode_cmd;
 	t_voidlst	*parent_list;

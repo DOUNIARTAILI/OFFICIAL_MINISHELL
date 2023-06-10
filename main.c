@@ -6,12 +6,14 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 01:40:23 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/09 09:59:14 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 12:38:39 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "Resources/parsing/parser.h"
 #include "Resources/libft/libft.h"
+#include "Resources/concate/concate.h"
 
 // -----> MOUAD <-------
 
@@ -87,71 +89,6 @@ void	affiche(t_list *head)
 	}
 }
 
-char	*concate_strings(t_list **command)
-{
-	t_token		*mytoken1;
-	char		*join;
-
-	join = NULL;
-	while ((*command) && (mytoken1 = (*command)->content) && is_word(mytoken1->token))
-	{
-		join = ft_strjoin(join, ft_strdup(mytoken1->str));
-		(*command) = (*command)->next;
-	}
-	if (is_redirect(mytoken1->token))
-		(*command) = (*command)->prev;
-	return (join);
-}
-
-int	fill_mylist(t_list **expander, t_cmds **mynode_cmd)
-{
-	t_token		*mytoken;
-	char		*concate_str;
-
-	*mynode_cmd = node_collecter((t_cmds){NULL, NULL});
-	if (!*mynode_cmd)
-		return (0);
-	while ((*expander) && (*expander)->content->token != PIPE)
-	{
-		mytoken = (*expander)->content;
-		if (is_word(mytoken->token) || mytoken->token == ESP)
-		{
-			if ((concate_str = concate_strings(expander)))
-			{
-				add_back(&((*mynode_cmd)->commands), new_node(new_token(concate_str, WORD)));
-				free(concate_str);
-			}
-			else
-				add_back(&((*mynode_cmd)->commands), new_node(new_token(mytoken->str, mytoken->token)));
-		}
-		else
-			add_back(&((*mynode_cmd)->redirects), new_node(new_token(mytoken->str, mytoken->token)));
-		if ((*expander))
-			(*expander) = (*expander)->next;
-	}
-	return (1);
-}
-
-t_voidlst	*bash_concate(t_list *expander)
-{
-	t_cmds		*mynode_cmd;
-	t_voidlst	*parent_list;
-	t_list		*tmp;
-
-	mynode_cmd = NULL;
-	parent_list = NULL;
-	tmp = expander;
-	while (expander)
-	{
-		if (!fill_mylist(&expander, &mynode_cmd))
-			return (NULL);
-		add_back(&parent_list, new_node(mynode_cmd));
-		if (expander && expander->content->token == PIPE)
-			expander = expander->next;
-	}
-	return (/*free_linked_list(tmp),*/ parent_list);
-}
-
 t_command	*allocate_my_command(t_voidlst	*cmds)
 {
 	t_command	*mycommand;
@@ -217,40 +154,6 @@ void	free_big_list(t_voidlst	*biglist)
 	}
 }
 
-t_voidlst	*parse_to_args(t_voidlst *h_list)
-{
-	t_cmds		*tmp;
-	t_voidlst	*cmds;
-	t_voidlst	*redirs;
-	t_command	*mycommand;
-	t_voidlst	*new_list;
-	t_token		*mytoken;
-	t_voidlst	*temp_list;
-
-	new_list = NULL;
-	temp_list = h_list;
-	while (h_list)
-	{
-		tmp = h_list->content;
-		cmds = tmp->commands;
-		redirs = tmp->redirects;
-		if (!(mycommand = allocate_my_command(cmds)))
-			return (NULL);
-		mycommand->redirections = NULL;
-		if (!redirs)
-			mycommand->redirections = NULL;
-		while (redirs)
-		{
-			mytoken = redirs->content;
-			add_back(&mycommand->redirections, new_node(new_token(mytoken->str, mytoken->token)));
-			redirs = redirs->next;
-		}
-		add_back(&new_list, new_node(mycommand));
-		h_list = h_list->next;
-	}
-	return (free_big_list(temp_list), new_list);
-}
-
 void	free_myenv(t_voidlst *list)
 {
 	t_voidlst	*tmp;
@@ -275,6 +178,7 @@ void init_glob(t_exit *glob)
 	int i = -1;
 	glob->killed = 0;
 	glob->exit_status = 0;
+	glob->exit = 0;
 	while (++i < 1024)
 		glob->pid[i] = 0;
 }
@@ -380,24 +284,21 @@ int	main(int ac, char **av, char **env)
 			// myfree_func(head, trimed_str, str);
 			continue;
 		}
-		if (!compiler(head))
+		if (compiler(head) != NULL)
 		{
 			// myfree_func(head, trimed_str, str);
-			continue;
+			// free(str);
+			// free(trimed_str);
+			head = esc_sp_after_spechar(head);
+			myenv = take_env(env);
+			expander_list = bash_expander(head, myenv);
+			commands = bash_concate_(expander_list);
+			commands = parse_to_args(commands);
+			// display_args(commands);
+			tmp = commands->content;
+			cmds = tmp->args;
+			ft_pipe(&m_export,  commands, &new_env);
 		}
-		// free(str);
-		// free(trimed_str);
-		head = esc_sp_after_spechar(head);
-		myenv = take_env(env);
-		expander_list = bash_expander(head, myenv);
-		commands = bash_concate(expander_list);
-		commands = parse_to_args(commands);
-		// signal(SIGQUIT, &handle_interrupt);
-		// display_args(commands);
-		// display(commands);
-		tmp = commands->content;
-		cmds = tmp->args;
-		ft_pipe(&m_export,  commands, &new_env);
 		commands = NULL;
 		head = NULL;
 		// free_big_list(commands);

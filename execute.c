@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/09 11:24:09 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 13:00:56 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 void	exit_status(int status)
 {
 	int	exit_status;
-
+	if (global_exit.exit == 1)
+	{
+		global_exit.exit = 0;
+		return;
+	}
 	if (status == 1 || status == 127)
 		return ;
 	if (WIFEXITED(status)) 
@@ -159,6 +163,7 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 		exit(global_exit.exit_status);
 		// perror("bash: ./test:  ");
 	}
+	printf("status:%d\n",global_exit.exit);
 	waitpid(-1, &status, 0);
 	exit_status(status);
 	// printf("status=%d, exit_status_glob=%d\n",status, global_exit.exit_status);

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:32:29 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/09 12:21:20 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 11:37:18 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_cd_get_back_again(t_list_env **env)
 	return (1);
 }
 
-int	cd_to_path(t_list_env **env, char **cmd)
+int	cd_to_relative_path(t_list_env **env, char **cmd)
 {
 	char	*new_path;
 	char	cwd[1024];
@@ -42,6 +42,19 @@ int	cd_to_path(t_list_env **env, char **cmd)
 	{
 		set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
 		set_value_of_key(env, "PWD", new_path);
+		return (0);
+	}
+	return (1);
+}
+
+int	cd_to_absolute_path(t_list_env **env, char **cmd)
+{
+	if (chdir(cmd[1]) == -1)
+		perror("chdir");
+	else
+	{
+		set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
+		set_value_of_key(env, "PWD", cmd[1]);
 		return (0);
 	}
 	return (1);
@@ -83,7 +96,11 @@ int	ft_cd(t_list_env **env, char **cmd)
 	}
 	else
 	{
-		return (cd_to_path(env, cmd));
+		if (cmd[1][0] == '/')
+			return (cd_to_absolute_path(env, cmd));
+		else
+			return (cd_to_relative_path(env, cmd));
 	}
 	return (0);
 }
+// cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory

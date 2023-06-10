@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_header.h                                      :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 16:17:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/06 03:38:27 by mouaammo         ###   ########.fr       */
+/*   Created: 2023/06/08 04:28:32 by mouaammo          #+#    #+#             */
+/*   Updated: 2023/06/09 23:21:11 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIST_H
-# define LIST_H
+#ifndef PARSER_H
+# define PARSER_H
 
-typedef struct list
-{
-	void			*content;
-	struct list		*next;
-	struct list		*prev;
-}	t_voidlst;
+# include "../parsing.h"
 
-void		add_back(t_voidlst **lst, t_voidlst *new);
-void		add_front(t_voidlst **lst, t_voidlst *new);
-t_voidlst	*new_node(void *content);
-t_voidlst	*last_node(t_voidlst *lst);
-int			list_size(t_voidlst *lst);
+void		free_and_reset(t_voidlst *mycommands);
+t_voidlst	*tokenizer_and_grammar(char	*str, t_list *head, t_voidlst *myenv);
+t_command	*allocate_and_fill(t_voidlst	*cmds);
+int			fill_command(t_voidlst *cmds, t_voidlst *redirs,
+				t_voidlst **new_list);
+t_voidlst	*parse_to_args(t_voidlst *h_list);
 
 #endif
