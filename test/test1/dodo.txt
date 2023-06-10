@@ -1,4 +1,1 @@
-execution test no handled:
-		cat Makefile > newfile        //create newfile but no content
-		cat <<a // heredoc khdam but no output
-		cat <<a > newfile // also no content
+

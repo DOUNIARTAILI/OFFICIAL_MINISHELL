@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/10 22:46:31 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:53:38 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 void	execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export)
 {
 	if (is_builtin(cmds))
-	{
 		global_exit.exit_status =  builtin_functions(new_env, m_export, cmds);
-		// printf("[%d]\n",global_exit.exit);
-	}
 	else
 		execute(new_env, cmds);
-	// printf("global_exit.exit_status = %d", global_exit.exit_status);
 }
 
 void first_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_env **m_export)
@@ -108,9 +104,7 @@ void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
 	len = list_size(commands);
 	global_exit.size = len;
 	if (len == 1)
-	{
 		redirections(commands, mycommand->redirections, m_export, new_env);
-	}
 	else if (len > 1)
 	{
 		pipe(fd);
