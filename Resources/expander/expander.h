@@ -3,19 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:25:24 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 09:29:16 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 23:34:04 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPANDER_H
 # define  EXPANDER_H
 
-#include "../parsing.h"
+/******** END TYPEDEF STRUCT */
+typedef struct mylist
+{
+	char		**args;
+	t_voidlst	*redirections;
+}t_command;
 
+typedef struct cmd
+{
+	t_voidlst	*commands;
+	t_voidlst	*redirects;
+}t_cmds;
 
+typedef struct s_env
+{
+	char	*key;
+	char	*value;
+}t_env;
 
 //string_replace.c
 char		*search_and_replace(t_token **mytoken, t_voidlst *myenv);
@@ -46,7 +61,7 @@ int			handle_heredoc(t_list **newlist, t_list **head, t_voidlst *myenv);
 t_list		*token_dbquotes(t_list *tokenizer);
 
 //utils1.c
-// t_env		*split_key_value(char *env);
+t_env		*split_key_value(char *env);
 void		free_all(char **tab);
 t_voidlst	*take_env(char **env);
 char		*search_for_key(char *str, t_voidlst *myenv);

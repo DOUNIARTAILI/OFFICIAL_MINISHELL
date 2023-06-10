@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 08:35:43 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/08 10:28:13 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 23:12:45 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	red_output(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_li
 	}
 	store_fd = dup(1);
 	dup2(fd_out, 1);
-	redirections(commands, red->next, m_export, new_env);
+	if (red->next)
+		redirections(commands, red->next, m_export, new_env);
 	dup2(store_fd, 1);
 	close(fd_out);
 }
 void	red_input(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env)
 {
-	int	store_fd;
+	int	store_fd;	
 	int fd_in = open(((t_token *)red->content)->str, O_RDONLY, 0644);//str howa input file mnin anqraw
 	if (fd_in == -1)
 	{
@@ -42,7 +43,8 @@ void	red_input(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_lis
 	}
 	store_fd = dup(0);
 	dup2(fd_in, 0);
-	redirections(commands, red->next, m_export, new_env);
+	if (red->next)
+		redirections(commands, red->next, m_export, new_env);
 	dup2(store_fd, 0);
 	close(fd_in);
 }
@@ -58,7 +60,8 @@ void	red_double_output(t_voidlst *commands, t_voidlst *red, t_list_env **m_expor
 	}
 	store_fd = dup(1);
 	dup2(d_fd_out, 1);
-	redirections(commands, red->next, m_export, new_env);
+	if (red->next)
+		redirections(commands, red->next, m_export, new_env);
 	dup2(store_fd, 1);
 	close(d_fd_out);
 }
@@ -72,7 +75,8 @@ void	red_double_input(t_voidlst *commands, t_voidlst *red, t_list_env **m_export
 	ft_putstr_fd(((t_token *)red->content)->str, fd[1]);
 	close(fd[1]);
 	dup2(fd[0], 0);
-	redirections(commands, red->next, m_export, new_env);
+	if (red->next)
+		redirections(commands, red->next, m_export, new_env);
 	dup2(store_fd, 0);
 	close(fd[0]);
 }

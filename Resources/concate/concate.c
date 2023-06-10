@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   concate.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 02:40:37 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 09:40:55 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 22:16:28 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-#include "concate.h"
 
 char	*concate_strings(t_list **command)
 {
@@ -20,7 +19,7 @@ char	*concate_strings(t_list **command)
 	join = NULL;
 	while ((*command) && is_word((*command)->content->token))
 	{
-		join = ft_strjoin(join, ft_strdup((*command)->content->str));
+		join = ft_strjoin_1(join, ft_strdup((*command)->content->str));
 		(*command) = (*command)->next;
 	}
 	if (*command && is_redirect((*command)->content->token))
@@ -68,7 +67,7 @@ int	fill_mylist(t_list **expander, t_cmds **mynode_cmd)
 	return (1);
 }
 
-t_voidlst	*bash_concate_(t_list *expander)
+t_voidlst	*bash_concate(t_list *expander)
 {
 	t_cmds		*mynode_cmd;
 	t_voidlst	*parent_list;

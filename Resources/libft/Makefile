@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
+#    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 23:14:00 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/08 02:28:15 by drtaili          ###   ########.fr        #
+#    Updated: 2023/06/10 23:32:57 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,16 +60,16 @@ NAME = libft.a
 all: $(NAME)
 
 %.o : %.c libft.h
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean $(NAME)
 

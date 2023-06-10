@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/08 02:24:19 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/10 22:16:57 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	concate_in_heredoc(t_list **head, int *flag, char **delemiter)
 		if ((*head)->content->token == QUOTE
 			|| (*head)->content->token == S_QUOTE)
 			*flag = 1;
-		*delemiter = ft_strjoin(*delemiter, ft_strdup((*head)->content->str));
+		*delemiter = ft_strjoin_1(*delemiter, ft_strdup((*head)->content->str));
 		(*head) = (*head)->next;
 	}
-	*delemiter = ft_strjoin(*delemiter, ft_strdup("\n"));
+	*delemiter = ft_strjoin_1(*delemiter, ft_strdup("\n"));
 }
 
 void	manage_heredoc(t_list **head, int *fd, t_voidlst *myenv)
@@ -49,7 +49,7 @@ void	manage_heredoc(t_list **head, int *fd, t_voidlst *myenv)
 		}
 		if (ft_strchr(line, '$') && !flag)
 			line = replace_all(line, myenv);
-		buffer = ft_strjoin(buffer, line);
+		buffer = ft_strjoin_1(buffer, line);
 	}
 	free(delemiter);
 	if (buffer)
@@ -65,7 +65,7 @@ int	handle_heredoc(t_list **newlist, t_list **head, t_voidlst *myenv)
 	static int	i;
 
 	int_str = ft_itoa(i++);
-	str = ft_strjoin(ft_strdup("/tmp/file"), int_str);
+	str = ft_strjoin_1(ft_strdup("/tmp/file"), int_str);
 	fd = open(str, O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
 	{

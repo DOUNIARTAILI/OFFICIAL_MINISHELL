@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:23:39 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 10:13:35 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 22:19:58 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ int	handle_redirection(t_list **newlist,
 		&& (*head)->content->token != PIPE
 		&& !is_redirect((*head)->content->token))
 	{
-		join_str = (*head)->content->str;
-		// join_str = ft_strjoin(join_str,
-		// 		ft_strdup(replace_all((*head)->content->str, myenv)));
+		join_str = ft_strjoin_1(join_str,
+				ft_strdup(replace_all((*head)->content->str, myenv)));
 		(*head) = (*head)->next;
 	}
 	if (ft_strchr(join_str, ' '))

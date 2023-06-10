@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
+#    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/10 09:49:29 by drtaili          ###   ########.fr        #
+#    Updated: 2023/06/10 23:33:36 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC := main.c cd.c tools.c execute.c env_functions.c pwd.c exit.c echo.c env.c u
 	$(addprefix Resources/new_linkedlist/, list.c) \
 	$(addprefix Resources/tokenizer/, tokenizer.c utils.c) \
 	$(addprefix Resources/compiler/, compiler.c) \
-	$(addprefix Resources/utils/, functions_token_1.c functions_token_2.c utils.c check_syntax.c) \
+	$(addprefix Resources/utils/,  free_functions.c functions_token_1.c functions_token_2.c utils.c check_syntax.c) \
 	$(addprefix Resources/expander/, command.c expander.c heredoc.c utils1.c string_replace.c utils2.c exit_status_and_dbdollar.c env.c ) \
 	$(addprefix Resources/concate/, concate.c ) \
 	$(addprefix Resources/parsing/, parse_to_double_char.c parsing.c ) \
@@ -39,8 +39,8 @@ CC := cc -fsanitize=address -g
 
 # Readline flags
 RLFLAGS := -lreadline
-LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
-IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
+# LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
+# IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
 
 # Command-line utilities
 RM := rm -rf
@@ -59,8 +59,8 @@ all: $(NAME)
 
 # Build the dependencies
 $(LIBFT):
-	make -C $(PATH_LIBFT)
-	make -C $(PATH_PRINTF)
+	@make -C $(PATH_LIBFT)
+	@make -C $(PATH_PRINTF)
 
 # Build the target executable
 $(NAME): $(LIBFT) $(PRINTF) $(OBJS)
@@ -68,19 +68,19 @@ $(NAME): $(LIBFT) $(PRINTF) $(OBJS)
 
 # Build object files
 %.o: %.c minishell.h
-	$(CC) $(FLAGS) $(IFLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) $(IFLAGS) -c $< -o $@
 
 # Clean the object files and dependencies
 clean:
-	$(RM) $(OBJS)
-	make clean -C $(PATH_LIBFT)
-	make clean -C $(PATH_PRINTF)
+	@$(RM) $(OBJS)
+	@make clean -C $(PATH_LIBFT)
+	@make clean -C $(PATH_PRINTF)
 
 # Remove all generated files
 fclean: clean
-	$(RM) $(NAME)
-	make fclean -C $(PATH_LIBFT)
-	make fclean -C $(PATH_PRINTF)
+	@$(RM) $(NAME)
+	@make fclean -C $(PATH_LIBFT)
+	@make fclean -C $(PATH_PRINTF)
 
 # Clean and rebuild the target executable
 re: fclean all

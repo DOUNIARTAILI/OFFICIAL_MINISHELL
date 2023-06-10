@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   string_replace.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:45 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 04:30:05 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/09 23:22:05 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
+#include "../parsing.h"
 
 char	*search_and_replace(t_token **mytoken, t_voidlst *myenv)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/10 13:02:25 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 22:46:31 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export)
 	if (is_builtin(cmds))
 	{
 		global_exit.exit_status =  builtin_functions(new_env, m_export, cmds);
-		printf("[%d]\n",global_exit.exit);
+		// printf("[%d]\n",global_exit.exit);
 	}
 	else
 		execute(new_env, cmds);
@@ -99,25 +99,28 @@ void last_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_env
 
 void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
 {
+	t_command	*mycommand;
+
 	int fd[2];
 	int len;
 	
-	t_voidlst *tmp_com;
-	tmp_com = commands;
+	mycommand = commands->content;
 	len = list_size(commands);
 	global_exit.size = len;
 	if (len == 1)
-		redirections(tmp_com, ((t_command *)tmp_com->content)->redirections, m_export, new_env);
+	{
+		redirections(commands, mycommand->redirections, m_export, new_env);
+	}
 	else if (len > 1)
 	{
 		pipe(fd);
-		first_command(fd, tmp_com, new_env, m_export);
-		tmp_com = tmp_com->next;
+		first_command(fd, commands, new_env, m_export);
+		commands = commands->next;
 		if (len > 2)
 		{
-			tmp_com = in_between_commands(tmp_com, fd, new_env, m_export);
+			commands = in_between_commands(commands, fd, new_env, m_export);
 		}
-		last_command(fd, tmp_com, new_env, m_export);
+		last_command(fd, commands, new_env, m_export);
 	}
 	while (waitpid(-1, &global_exit.exit_status, 0) > 0);
 	exit_status(global_exit.exit_status);

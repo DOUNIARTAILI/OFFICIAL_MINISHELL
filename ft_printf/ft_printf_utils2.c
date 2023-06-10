@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 02:20:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/09 05:51:09 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 23:32:39 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "../Resources/parsing.h"
 
 int	ft_putchar(char c)
 {
@@ -18,17 +19,17 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
+// size_t	ft_strlen(const char *s)
+// {
+// 	size_t	len;
 
-	len = 0;
-	if (!s)
-		return 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
+// 	len = 0;
+// 	if (!s)
+// 		return (0);
+// 	while (s[len] != '\0')
+// 		len++;
+// 	return (len);
+// }
 
 int	ft_putstr(char *s)
 {

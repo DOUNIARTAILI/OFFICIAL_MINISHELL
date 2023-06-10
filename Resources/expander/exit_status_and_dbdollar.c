@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_status_and_dbdollar.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 23:21:39 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 04:21:54 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/10 22:51:55 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-#include "../../minishell.h"
 
 char	*exit_status_value(char **string_key, int *index)
 {

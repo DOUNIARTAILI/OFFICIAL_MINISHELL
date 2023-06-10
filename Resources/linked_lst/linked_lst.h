@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:50:13 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/08 03:58:57 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:03:52 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ typedef enum tokens
 	DB_DLR = 11,
 	QST_MARK = 12
 }	t_etoken;
+
+typedef struct s_exit
+{
+	int		exit_status;	
+	pid_t	pid[1024];
+	int		len;
+	int		killed;
+	int		size;
+	int		exit;
+}t_exit;
+
+t_exit	global_exit;
 
 typedef struct token
 {
