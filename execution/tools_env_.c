@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools_env_.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:23:28 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/01 05:26:53 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	free_node(t_list_env *node)
 {

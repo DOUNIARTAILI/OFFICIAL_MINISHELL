@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouad_main.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 22:59:13 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 02:04:41 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void init_glob(t_exit *glob)
 
 void handle_interrupt(int sig)
 {
-	t_exit *glob = &global_exit;
+	t_exit *glob = &g_global_exit;
     if (sig == SIGINT)
 	{
 		ft_kill(glob);
     	write(1,"\n",1);
-		// // global_exit.exit_status = 1;
+		// // g_global_exit.exit_status = 1;
 		// rl_replace_line("", 0);
 		rl_on_new_line();
 		// rl_replace_line("", 0);
@@ -96,7 +96,7 @@ int	main(int ac, char **av, char **env)
 	new_env = get_env(env);
 	m_export = env_dup(new_env);
 	sort_list(m_export);
-	init_glob(&global_exit);
+	init_glob(&g_global_exit);
 	myenv = take_env(env);
 	while (1)
 	{
@@ -106,7 +106,7 @@ int	main(int ac, char **av, char **env)
 		signal(SIGQUIT, SIG_IGN);
 		cmd = readline("\033[6;32mminishell>> :\033[0m");
 		if (!cmd)
-			exit(global_exit.exit_status);
+			exit(g_global_exit.exit_status);
 		signal(SIGINT, &handle_interrupt);
 		if (*cmd)
 			add_history(cmd);

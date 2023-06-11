@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_all_cases.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 08:37:16 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/01 05:35:21 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	add_to_export_env(t_list_env **env,
 	t_list_env **export_list, char **key_value)

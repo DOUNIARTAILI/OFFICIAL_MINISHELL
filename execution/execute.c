@@ -6,18 +6,18 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/10 18:14:48 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	exit_status(int status)
 {
 	int	exit_status;
-	if (global_exit.exit == 1)
+	if (g_global_exit.exit == 1)
 	{
-		global_exit.exit = 0;
+		g_global_exit.exit = 0;
 		return;
 	}
 	if (status == 1 || status == 127)
@@ -31,19 +31,19 @@ void	exit_status(int status)
 		if (status == 2)
 		{
 			// ft_printf("^C\n");
-			global_exit.exit_status = 130;
-			// ft_kill(global_exit);
+			g_global_exit.exit_status = 130;
+			// ft_kill(g_global_exit);
 			return;
 		}
 		else if (status == 3)
 		{
 			ft_printf("Quit: 3\n");
-			global_exit.exit_status = 131;
+			g_global_exit.exit_status = 131;
 			return;
 		}
 	}
 	// return (exit_status);
-	global_exit.exit_status = exit_status;
+	g_global_exit.exit_status = exit_status;
 }
 
 int	check_slash(char *cmd)
@@ -115,7 +115,7 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 
 	if (!cmd_parsed || !cmd_parsed[0])
 		return ;
-	if (global_exit.size == 1)
+	if (g_global_exit.size == 1)
 		id = fork();
 	else
 		id = 0;
@@ -123,7 +123,7 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 	int j = 0;
 	if (id == 0)
 	{
-		global_exit.killed = 2;
+		g_global_exit.killed = 2;
 		signal(SIGQUIT, SIG_DFL);
 		if (!check_slash(cmd_parsed[0]))
 		{
@@ -132,7 +132,7 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 			else
 			{
 				printf("minishell : %s: Permission denied\n", cmd_parsed[0]);
-				global_exit.exit_status = 126;
+				g_global_exit.exit_status = 126;
 			}
 		}
 		else
@@ -145,7 +145,7 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 				if (!access(pathname, F_OK) && access(pathname, X_OK))
 				{
 					printf("minishell: %s: Permission denied\n", pathname);
-					global_exit.exit_status = 126;
+					g_global_exit.exit_status = 126;
 					return;
 				}
 				else
@@ -156,16 +156,16 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 			{
 				// stat check if directory appear this error in dislay : "bash: ./test: is a directory"
 				printf("minishell: %s: command not found\n", cmd_parsed[0]);
-				global_exit.exit_status = 127;
-				// exit(global_exit.exit_status);
+				g_global_exit.exit_status = 127;
+				// exit(g_global_exit.exit_status);
 			}
 		}
-		exit(global_exit.exit_status);
+		exit(g_global_exit.exit_status);
 		// perror("bash: ./test:  ");
 	}
-	// printf("status:%d\n",global_exit.exit);
+	// printf("status:%d\n",g_global_exit.exit);
 	waitpid(-1, &status, 0);
 	exit_status(status);
-	// printf("status=%d, exit_status_glob=%d\n",status, global_exit.exit_status);
+	// printf("status=%d, exit_status_glob=%d\n",status, g_global_exit.exit_status);
 	// return (exit_status(status));
 }

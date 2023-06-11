@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:50:13 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 23:03:52 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 01:28:09 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_exit
 	int		exit;
 }t_exit;
 
-t_exit	global_exit;
+t_exit	g_global_exit;
 
 typedef struct token
 {

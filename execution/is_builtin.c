@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 05:22:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/10 12:55:01 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	builtin_functions(t_list_env **new_env,
 	t_list_env **export_list, char **cmd_parsed)
@@ -43,10 +43,10 @@ int	builtin_functions(t_list_env **new_env,
 		return (main_unset(new_env, export_list, cmd_parsed));
 		// ft_unset(new_env, cmd_parsed[1]);
 		// ft_unset(export_list, cmd_parsed[1]);
-		// if (global_exit.exit_status)
+		// if (g_global_exit.exit_status)
 		// 	perror("ft_unset");
 		// 	// printf("minishell: unset: `%s': not a valid identifier\n", cmd_parsed[1]);
-		// return (global_exit.exit_status);
+		// return (g_global_exit.exit_status);
 	}
 	else if (!ft_strcmp(cmd_parsed[0], "export"))
 	{

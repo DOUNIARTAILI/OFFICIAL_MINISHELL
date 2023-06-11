@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 02:44:58 by drtaili           #+#    #+#             */
-/*   Updated: 2023/05/31 03:51:05 by drtaili          ###   ########.fr       */
+/*   Created: 2023/05/08 00:37:56 by drtaili           #+#    #+#             */
+/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	ft_env(t_list_env **env)
+int	ft_pwd(void)
 {
-	print_env(env);
-	return (0);
+	char	cwd[1024];
+
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
+		perror("getcwd");
+	else
+	{
+		ft_printf("%s\n", cwd);
+		return (0);
+	}
+	return (1);
 }

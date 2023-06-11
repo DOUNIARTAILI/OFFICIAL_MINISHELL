@@ -6,7 +6,7 @@
 #    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 23:14:00 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/10 23:32:57 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/06/11 01:42:32 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ all: $(NAME)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
 
 clean:
 	@$(RM) $(OBJS)

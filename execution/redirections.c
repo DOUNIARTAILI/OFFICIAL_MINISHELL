@@ -6,11 +6,11 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 08:35:43 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 00:00:18 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 
 // ./minishell < nn.txt sort > out.txt

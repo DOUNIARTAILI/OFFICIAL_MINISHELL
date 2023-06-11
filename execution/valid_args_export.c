@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   valid_args_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 08:05:15 by drtaili           #+#    #+#             */
-/*   Updated: 2023/05/31 05:22:35 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // =
 // exist => set the value with the new one meme hta ila kant null set it with null key = "" 

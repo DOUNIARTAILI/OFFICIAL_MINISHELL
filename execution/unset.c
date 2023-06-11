@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 04:45:35 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/09 10:48:05 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ft_unset(t_list_env **env, char *key)
 {
@@ -32,14 +32,14 @@ void	ft_unset(t_list_env **env, char *key)
 				prev->next = curr->next;
 			}
 			free_node(curr);
-			global_exit.exit_status = 0;
+			g_global_exit.exit_status = 0;
 			return ;
 		}
 		prev = curr;
 		curr = curr->next;
 	}
 	// key not found, do nothing
-	global_exit.exit_status = 1;
+	g_global_exit.exit_status = 1;
 }
 
 int	main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd)
