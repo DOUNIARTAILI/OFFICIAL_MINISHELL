@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:45:14 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:41:25 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	ft_strcmp(char *s1, char *s2)
 	int	i;
 
 	i = 0;
-	if (!s1)
+	// printf("s1=%s,s2=%s\n",s1,s2);
+	if (!s1 || !s2)
 		return -1;
+	// printf("s1=%s,s2=%s\n",s1,s2);
 	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
 	{	
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:14:04 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	exit_status(int status)
 {
 	int	exit_status;
-	if (g_global_exit.exit == 1)
-	{
-		g_global_exit.exit = 0;
-		return;
-	}
-	if (status == 1 || status == 127)
+	// printf("[%d]\n",status);
+	
+	// if (g_global_exit.exit == 1)
+	// {
+	// 	g_global_exit.exit = 0;
+	// 	return;
+	// }
+	if (status == 1 || status == 127 || status == 131)
 		return ;
 	if (WIFEXITED(status)) 
 	{
@@ -156,6 +158,7 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 			{
 				// stat check if directory appear this error in dislay : "bash: ./test: is a directory"
 				printf("minishell: %s: command not found\n", cmd_parsed[0]);
+				// printf("cmnd[0]: %s:\n", cmd_parsed[0]);
 				g_global_exit.exit_status = 127;
 				// exit(g_global_exit.exit_status);
 			}

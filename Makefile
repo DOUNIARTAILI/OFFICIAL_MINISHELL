@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
+#    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/11 02:02:54 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/06/11 13:27:24 by drtaili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,8 @@ BOLDWHITE=\033[1m\033[37m
 
 # Readline flags
 RLFLAGS := -lreadline
-# LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
-# IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
+LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
+IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
 
 # Command-line utilities
 RM := rm -rf

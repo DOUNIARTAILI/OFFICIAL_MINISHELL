@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 04:23:46 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/08 04:25:01 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:52:54 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,15 @@ void	free_big_list(t_voidlst	*biglist)
 
 void	free_voidlst(t_voidlst	*list)
 {
-	t_voidlst	*tmp;
+	t_voidlst	*tmp = list;
 	t_token		*mytoken;
 
-	while (list)
+	while (tmp)
 	{
-		mytoken = list->content;
-		tmp = list->next;
+		mytoken = tmp->content;
+		tmp = tmp->next;
 		free(mytoken->str);
 		free(mytoken);
-		free(list);
-		list = tmp;
 	}
+	free(list);
 }

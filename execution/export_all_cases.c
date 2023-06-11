@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_all_cases.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 08:37:16 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:35:55 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	add_to_export_only(t_list_env **export_list, char *cmd)
 {
 	t_list_env	*new;
 	t_env		content;
+
 	content.key = cmd;
 	content.value = NULL;
 	new = ft_lstnew_node(content);

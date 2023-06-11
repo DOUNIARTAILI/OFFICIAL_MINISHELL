@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/10 23:00:42 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:27:54 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <sys/stat.h>
 # include "./ft_printf/ft_printf.h"
 # include "Resources/parsing.h"
+# include <readline/history.h>
+#include <readline/readline.h>
+
 
 typedef struct s_list_env
 {
@@ -68,5 +71,6 @@ void		execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export)
 void		redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env);
 int			size_cmd(char **cmd);
 int			main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd);
+int			exist_or_not(t_list_env **envr, char *key);
 
 #endif

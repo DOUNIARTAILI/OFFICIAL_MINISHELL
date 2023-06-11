@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:10:48 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void first_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_en
 	int old_fd_in;
 	int old_fd_out;
 	
-	if(is_builtin(((t_command *)commands->content)->args))
-			g_global_exit.exit = 1;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -50,8 +48,6 @@ t_voidlst	*in_between_commands(t_voidlst *head_bet, int *fd, t_list_env **new_en
 
 	while (head_bet->next != NULL)
 	{
-		if(is_builtin(((t_command *)head_bet->content)->args))
-			g_global_exit.exit = 1;
 		save_fd = fd[0]; // Save the previous read end of the pipe + Update the read end of the pipe for the next iteration
 		pipe(fd);
 		pid = fork();
@@ -80,8 +76,6 @@ void last_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_env
 	pid_t pid;
 
 	old_fd_in = fd[0];
-	if(is_builtin(((t_command *)commands->content)->args))
-			g_global_exit.exit = 1;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -99,6 +93,7 @@ void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
 
 	int fd[2];
 	int len;
+	int sig;
 	
 	mycommand = commands->content;
 	len = list_size(commands);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_syntax.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:51 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/07 18:45:43 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 13:33:49 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,19 @@ int	check_syntax(t_list *newlist)
 		token_str = newlist->content->str;
 		if (token_var == PIPE
 			&& !check_pipe(newlist))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (g_global_exit.exit_status = 258, syntax_error("❌❌ Syntax Error near: ", token_str));
 		if (token_var == RE_OUT
 			&& !check_token(newlist, WHATEVER, WORD, NEXT))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (g_global_exit.exit_status = 258, syntax_error("❌❌ Syntax Error near: ", token_str));
 		if (token_var == RE_IN
 			&& !check_token(newlist, WHATEVER, WORD, NEXT))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (g_global_exit.exit_status = 258, syntax_error("❌❌ Syntax Error near: ", token_str));
 		if (token_var == HERE_DOC
 			&& !check_token(newlist, WHATEVER, WORD, NEXT))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (g_global_exit.exit_status = 258, syntax_error("❌❌ Syntax Error near: ", token_str));
 		if (token_var == RE_APPEND
 			&& !check_token(newlist, WHATEVER, WORD, NEXT))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (g_global_exit.exit_status = 258, syntax_error("❌❌ Syntax Error near: ", token_str));
 		newlist = newlist->next;
 	}
 	return (1);

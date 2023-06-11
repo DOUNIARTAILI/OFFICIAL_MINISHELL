@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 22:16:57 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 17:05:56 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	manage_heredoc(t_list **head, int *fd, t_voidlst *myenv)
 		line = get_next_line(0);
 		if (!line || !str_cmp(line, delemiter))
 		{
-			ft_putstr_fd("\n", 1);
+			// ft_putstr_fd("\n", 1);
 			break ;
 		}
 		if (ft_strchr(line, '$') && !flag)

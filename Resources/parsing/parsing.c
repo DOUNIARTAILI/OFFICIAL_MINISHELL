@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:39:05 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/09 17:40:27 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:47:52 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	free_and_reset(t_voidlst *mycommands)
 		my_args = mycommands->content;
 		free_all(my_args->args);
 		free_voidlst(my_args->redirections);
-		free(mycommands);
 		mycommands = tmp_next;
+		free(mycommands);
 	}
 }
 
