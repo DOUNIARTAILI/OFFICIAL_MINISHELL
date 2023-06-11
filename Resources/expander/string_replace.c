@@ -6,13 +6,13 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:45 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/09 23:22:05 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:11:51 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-char	*search_and_replace(t_token **mytoken, t_voidlst *myenv)
+char	*search_and_replace(t_token **mytoken, t_list_env *myenv)
 {
 	int			index;
 	char		*string_key;
@@ -32,7 +32,7 @@ char	*search_and_replace(t_token **mytoken, t_voidlst *myenv)
 	return (string_value);
 }
 
-char	*replace_all(char *old_str, t_voidlst *myenv)
+char	*replace_all(char *old_str, t_list_env *myenv)
 {
 	int			index;
 	char		*string_key;

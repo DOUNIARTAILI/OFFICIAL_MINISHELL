@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:39:05 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 15:47:52 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 21:29:45 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_and_reset(t_voidlst *mycommands)
 	}
 }
 
-t_voidlst	*tokenizer_and_grammar(char	*str, t_list *head, t_voidlst *myenv)
+t_voidlst	*tokenizer_and_grammar(char	*str, t_list *head, t_list_env *myenv)
 {
 	char		*trimed_str;
 	t_list		*expander_list;

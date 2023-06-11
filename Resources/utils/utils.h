@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:24:03 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/08 20:34:21 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:20:30 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			myfree_func(t_list *head, char *trimed_str, char *str);
 void		free_linked_list(t_list *head);
 void		free_nodes(t_list *head);
 
-void		free_myenv(t_voidlst *list);
+void		free_myenv(t_list_env *list);
 void		free_big_list(t_voidlst	*biglist);
 void		free_voidlst(t_voidlst	*list);
 

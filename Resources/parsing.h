@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:58:19 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 22:52:31 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:47:29 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 # include <fcntl.h>
-# include "linked_lst/linked_lst.h"
+# include "linked_lst/linked_lst.h" // here all the structs used in this project
 # include <readline/readline.h>
 # include <readline/history.h>
 # include "gnl/get_next_line.h"

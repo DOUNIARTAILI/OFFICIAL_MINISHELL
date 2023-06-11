@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 23:21:39 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 01:28:09 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:12:16 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*exit_status_value(char **string_key, int *index)
 }
 
 char	*get_string_value(char *old_str, int *index,
-							char **string_key, t_voidlst *myenv)
+							char **string_key, t_list_env *myenv)
 {
 	char		*string_value;
 

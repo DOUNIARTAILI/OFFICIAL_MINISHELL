@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 17:05:56 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 20:27:48 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	concate_in_heredoc(t_list **head, int *flag, char **delemiter)
 	*delemiter = ft_strjoin_1(*delemiter, ft_strdup("\n"));
 }
 
-void	manage_heredoc(t_list **head, int *fd, t_voidlst *myenv)
+void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 {
 	char	*delemiter;
 	char	*line;
@@ -42,11 +42,10 @@ void	manage_heredoc(t_list **head, int *fd, t_voidlst *myenv)
 	{
 		ft_putstr_fd("heredoc> ", 1);
 		line = get_next_line(0);
+		if (!line)
+			ft_putstr_fd("\n", 1);
 		if (!line || !str_cmp(line, delemiter))
-		{
-			// ft_putstr_fd("\n", 1);
 			break ;
-		}
 		if (ft_strchr(line, '$') && !flag)
 			line = replace_all(line, myenv);
 		buffer = ft_strjoin_1(buffer, line);
@@ -57,7 +56,7 @@ void	manage_heredoc(t_list **head, int *fd, t_voidlst *myenv)
 	free(buffer);
 }
 
-int	handle_heredoc(t_list **newlist, t_list **head, t_voidlst *myenv)
+int	handle_heredoc(t_list **newlist, t_list **head, t_list_env *myenv)
 {
 	char		*str;
 	int			fd;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_lst.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:50:13 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 16:35:17 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 20:08:18 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,37 @@ typedef enum tokens
 	DB_DLR = 11,
 	QST_MARK = 12
 }	t_etoken;
+
+typedef struct list
+{
+	void			*content;
+	struct list		*next;
+	struct list		*prev;
+}	t_voidlst;
+
+typedef struct mylist
+{
+	char		**args;
+	t_voidlst	*redirections;
+}t_command;
+
+typedef struct cmd
+{
+	t_voidlst	*commands;
+	t_voidlst	*redirects;
+}t_cmds;
+
+typedef struct s_env
+{
+	char	*key;
+	char	*value;
+}t_env;
+
+typedef struct s_list_env
+{
+	t_env				data;
+	struct s_list_env	*next;
+}t_list_env;
 
 typedef struct s_exit
 {

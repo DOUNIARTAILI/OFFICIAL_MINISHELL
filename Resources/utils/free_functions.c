@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 04:23:46 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 15:52:54 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 20:45:00 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-void	free_myenv(t_voidlst *list)
+void	free_myenv(t_list_env *list)
 {
-	t_voidlst	*tmp;
-	t_env		*myenv;
+	t_list_env	*tmp;
+	t_env		myenv;
 
 	while (list)
 	{
-		myenv = list->content;
+		myenv = list->data;
 		tmp = list->next;
-		free(myenv->key);
-		free(myenv->value);
-		free(myenv);
+		free(myenv.key);
+		free(myenv.value);
 		free(list);
 		list = tmp;
 	}
@@ -52,15 +51,16 @@ void	free_big_list(t_voidlst	*biglist)
 
 void	free_voidlst(t_voidlst	*list)
 {
-	t_voidlst	*tmp = list;
+	t_voidlst	*tmp;
 	t_token		*mytoken;
 
-	while (tmp)
+	while (list)
 	{
-		mytoken = tmp->content;
-		tmp = tmp->next;
+		tmp = list->next;
+		mytoken = list->content;
 		free(mytoken->str);
 		free(mytoken);
+		free(list);
+		list = tmp;
 	}
-	free(list);
 }

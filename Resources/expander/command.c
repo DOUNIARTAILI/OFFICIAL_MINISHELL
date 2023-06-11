@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:23:39 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 22:19:58 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:20:51 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_redirect(int token)
 }
 
 int	handle_redirection(t_list **newlist,
-	t_list **head, t_voidlst *myenv, int mytoken)
+	t_list **head, t_list_env *myenv, int mytoken)
 {
 	char	*join_str;
 
@@ -54,7 +54,7 @@ int	handle_redirection(t_list **newlist,
 	return (1);
 }
 
-int	handle_cmd(t_list **newlist, t_list **head, t_voidlst *myenv)
+int	handle_cmd(t_list **newlist, t_list **head, t_list_env *myenv)
 {
 	int		mytoken;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 16:54:46 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 22:18:42 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void handle_interrupt(int sig)
 	{
 		ft_kill(glob);
     	write(1,"\n",1);
-		rl_replace_line("", 0);
+		// rl_replace_line("", 0);
 		rl_on_new_line();
 		if (glob->killed == 0)
         	rl_redisplay();
@@ -91,7 +91,6 @@ int	main(int ac, char **av, char **env)
 	m_export = env_dup(new_env);
 	sort_list(m_export);
 	init_glob(&g_global_exit);
-	myenv = take_env(env);
 	while (1)
 	{
 		head = NULL;
@@ -107,15 +106,14 @@ int	main(int ac, char **av, char **env)
 		signal(SIGINT, &handle_interrupt);
 		if (cmd != NULL && *cmd != '\0')
 			add_history(cmd);
-		commands = tokenizer_and_grammar(cmd, head, myenv);
+		commands = tokenizer_and_grammar(cmd, head, new_env);
 		if (!commands)
 			continue ;
 		commands = parse_to_args(commands);
 		ft_pipe(&m_export, commands, &new_env);
-		free(commands);
-		free(head);
 		// free_and_reset(commands);
+		commands = NULL;
 	}
-	// free_myenv(myenv);
+	free_myenv(new_env);
 	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
+#    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/11 13:27:24 by drtaili          ###   ########.fr        #
+#    Updated: 2023/06/11 20:52:05 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,15 +39,8 @@ CC = cc -fsanitize=address -g
 # Compiler flags
 # FLAGS := -Wall -Wextra -Werror
 
-BOLDBLACK=\033[1m\033[30m
-BOLDRED=\033[1m\033[31m
 BOLDGREEN=\033[1m\033[32m
-BOLDYELLOW=\033[1m\033[33m
-BOLDBLUE=\033[1m\033[34m
-BOLDMAGENTA=\033[1m\033[35m
-BOLDCYAN=\033[1m\033[36m
-BOLDWHITE=\033[1m\033[37m
-
+RESET = \033[0m
 
 
 # Readline flags
@@ -69,7 +62,7 @@ PATH_PRINTF := ./ft_printf
 
 # The default target
 all: $(NAME)
-	@printf "$(BOLDRED) __  __ _____ _   _ _____  _____ _    _ ______ _      _      \n"
+	@printf "$(BOLDGREEN) __  __ _____ _   _ _____  _____ _    _ ______ _      _      \n"
 	@printf "|  \/  |_   _| \ | |_   _|/ ____| |  | |  ____| |    | |     \n"
 	@printf "| \  / | | | |  \| | | | | (___ | |__| | |__  | |    | |     \n"
 	@printf "| |\/| | | | | . \` | | |  \___ \|  __  |  __| | |    | |     \n"

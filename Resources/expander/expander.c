@@ -6,13 +6,13 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 01:28:09 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/11 20:11:36 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-t_list	*bash_expander(t_list *tokenizer, t_voidlst *myenv)
+t_list	*bash_expander(t_list *tokenizer, t_list_env *myenv)
 {
 	t_list		*new_list;
 	t_list		*tmphead;
@@ -27,7 +27,7 @@ t_list	*bash_expander(t_list *tokenizer, t_voidlst *myenv)
 	return (free_linked_list(tmphead), new_list);
 }
 
-void	expande(t_list *head, t_voidlst *myenv, t_list **origin)
+void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 {
 	t_token		*mytoken;
 	char		*string_value;
@@ -49,7 +49,7 @@ void	expande(t_list *head, t_voidlst *myenv, t_list **origin)
 					mytoken->token)));
 }
 
-void	command_expansion(t_list **origin, t_list **head, t_voidlst *myenv)
+void	command_expansion(t_list **origin, t_list **head, t_list_env *myenv)
 {
 	t_token	*mytoken;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 14:27:54 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/11 20:04:38 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,6 @@
 # include <sys/stat.h>
 # include "./ft_printf/ft_printf.h"
 # include "Resources/parsing.h"
-# include <readline/history.h>
-#include <readline/readline.h>
-
-
-typedef struct s_list_env
-{
-	t_env				data;
-	struct s_list_env	*next;
-}t_list_env;
 
 t_list_env	*get_env(char **env);
 t_list_env	*get_node_by_key(t_list_env **env, char *key);
