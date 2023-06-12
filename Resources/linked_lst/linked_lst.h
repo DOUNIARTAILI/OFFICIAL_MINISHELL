@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_lst.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:50:13 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:08:18 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/12 19:13:05 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_exit
 	int		killed;
 	int		size;
 	int		exit;
+	int		heredoc;
 }t_exit;
 
 t_exit	g_global_exit;

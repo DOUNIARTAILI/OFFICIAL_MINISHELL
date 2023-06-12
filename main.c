@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 22:18:42 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:51:30 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void init_glob(t_exit *glob)
 {
 	int i = -1;
+	glob->heredoc = 0;
 	glob->killed = 0;
 	glob->exit_status = 0;
 	glob->exit = 0;
@@ -27,26 +28,44 @@ void handle_interrupt(int sig)
 	t_exit *glob = &g_global_exit;
     if (sig == SIGINT)
 	{
-		ft_kill(glob);
-    	write(1,"\n",1);
-		// rl_replace_line("", 0);
-		rl_on_new_line();
-		if (glob->killed == 0)
-        	rl_redisplay();
-		glob->killed = 0;
+		// if (!g_global_exit.heredoc)
+		// {
+			if (ft_kill(glob))
+				glob->exit_status = 130;
+			else
+				glob->exit_status = 1;
+			write(1,"\n",1);
+			rl_replace_line("", 0);
+			rl_on_new_line();
+			if (glob->killed == 0)
+				rl_redisplay();
+			glob->killed = 0;
+		// }
+		// else
+		// {
+		// 	rl_callback_handler_remove();
+		// 	g_global_exit.heredoc = 0;
+		// }
     }
 	else if (sig == SIGQUIT)
 	{
         glob->exit_status = 0;
     }
 }
+void handler(int sig)
+{
+	t_exit *glob = &g_global_exit;
+    if (sig == SIGUSR1)
+	{
+		glob->exit = 1;	
+    }
+}
 
-void	ft_kill(t_exit *glob)
+int	ft_kill(t_exit *glob)
 {
 	int	i;
 
 	i = 0;
-	
 	while (i < glob->len)
 	{
 		glob->killed = 1;
@@ -54,6 +73,9 @@ void	ft_kill(t_exit *glob)
 		i++;
 	}
 	glob->len = 0;
+	if (i > 0)
+		return (1);
+	return (0);
 }
 
 void	print_cmds(char **cmds)
@@ -94,10 +116,12 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		head = NULL;
+		g_global_exit.exit = 0;
 		signal(SIGINT, &handle_interrupt);
 		signal(SIGQUIT, &handle_interrupt);
 		signal(SIGQUIT, SIG_IGN);
-		cmd = readline("\033[6;32mminishell>> :\033[0m");
+		signal(SIGUSR1, &handler);
+		cmd = readline("\033[6;32mminishell>>: \033[0m");
 		if (!cmd)
 		{
 			write(1,"exit\n",5);
@@ -112,8 +136,9 @@ int	main(int ac, char **av, char **env)
 		commands = parse_to_args(commands);
 		ft_pipe(&m_export, commands, &new_env);
 		// free_and_reset(commands);
+		free(head);
 		commands = NULL;
 	}
-	free_myenv(new_env);
+	// free_myenv(new_env);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 17:14:04 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/12 19:45:57 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 void	exit_status(int status)
 {
 	int	exit_status;
-	// printf("[%d]\n",status);
 	
-	// if (g_global_exit.exit == 1)
-	// {
-	// 	g_global_exit.exit = 0;
-	// 	return;
-	// }
-	if (status == 1 || status == 127 || status == 131)
+	if (g_global_exit.exit > 0)
+	{
+		if (g_global_exit.exit == 1)
+			g_global_exit.exit_status = status / 256;
+		g_global_exit.exit++;
+		return;
+	}
+	if (status == 1 || status == 2 || status == 127 || status == 126 || status == 131 || status == 130)
 		return ;
 	if (WIFEXITED(status)) 
 	{
@@ -30,6 +31,7 @@ void	exit_status(int status)
     }
 	else if (WIFSIGNALED(status))
 	{
+		printf("status=%d\n",status);
 		if (status == 2)
 		{
 			// ft_printf("^C\n");
@@ -114,6 +116,7 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 	int		status;
 	int		id;
 	int		i;
+	struct stat fileStat;
 
 	if (!cmd_parsed || !cmd_parsed[0])
 		return ;
@@ -127,14 +130,24 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 	{
 		g_global_exit.killed = 2;
 		signal(SIGQUIT, SIG_DFL);
-		if (!check_slash(cmd_parsed[0]))
+		stat(cmd_parsed[0], &fileStat);
+		if (!ft_strcmp(cmd_parsed[0], "."))
+		{
+			printf("minishell : .: filename argument required .: usage: . filename [arguments]\n");
+			g_global_exit.exit_status = 2;
+			return ;	
+		}
+		else if (S_ISDIR(fileStat.st_mode) && ft_strcmp(cmd_parsed[0], ".."))
+			printf("minishell : %s: is a directory\n", cmd_parsed[0]);
+		else if (!check_slash(cmd_parsed[0]))
 		{
 			if (!access(cmd_parsed[0], F_OK) && !access(cmd_parsed[0], X_OK))
 				execve(cmd_parsed[0], cmd_parsed, env_arr(new_env));
 			else
 			{
-				printf("minishell : %s: Permission denied\n", cmd_parsed[0]);
-				g_global_exit.exit_status = 126;
+				printf("minishell : %s: No such file or directory\n", cmd_parsed[0]);
+				g_global_exit.exit_status = 127;
+				return;
 			}
 		}
 		else
@@ -154,21 +167,14 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 					execve(pathname, cmd_parsed, env_arr(new_env));
 				i++;
 			}
-			if (access(cmd_parsed[0], F_OK))
-			{
-				// stat check if directory appear this error in dislay : "bash: ./test: is a directory"
-				printf("minishell: %s: command not found\n", cmd_parsed[0]);
-				// printf("cmnd[0]: %s:\n", cmd_parsed[0]);
-				g_global_exit.exit_status = 127;
-				// exit(g_global_exit.exit_status);
-			}
+			printf("minishell: %s: command not found\n", cmd_parsed[0]);
+			g_global_exit.exit_status = 127;
 		}
 		exit(g_global_exit.exit_status);
-		// perror("bash: ./test:  ");
 	}
-	// printf("status:%d\n",g_global_exit.exit);
+	else
+		g_global_exit.pid[j++] = id;
+	g_global_exit.len = j;
 	waitpid(-1, &status, 0);
 	exit_status(status);
-	// printf("status=%d, exit_status_glob=%d\n",status, g_global_exit.exit_status);
-	// return (exit_status(status));
 }

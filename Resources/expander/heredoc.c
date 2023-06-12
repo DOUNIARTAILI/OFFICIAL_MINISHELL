@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:27:48 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:48:28 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,26 @@ void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 	buffer = NULL;
 	flag = 0;
 	concate_in_heredoc(head, &flag, &delemiter);
+	g_global_exit.heredoc = 1;
 	while (1)
 	{
-		ft_putstr_fd("heredoc> ", 1);
-		line = get_next_line(0);
-		if (!line)
-			ft_putstr_fd("\n", 1);
+		// ft_putstr_fd("heredoc> ", 1);
+		// line = get_next_line(g_global_exit.heredoc);
+		line = readline("heredoc> ");
+		// if (!g_global_exit.heredoc)
+		// 	return;
 		if (!line || !str_cmp(line, delemiter))
+		{
+			free(delemiter);
+			if (buffer)
+				write(*fd, buffer, ft_strlen(buffer));
+			free(buffer);
 			break ;
+		}
 		if (ft_strchr(line, '$') && !flag)
 			line = replace_all(line, myenv);
 		buffer = ft_strjoin_1(buffer, line);
 	}
-	free(delemiter);
-	if (buffer)
-		write(*fd, buffer, ft_strlen(buffer));
-	free(buffer);
 }
 
 int	handle_heredoc(t_list **newlist, t_list **head, t_list_env *myenv)
@@ -72,7 +76,9 @@ int	handle_heredoc(t_list **newlist, t_list **head, t_list_env *myenv)
 		return (0);
 	}
 	manage_heredoc(head, &fd, myenv);
-	ft_lstadd_back(newlist, ft_lstnew(new_token(str, RE_IN)));
 	close (fd);
+	if (!g_global_exit.heredoc)
+		return 1;
+	ft_lstadd_back(newlist, ft_lstnew(new_token(str, RE_IN)));
 	return (1);
 }

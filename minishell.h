@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 20:04:38 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:25:55 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ int			check_plus_existance(char *cmd);
 int			check_key_value_isvalid_export(char *cmd);
 void		ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env);
 void		exit_status(int status);
-void		ft_kill(t_exit *glob);
+int			ft_kill(t_exit *glob);
 void		execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export);
 void		redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env);
 int			size_cmd(char **cmd);
 int			main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd);
-int			exist_or_not(t_list_env **envr, char *key);
+void handle_interrupt(int sig);
 
 #endif
