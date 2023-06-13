@@ -3,20 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/13 01:53:06 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/13 21:29:00 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int my_getc_function() {
+  int c = 0; // Or any other method of getting input
+  return c;
+}
 
 void init_glob(t_exit *glob)
 {
 	int i = -1;
 	glob->heredoc = 0;
 	glob->killed = 0;
+	glob->gnl = 0;
 	glob->exit_status = 0;
 	glob->exit = 0;
 	while (++i < 1024)
@@ -28,24 +34,26 @@ void handle_interrupt(int sig)
 	t_exit *glob = &g_global_exit;
     if (sig == SIGINT)
 	{
-		// if (!g_global_exit.heredoc)
-		// {
-			if (ft_kill(glob))
-				glob->exit_status = 130;
-			else
-				glob->exit_status = 1;
+		// printf("[%d]\n",g_global_exit.heredoc);
+		if (ft_kill(glob))
+			glob->exit_status = 130;
+		else
+			glob->exit_status = 1;
+		if (g_global_exit.heredoc)
+		{
+			g_global_exit.heredoc = 0;
+		}
+		else
+		{
+			
+			// puts("fatha");
 			write(1,"\n",1);
 			rl_replace_line("", 0);
 			rl_on_new_line();
-			if (glob->killed == 0)
+			// if (glob->killed == 0)
 				rl_redisplay();
-			glob->killed = 0;
-		// }
-		// else
-		// {
-		// 	rl_callback_handler_remove();
-		// 	g_global_exit.heredoc = 0;
-		// }
+		}
+		glob->killed = 0;
     }
 	else if (sig == SIGQUIT)
 	{
@@ -115,6 +123,7 @@ int	main(int ac, char **av, char **env)
 	init_glob(&g_global_exit);
 	while (1)
 	{
+		rl_catch_signals = 0;
 		head = NULL;
 		g_global_exit.exit = 0;
 		signal(SIGINT, &handle_interrupt);
@@ -127,6 +136,7 @@ int	main(int ac, char **av, char **env)
 			write(1,"exit\n",5);
 			exit(g_global_exit.exit_status);
 		}
+		// printf("cmd : %s\n",cmd);
 		signal(SIGINT, &handle_interrupt);
 		if (cmd != NULL && *cmd != '\0')
 			add_history(cmd);
@@ -134,7 +144,10 @@ int	main(int ac, char **av, char **env)
 		if (!commands)
 			continue ;
 		commands = parse_to_args(commands);
-		ft_pipe(&m_export, commands, &new_env);
+		// printf("red = %s\n", ((t_command *)(t_voidlst *)commands->content)->args[0]);
+		// printf("%d\n",g_global_exit.heredoc);
+		if (!g_global_exit.heredoc)
+			ft_pipe(&m_export, commands, &new_env);
 		// free_and_reset(commands);
 		free(head);
 		commands = NULL;

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/12 19:45:57 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/13 21:22:57 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	exit_status(int status)
     }
 	else if (WIFSIGNALED(status))
 	{
-		printf("status=%d\n",status);
 		if (status == 2)
 		{
 			// ft_printf("^C\n");
@@ -130,22 +129,28 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 	{
 		g_global_exit.killed = 2;
 		signal(SIGQUIT, SIG_DFL);
+		// signal(SIGINT, SIG_DFL);
 		stat(cmd_parsed[0], &fileStat);
 		if (!ft_strcmp(cmd_parsed[0], "."))
 		{
-			printf("minishell : .: filename argument required .: usage: . filename [arguments]\n");
+			// printf("minishell : .: filename argument required .: usage: . filename [arguments]\n");
+			ft_putstr_fd("minishell : .: filename argument required .: usage: . filename [arguments]\n", 2);
 			g_global_exit.exit_status = 2;
 			return ;	
 		}
 		else if (S_ISDIR(fileStat.st_mode) && ft_strcmp(cmd_parsed[0], ".."))
-			printf("minishell : %s: is a directory\n", cmd_parsed[0]);
+		{
+			ft_putstr_fd("minishell : is a directory\n", 2);
+			// printf("minishell : %s: is a directory\n", cmd_parsed[0]);
+		}
 		else if (!check_slash(cmd_parsed[0]))
 		{
 			if (!access(cmd_parsed[0], F_OK) && !access(cmd_parsed[0], X_OK))
 				execve(cmd_parsed[0], cmd_parsed, env_arr(new_env));
 			else
 			{
-				printf("minishell : %s: No such file or directory\n", cmd_parsed[0]);
+				ft_putstr_fd("minishell : No such file or directory\n", 2);
+				// printf("minishell : %s: No such file or directory\n", cmd_parsed[0]);
 				g_global_exit.exit_status = 127;
 				return;
 			}
@@ -159,7 +164,8 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 				pathname = ft_strjoin(pathname, cmd_parsed[0]);
 				if (!access(pathname, F_OK) && access(pathname, X_OK))
 				{
-					printf("minishell: %s: Permission denied\n", pathname);
+					ft_putstr_fd("minishell: Permission denied\n", 2);
+					// printf("minishell: %s: Permission denied\n", pathname);
 					g_global_exit.exit_status = 126;
 					return;
 				}
@@ -167,7 +173,8 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 					execve(pathname, cmd_parsed, env_arr(new_env));
 				i++;
 			}
-			printf("minishell: %s: command not found\n", cmd_parsed[0]);
+			ft_putstr_fd("minishell: command not found\n", 2);
+			// printf("minishell: %s: command not found\n", cmd_parsed[0]);
 			g_global_exit.exit_status = 127;
 		}
 		exit(g_global_exit.exit_status);
@@ -175,6 +182,6 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 	else
 		g_global_exit.pid[j++] = id;
 	g_global_exit.len = j;
-	waitpid(-1, &status, 0);
-	exit_status(status);
+	// waitpid(-1, &status, 0);
+	// exit_status(status);
 }

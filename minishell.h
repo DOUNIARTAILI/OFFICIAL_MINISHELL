@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/12 16:25:55 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/13 17:43:19 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void		execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export)
 void		redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env);
 int			size_cmd(char **cmd);
 int			main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd);
-void handle_interrupt(int sig);
+void		handle_interrupt(int sig);
 
 #endif

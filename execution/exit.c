@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 00:52:10 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/12 16:57:16 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/13 17:38:36 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	ft_exit(char **cmd)
 		g_global_exit.exit_status = 1;
 		printf("minishell: exit : too many arguments\n");
 	}
-	printf("from exit:%d",g_global_exit.exit_status);
 	kill(getppid(),SIGUSR1);
 	exit(g_global_exit.exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:50:13 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/12 19:13:05 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/13 18:20:12 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_exit
 	int		size;
 	int		exit;
 	int		heredoc;
+	int		gnl;
 }t_exit;
 
 t_exit	g_global_exit;

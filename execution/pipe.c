@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/12 23:23:08 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:52:24 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export)
 		g_global_exit.exit_status =  builtin_functions(new_env, m_export, cmds);
 	else
 		execute(new_env, cmds);
-	printf("|%d|\n",g_global_exit.exit_status);
+	// printf("|%d|\n",g_global_exit.exit_status);
 }
 
 void first_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_env **m_export)
@@ -96,6 +96,7 @@ void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
 	int len;
 	int sig;
 	
+	// signal(SIGINT, SIG_IGN);
 	mycommand = commands->content;
 	len = list_size(commands);
 	g_global_exit.size = len;
