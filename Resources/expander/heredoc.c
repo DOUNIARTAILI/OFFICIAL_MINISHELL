@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/12 21:48:28 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/13 00:11:25 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ int	handle_heredoc(t_list **newlist, t_list **head, t_list_env *myenv)
 	fd = open(str, O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (fd == -1)
 	{
-		printf("❌❌ bad file descriptor\n");
+		ft_putstr_fd("❌❌ bad file descriptor\n", 2);
 		return (0);
 	}
 	manage_heredoc(head, &fd, myenv);
 	close (fd);
 	if (!g_global_exit.heredoc)
-		return 1;
+		return (1);
 	ft_lstadd_back(newlist, ft_lstnew(new_token(str, RE_IN)));
 	return (1);
 }

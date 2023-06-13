@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:51 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:39:45 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/13 00:26:34 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,17 @@ int	check_pipe(t_list *node)
 		prev = node->prev->content->token;
 	else
 		prev = WHATEVER;
-	if (prev == WHATEVER || next == WHATEVER)
+	if (prev == WHATEVER || next == WHATEVER || prev == PIPE || next == PIPE)
 		return (0);
 	return (1);
 }
 
-int	syntax_error(char *str, char *token_value)
+int	syntax_error(char *token_value)
 {
 	g_global_exit.exit_status = 258;
-	printf("%s'%s'\n", str, token_value);
+	ft_putstr_fd("❌❌ Syntax Error near: ", 2);
+	ft_putstr_fd(token_value, 2);
+	ft_putstr_fd("\n", 2);
 	return (0);
 }
 
@@ -72,17 +74,17 @@ int	check_syntax(t_list *newlist)
 		token_var = newlist->content->token;
 		token_str = newlist->content->str;
 		if (token_var == PIPE && !check_pipe(newlist))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (syntax_error(token_str));
 		if (token_var == RE_OUT && !check_token(newlist, WHATEVER, WORD, NEXT))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (syntax_error(token_str));
 		if (token_var == RE_IN && !check_token(newlist, WHATEVER, WORD, NEXT))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (syntax_error(token_str));
 		if (token_var == HERE_DOC
 			&& !check_token(newlist, WHATEVER, WORD, NEXT))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (syntax_error(token_str));
 		if (token_var == RE_APPEND
 			&& !check_token(newlist, WHATEVER, WORD, NEXT))
-			return (syntax_error("❌❌ Syntax Error near: ", token_str));
+			return (syntax_error(token_str));
 		newlist = newlist->next;
 	}
 	return (1);

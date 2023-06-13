@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:23:39 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:20:51 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/13 00:10:55 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ int	handle_redirection(t_list **newlist,
 	}
 	if (ft_strchr(join_str, ' '))
 	{
-		printf("❌❌ %s: %s❌\n", join_str, "ambiguous redirect");
-		return (0);
+		ft_putstr_fd("❌❌", 2);
+		ft_putstr_fd(join_str, 2);
+		ft_putstr_fd("ambiguous redirect", 2);
+		return (g_global_exit.exit_status = 1, 0);
 	}
 	if (join_str)
 		ft_lstadd_back(newlist, ft_lstnew(new_token(join_str, mytoken)));

@@ -6,7 +6,7 @@
 #    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/11 20:52:05 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/06/12 22:21:22 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,11 @@ RESET = \033[0m
 
 # Readline flags
 RLFLAGS := -lreadline
-LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
-IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
+# LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
+# IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
+
+LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
+IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
 
 # Command-line utilities
 RM := rm -rf
