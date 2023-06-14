@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 08:35:43 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/13 17:28:44 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/14 20:58:46 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,6 @@ void	redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_
 		red_double_output(commands, red, m_export, new_env);
 	else if (red && ((t_token *)red->content)->token == HERE_DOC)//<<
 		red_double_input(commands, red, m_export, new_env);
+	else
+		exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/13 21:22:57 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/14 20:38:03 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@ void	exit_status(int status)
 		g_global_exit.exit++;
 		return;
 	}
-	if (status == 1 || status == 2 || status == 127 || status == 126 || status == 131 || status == 130)
-		return ;
+	// if (status == 1 || status == 2 || status == 127 || status == 126 || status == 131 || status == 130)
+	// 	return ;
+	if (status == 258)
+	{
+		g_global_exit.exit_status = 2;
+		return;
+	}
 	if (WIFEXITED(status)) 
 	{
 		exit_status = WEXITSTATUS(status);
@@ -33,9 +38,8 @@ void	exit_status(int status)
 	{
 		if (status == 2)
 		{
-			// ft_printf("^C\n");
+			ft_printf("\n");
 			g_global_exit.exit_status = 130;
-			// ft_kill(g_global_exit);
 			return;
 		}
 		else if (status == 3)
@@ -127,15 +131,16 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 	int j = 0;
 	if (id == 0)
 	{
+		rl_catch_signals = 1;
 		g_global_exit.killed = 2;
 		signal(SIGQUIT, SIG_DFL);
-		// signal(SIGINT, SIG_DFL);
+		signal(SIGINT, SIG_DFL);
 		stat(cmd_parsed[0], &fileStat);
 		if (!ft_strcmp(cmd_parsed[0], "."))
 		{
 			// printf("minishell : .: filename argument required .: usage: . filename [arguments]\n");
 			ft_putstr_fd("minishell : .: filename argument required .: usage: . filename [arguments]\n", 2);
-			g_global_exit.exit_status = 2;
+			g_global_exit.exit_status = 258;
 			return ;	
 		}
 		else if (S_ISDIR(fileStat.st_mode) && ft_strcmp(cmd_parsed[0], ".."))
@@ -157,6 +162,7 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 		}
 		else
 		{
+			// if (ft_strcmp(cmd_parsed[0], "ls"))
 			value = get_path_value(new_env);
 			while (value[i] != NULL)
 			{

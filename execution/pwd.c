@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 00:37:56 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/14 20:11:04 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_pwd(void)
+int	ft_pwd(t_list_env **env)
 {
 	char	cwd[1024];
 
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
-		perror("getcwd");
+		printf("%s\n", get_value_of_key(env, "PWD"));
 	else
 	{
 		ft_printf("%s\n", cwd);

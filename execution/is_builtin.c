@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 05:22:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/13 13:27:01 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/14 20:11:37 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	builtin_functions(t_list_env **new_env,
 	else if (!ft_strcmp(cmd_parsed[0], "cd"))
 		return (ft_cd(new_env, cmd_parsed));
 	else if (!ft_strcmp(cmd_parsed[0], "pwd"))
-		return (ft_pwd());
+		return (ft_pwd(new_env));
 	else if (!ft_strcmp(cmd_parsed[0], "echo"))
 		return (ft_echo(cmd_parsed));
 	else if (!ft_strcmp(cmd_parsed[0], "env"))

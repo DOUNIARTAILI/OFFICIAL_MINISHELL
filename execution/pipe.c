@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/13 17:52:24 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/14 20:58:09 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void first_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_en
 	pid_t pid;
 	int old_fd_in;
 	int old_fd_out;
-	
+
 	pid = fork();
 	if (pid == 0)
 	{
@@ -80,8 +80,11 @@ void last_command(int *fd, t_voidlst *commands, t_list_env **new_env, t_list_env
 	pid = fork();
 	if (pid == 0)
 	{
-		if (dup2(old_fd_in, STDIN_FILENO) == -1)
-			perror("dup2 failed");
+		if (((t_command *)(t_voidlst *)commands->content)->args[0])
+		{
+			if (dup2(old_fd_in, STDIN_FILENO) == -1)
+				perror("dup2 failed");
+		}
 		close(old_fd_in);
 		redirections(commands, ((t_command *)commands->content)->redirections, m_export, new_env);
 	}

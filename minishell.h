@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/13 17:43:19 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/14 20:11:25 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		print_env(t_list_env **env);
 void		set_value_of_key(t_list_env **env, char *key, char *value);
 void		execute(t_list_env **new_env, char **cmd_parsed);
 int			ft_cd(t_list_env **env, char **cmd);
-int			ft_pwd(void);
+int			ft_pwd(t_list_env **env);
 void		ft_exit(char **cmd);
 int			ft_echo(char **cmd);
 int			ft_env(t_list_env **env);

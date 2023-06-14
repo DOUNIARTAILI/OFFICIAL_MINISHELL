@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/14 17:52:06 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/14 20:28:58 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void handle_interrupt(int sig)
 			glob->exit_status = 1;
 		if (g_global_exit.heredoc)
 		{
+			glob->exit_status = 1;
 			close(0);
 			// g_global_exit.heredoc = 0;
 		}
@@ -123,7 +124,7 @@ int	main(int ac, char **av, char **env)
 	init_glob(&g_global_exit);
 	while (1)
 	{
-		// rl_catch_signals = 0;
+		rl_catch_signals = 0;
 		head = NULL;
 		g_global_exit.exit = 0;
 		signal(SIGINT, &handle_interrupt);

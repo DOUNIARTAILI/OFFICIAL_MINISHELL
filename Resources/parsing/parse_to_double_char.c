@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 04:27:25 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/13 17:34:10 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/14 20:21:57 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ t_voidlst	*parse_to_args(t_voidlst *h_list)
 			return (0);
 		h_list = h_list->next;
 	}
+	signal(SIGINT, SIG_IGN);
 	return (free_big_list(temp_list), new_list);
 }
