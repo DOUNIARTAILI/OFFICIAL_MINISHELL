@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/13 21:29:00 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/14 17:52:06 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void handle_interrupt(int sig)
 			glob->exit_status = 1;
 		if (g_global_exit.heredoc)
 		{
-			g_global_exit.heredoc = 0;
+			close(0);
+			// g_global_exit.heredoc = 0;
 		}
 		else
 		{
-			
 			// puts("fatha");
 			write(1,"\n",1);
 			rl_replace_line("", 0);
 			rl_on_new_line();
 			// if (glob->killed == 0)
-				rl_redisplay();
+			rl_redisplay();
 		}
 		glob->killed = 0;
     }
@@ -123,14 +123,14 @@ int	main(int ac, char **av, char **env)
 	init_glob(&g_global_exit);
 	while (1)
 	{
-		rl_catch_signals = 0;
+		// rl_catch_signals = 0;
 		head = NULL;
 		g_global_exit.exit = 0;
 		signal(SIGINT, &handle_interrupt);
 		signal(SIGQUIT, &handle_interrupt);
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGUSR1, &handler);
-		cmd = readline("\033[6;32mminishell>>: \033[0m");
+		cmd = readline("\033[6;32mminishell>> \033[0m");
 		if (!cmd)
 		{
 			write(1,"exit\n",5);
@@ -146,8 +146,15 @@ int	main(int ac, char **av, char **env)
 		commands = parse_to_args(commands);
 		// printf("red = %s\n", ((t_command *)(t_voidlst *)commands->content)->args[0]);
 		// printf("%d\n",g_global_exit.heredoc);
-		if (!g_global_exit.heredoc)
+		if (ttyname(0))
 			ft_pipe(&m_export, commands, &new_env);
+		else
+		{
+			char *tty = ttyname(1);
+			int fd = open(tty, O_RDONLY);
+			dup2(fd, 0);
+			// printf("%s\n", tty);
+		}
 		// free_and_reset(commands);
 		free(head);
 		commands = NULL;
