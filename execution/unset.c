@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 04:45:35 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:33:01 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd)
 		else
 		{
 			if (cmd[i][0] == '-')
-				ft_printf("minishell : unset: invalid option\n");
+				ft_printf(2, "minishell : unset: invalid option\n");
 			else if (cmd[i][0] == '!')
-				ft_printf("minishell : unset: event not found\n");
+				ft_printf(2, "minishell : unset: event not found\n");
 			else	
-				ft_printf("minishell : unset: `%s': not a valid identifier\n", cmd[i]);
+				ft_printf(2, "minishell : unset: `%s': not a valid identifier\n", cmd[i]);
 			if (cmd[i][0] != '!')
 				err = 1;
 		}

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:26:49 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 15:40:50 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/15 17:33:36 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_export_args(char **cmd)
 
 void	error_exp(char *c)
 {
-	ft_printf("export: `%s': not a valid identifier\n", c);
+	ft_printf(2, "export: `%s': not a valid identifier\n", c);
 }
 
 int	ft_export(t_list_env **env, t_list_env **export_list, char **cmd)
@@ -60,7 +60,7 @@ int	ft_export(t_list_env **env, t_list_env **export_list, char **cmd)
 				export_valid(env, export_list, cmd[i]);
 			else
 			{
-				ft_printf("minishell : export: `%s': not a valid identifier\n", cmd[err]);
+				ft_printf(2, "minishell : export: `%s': not a valid identifier\n", cmd[err]);
 				err = 1;
 			}
 			i++;
@@ -74,7 +74,7 @@ int	ft_export(t_list_env **env, t_list_env **export_list, char **cmd)
 		i = 1;
 		while (i < len)
 		{
-			ft_printf("minishell : export: `%s': not a valid identifier\n", cmd[i]);
+			ft_printf(2, "minishell : export: `%s': not a valid identifier\n", cmd[i]);
 			i++;
 		}
 		return (1);

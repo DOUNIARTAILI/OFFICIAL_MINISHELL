@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/14 20:38:03 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/15 17:31:08 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	exit_status(int status)
 	{
 		if (status == 2)
 		{
-			ft_printf("\n");
+			ft_printf(1, "\n");
 			g_global_exit.exit_status = 130;
 			return;
 		}
 		else if (status == 3)
 		{
-			ft_printf("Quit: 3\n");
+			ft_printf(1, "Quit: 3\n");
 			g_global_exit.exit_status = 131;
 			return;
 		}

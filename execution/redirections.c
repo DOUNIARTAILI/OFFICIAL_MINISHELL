@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 08:35:43 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/14 20:58:46 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/15 16:52:04 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,23 @@ void	red_double_input(t_voidlst *commands, t_voidlst *red, t_list_env **m_export
 void	redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env)
 {
 	if (red == NULL && ((t_command *)(t_voidlst *)commands->content)->args[0])
+	{
 		execute_commands(((t_command *)(t_voidlst *)commands->content)->args, new_env, m_export);
+	}
 	else if (red && ((t_token *)red->content)->token == RE_OUT)//>
+	{
 		red_output(commands, red, m_export, new_env);
+		if (((t_command *)(t_voidlst *)commands->content)->args[0] == NULL)
+			close(1);
+	}
 	else if (red && ((t_token *)red->content)->token == RE_IN)//
 		red_input(commands, red, m_export, new_env);
 	else if (red && ((t_token *)red->content)->token == RE_APPEND)//>>
+	{
 		red_double_output(commands, red, m_export, new_env);
+		if (((t_command *)(t_voidlst *)commands->content)->args[0] == NULL)
+			close(1);
+	}
 	else if (red && ((t_token *)red->content)->token == HERE_DOC)//<<
 		red_double_input(commands, red, m_export, new_env);
-	else
-		exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/14 20:28:58 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/15 18:56:58 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	len_cmds(char **cmds)
 		i++;
 	return (i);
 }
+
 int	main(int ac, char **av, char **env)
 {
 	t_list_env	*new_env;

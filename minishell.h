@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/14 20:11:25 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/15 18:55:44 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "./ft_printf/ft_printf.h"
 # include "Resources/parsing.h"
 
+t_list_env	*fill_env();
 t_list_env	*get_env(char **env);
 t_list_env	*get_node_by_key(t_list_env **env, char *key);
 t_list_env	*env_dup(t_list_env *env);
