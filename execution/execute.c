@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/15 17:31:08 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/16 21:15:42 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,13 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 
 	if (!cmd_parsed || !cmd_parsed[0])
 		return ;
-	if (g_global_exit.size == 1)
-		id = fork();
-	else
-		id = 0;
+	// if (g_global_exit.size == 1)
+	// 	id = fork();
+	// else
+	// 	id = 0;
 	i = 0;
 	int j = 0;
+	id = fork();
 	if (id == 0)
 	{
 		rl_catch_signals = 1;
@@ -176,7 +177,11 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 					return;
 				}
 				else
+				{
 					execve(pathname, cmd_parsed, env_arr(new_env));
+					// if (execve(pathname, cmd_parsed, env_arr(new_env)) == -1)
+					// 	perror("minishell");
+				}
 				i++;
 			}
 			ft_putstr_fd("minishell: command not found\n", 2);
@@ -188,6 +193,6 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 	else
 		g_global_exit.pid[j++] = id;
 	g_global_exit.len = j;
-	// waitpid(-1, &status, 0);
-	// exit_status(status);
+	waitpid(-1, &status, 0);
+	exit_status(status);
 }

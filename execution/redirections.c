@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 08:35:43 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/15 16:52:04 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/16 22:55:13 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	red_output(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_li
 	int fd_out = open(((t_token *)red->content)->str, O_WRONLY | O_CREAT | O_TRUNC, 0666); // 0666 the 0 means that this is in octal
 	if (fd_out == -1)
 	{
-		perror("Failed to open input file");
+		perror("minishell");
 		return;
 	}
 	store_fd = dup(1);
@@ -37,7 +37,7 @@ void	red_input(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_lis
 	int fd_in = open(((t_token *)red->content)->str, O_RDONLY, 0644);//str howa input file mnin anqraw
 	if (fd_in == -1)
 	{
-		perror("Failed to open input file");
+		perror("minishell");
 		return;
 	}
 	store_fd = dup(0);
@@ -53,7 +53,7 @@ void	red_double_output(t_voidlst *commands, t_voidlst *red, t_list_env **m_expor
 	int d_fd_out = open(((t_token *)red->content)->str, O_WRONLY | O_CREAT |  O_APPEND, 0666);
 	if (d_fd_out == -1)
 	{
-		perror("Failed to open input file");
+		perror("minishell");
 		return;
 	}
 	store_fd = dup(1);
@@ -77,26 +77,17 @@ void	red_double_input(t_voidlst *commands, t_voidlst *red, t_list_env **m_export
 	close(fd[0]);
 }
 
-void	redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env)
+int	redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env)
 {
 	if (red == NULL && ((t_command *)(t_voidlst *)commands->content)->args[0])
-	{
 		execute_commands(((t_command *)(t_voidlst *)commands->content)->args, new_env, m_export);
-	}
 	else if (red && ((t_token *)red->content)->token == RE_OUT)//>
-	{
 		red_output(commands, red, m_export, new_env);
-		if (((t_command *)(t_voidlst *)commands->content)->args[0] == NULL)
-			close(1);
-	}
-	else if (red && ((t_token *)red->content)->token == RE_IN)//
+	else if (red && ((t_token *)red->content)->token == RE_IN)//<
 		red_input(commands, red, m_export, new_env);
 	else if (red && ((t_token *)red->content)->token == RE_APPEND)//>>
-	{
 		red_double_output(commands, red, m_export, new_env);
-		if (((t_command *)(t_voidlst *)commands->content)->args[0] == NULL)
-			close(1);
-	}
 	else if (red && ((t_token *)red->content)->token == HERE_DOC)//<<
 		red_double_input(commands, red, m_export, new_env);
+	return (g_global_exit.exit_status);
 }

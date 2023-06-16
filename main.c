@@ -6,11 +6,48 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/15 18:56:58 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/16 23:34:18 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	display_args(t_voidlst *h_list)
+{
+	int			i;
+	t_command	*tmp;
+	char		**cmds;
+
+	i = 1;
+	while (h_list)
+	{
+		tmp = h_list->content;
+		cmds = tmp->args;
+		printf("command: %d\n", i);
+		while (*cmds)
+		{
+			printf("\t{%s}\n", *cmds);
+			cmds++;
+		}
+		printf("\nredirects\n");
+		affiche_voidlst(tmp->redirections);
+		i++;
+		h_list = h_list->next;
+	}
+}
+
+void	affiche_voidlst(t_voidlst *head)
+{
+	t_token	*token1;
+
+	while (head)
+	{
+		token1 = head->content;
+		printf("[%s] == token [%d]\n", token1->str, token1->token);
+		head = head->next;
+	}
+	printf("\n");
+}
 
 int my_getc_function() {
   int c = 0; // Or any other method of getting input
@@ -39,11 +76,11 @@ void handle_interrupt(int sig)
 			glob->exit_status = 130;
 		else
 			glob->exit_status = 1;
-		if (g_global_exit.heredoc)
+		if (!g_global_exit.heredoc)
 		{
 			glob->exit_status = 1;
 			close(0);
-			// g_global_exit.heredoc = 0;
+			g_global_exit.heredoc = 1;
 		}
 		else
 		{
@@ -125,6 +162,7 @@ int	main(int ac, char **av, char **env)
 	init_glob(&g_global_exit);
 	while (1)
 	{
+		g_global_exit.heredoc = 0;
 		rl_catch_signals = 0;
 		head = NULL;
 		g_global_exit.exit = 0;
@@ -132,6 +170,7 @@ int	main(int ac, char **av, char **env)
 		signal(SIGQUIT, &handle_interrupt);
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGUSR1, &handler);
+		// puts("ko");
 		cmd = readline("\033[6;32mminishell>> \033[0m");
 		if (!cmd)
 		{
@@ -148,10 +187,13 @@ int	main(int ac, char **av, char **env)
 		commands = parse_to_args(commands);
 		// printf("red = %s\n", ((t_command *)(t_voidlst *)commands->content)->args[0]);
 		// printf("%d\n",g_global_exit.heredoc);
+		// display_args(commands);
+		// printf("fl main : %s\n", ((t_command *)(t_voidlst *)commands->content)->args[0]);
 		if (ttyname(0))
 			ft_pipe(&m_export, commands, &new_env);
 		else
 		{
+			// puts("hh");
 			char *tty = ttyname(1);
 			int fd = open(tty, O_RDONLY);
 			dup2(fd, 0);

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/15 18:55:44 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/16 17:45:52 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "Resources/parsing.h"
 
 t_list_env	*fill_env();
+void	display_args(t_voidlst *h_list);
 t_list_env	*get_env(char **env);
 t_list_env	*get_node_by_key(t_list_env **env, char *key);
 t_list_env	*env_dup(t_list_env *env);
@@ -60,7 +61,7 @@ void		ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env);
 void		exit_status(int status);
 int			ft_kill(t_exit *glob);
 void		execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export);
-void		redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env);
+int			redirections(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env);
 int			size_cmd(char **cmd);
 int			main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd);
 void		handle_interrupt(int sig);

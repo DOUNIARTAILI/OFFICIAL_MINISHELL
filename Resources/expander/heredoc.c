@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/14 18:00:20 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/16 23:33:53 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 	buffer = NULL;
 	flag = 0;
 	concate_in_heredoc(head, &flag, &delemiter);
-	while (1)
+	while (!g_global_exit.heredoc)
 	{
 		line = readline("heredoc> ");
 		if (line)
 			line = ft_strjoin_1(line, ft_strdup("\n"));
-		if (!line || !str_cmp(line, delemiter) || !g_global_exit.heredoc)
+		if (!line || !str_cmp(line, delemiter) /*||!g_global_exit.heredoc*/)
 		{
 			free(delemiter);
 			if (buffer)
@@ -65,7 +65,7 @@ int	handle_heredoc(t_list **newlist, t_list **head, t_list_env *myenv)
 	char		*int_str;
 	static int	i;
 
-	g_global_exit.heredoc = 1;
+	// g_global_exit.heredoc = 1;
 	int_str = ft_itoa(i++);
 	str = ft_strjoin_1(ft_strdup("/tmp/file"), int_str);
 	fd = open(str, O_RDWR | O_CREAT | O_TRUNC, 0777);
@@ -77,6 +77,6 @@ int	handle_heredoc(t_list **newlist, t_list **head, t_list_env *myenv)
 	manage_heredoc(head, &fd, myenv);
 	close (fd);
 	ft_lstadd_back(newlist, ft_lstnew(new_token(str, RE_IN)));
-	g_global_exit.heredoc = 0;
+	// g_global_exit.heredoc = 0;
 	return (1);
 }

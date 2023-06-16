@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 05:22:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/14 20:11:37 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/16 22:42:33 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	builtin_functions(t_list_env **new_env,
 
 int	is_builtin(char **cmd_parsed)
 {
+	// if (!cmd_parsed || !(*cmd_parsed))
+	// 	return (0);
 	if (!ft_strcmp(cmd_parsed[0], "exit") || !ft_strcmp(cmd_parsed[0], "cd")
 		|| !ft_strcmp(cmd_parsed[0], "pwd") || !ft_strcmp(cmd_parsed[0], "echo")
 		|| !ft_strcmp(cmd_parsed[0], "env")
