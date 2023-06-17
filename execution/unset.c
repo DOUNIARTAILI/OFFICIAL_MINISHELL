@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 04:45:35 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/15 17:33:01 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/17 23:50:56 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ void	ft_unset(t_list_env **env, char *key)
 	g_global_exit.exit_status = 1;
 }
 
+int	wrongkey(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i] != '\0')
+	{
+		if (cmd[i] == '+' || cmd[i] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd)
 {
 	int	len;
@@ -53,7 +67,9 @@ int	main_unset(t_list_env **new_env, t_list_env **export_list, char **cmd)
 	i = 1;
 	while (i < len)
 	{
-		if (check_key_value_isvalid_export(cmd[i]))
+		if (wrongkey(cmd[i]))
+			ft_printf(2, "minishell : unset: `%s': not a valid identifier\n", cmd[i]);
+		else if (check_key_value_isvalid_export(cmd[i]))
 		{
 			ft_unset(new_env, cmd[i]);
 			ft_unset(export_list, cmd[i]);
