@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
+#    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/17 18:10:01 by drtaili          ###   ########.fr        #
+#    Updated: 2023/06/17 16:48:23 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC =	main.c \
 		$(addprefix Resources/new_linkedlist/, list.c) \
 		$(addprefix Resources/tokenizer/, tokenizer.c utils.c) \
 		$(addprefix Resources/compiler/, compiler.c) \
-		$(addprefix Resources/utils/,  free_functions.c functions_token_1.c functions_token_2.c utils.c check_syntax.c) \
+		$(addprefix Resources/utils/, display.c free_functions.c functions_token_1.c functions_token_2.c utils.c check_syntax.c) \
 		$(addprefix Resources/expander/, command.c expander.c heredoc.c utils1.c string_replace.c utils2.c exit_status_and_dbdollar.c env.c ) \
 		$(addprefix Resources/concate/, concate.c ) \
 		$(addprefix Resources/parsing/, parse_to_double_char.c parsing.c ) \
@@ -58,11 +58,11 @@ RESET = \033[0m
 
 # Readline flags
 RLFLAGS := -lreadline
-LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
-IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
+# LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
+# IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
 
-# LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
-# IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
+LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
+IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
 
 # Command-line utilities
 RM := rm -rf
@@ -77,32 +77,33 @@ PATH_LIBFT := ./Resources/libft
 PATH_PRINTF := ./ft_printf
 
 # The default target
-all: $(NAME)
-                                                                                    
+all: $(NAME)                                                                                     
 # Build the dependencies
 $(LIBFT):
-	make -C $(PATH_LIBFT)
-	make -C $(PATH_PRINTF)
+	@make -C $(PATH_LIBFT)
+	@make -C $(PATH_PRINTF)
+	@echo "\033[1m\033[32m LIBFT COMPILED \033[0m"
+	@echo "\033[1m\033[32m FT_PRINTF COMPILED \033[0m"
 
 # Build the target executable
 $(NAME): $(LIBFT) $(PRINTF) $(OBJS) $(HEADERS) $(FILES)
-	$(CC) $(FLAGS) $(RLFLAGS) $(LFLAGSS) $(OBJS) -o $(NAME) $(LIBFT) $(PRINTF)
-
+	@$(CC) $(FLAGS) $(RLFLAGS) $(LFLAGSS) $(OBJS) -o $(NAME) $(LIBFT) $(PRINTF)
+	@echo "\033[1m\033[32m MINISHELL CREATED \033[0m"
 # Build object files
-%.o: %.c $(HEADERS) $(FILES)
-	$(CC) $(FLAGS) $(IFLAGS) -c $< -o $@
-
+%.o: %.c  $(HEADERS) $(FILES)
+	@$(CC) $(FLAGS) $(IFLAGS) -c $< -o $@
+	@echo $@
 # Clean the object files and dependencies
 clean:
-	$(RM) $(OBJS)
-	make clean -C $(PATH_LIBFT)
-	make clean -C $(PATH_PRINTF)
+	@$(RM) $(OBJS)
+	@make clean -C $(PATH_LIBFT)
+	@make clean -C $(PATH_PRINTF)
 
 # Remove all generated files
 fclean: clean
-	$(RM) $(NAME)
-	make fclean -C $(PATH_LIBFT)
-	make fclean -C $(PATH_PRINTF)
+	@$(RM) $(NAME)
+	@make fclean -C $(PATH_LIBFT)
+	@make fclean -C $(PATH_PRINTF)
 
 # Clean and rebuild the target executable
 re: fclean all

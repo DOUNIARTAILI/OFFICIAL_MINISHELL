@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:20:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:18:00 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:58:08 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ char	*search_for_key(char *str, t_list_env *myenv)
 {
 	t_env	keyval_env;
 
+	if (str[0] == '$' && str[1] == '\0')
+		return (ft_strdup("$"));
+	if (str[0] == '0' && str[1] == '\0')
+		return (ft_strdup("bash"));
+	if (str[0] == '?' && str[1] == '\0')
+		return (ft_itoa(g_global_exit.exit_status));
 	while (myenv)
 	{
 		keyval_env = myenv->data;

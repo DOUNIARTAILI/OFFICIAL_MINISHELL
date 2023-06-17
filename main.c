@@ -3,51 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/17 18:34:53 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/17 19:13:24 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	display_args(t_voidlst *h_list)
-{
-	int			i;
-	t_command	*tmp;
-	char		**cmds;
-
-	i = 1;
-	while (h_list)
-	{
-		tmp = h_list->content;
-		cmds = tmp->args;
-		printf("command: %d\n", i);
-		while (*cmds)
-		{
-			printf("\t{%s}\n", *cmds);
-			cmds++;
-		}
-		printf("\nredirects\n");
-		affiche_voidlst(tmp->redirections);
-		i++;
-		h_list = h_list->next;
-	}
-}
-
-void	affiche_voidlst(t_voidlst *head)
-{
-	t_token	*token1;
-
-	while (head)
-	{
-		token1 = head->content;
-		printf("[%s] == token [%d]\n", token1->str, token1->token);
-		head = head->next;
-	}
-	printf("\n");
-}
 
 int my_getc_function() {
   int c = 0; // Or any other method of getting input
@@ -187,7 +150,6 @@ int	main(int ac, char **av, char **env)
 		commands = parse_to_args(commands);
 		// printf("red = %s\n", ((t_command *)(t_voidlst *)commands->content)->args[0]);
 		// printf("%d\n",g_global_exit.heredoc);
-		display_args(commands);
 		// printf("fl main : %s\n", ((t_command *)(t_voidlst *)commands->content)->args[0]);
 		if (ttyname(0))
 			ft_pipe(&m_export, commands, &new_env);

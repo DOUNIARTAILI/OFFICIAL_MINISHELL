@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:11:36 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/17 19:06:01 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 	if (string_value && mytoken->token == DLR && ft_strlen(mytoken->str) > 1)
 	{
 		split = ft_split(mytoken->str, ' ');
-		sub_lst = new_sublist(split, mytoken->token);
+		sub_lst = new_sublist(split);
 		if (sub_lst)
 			add_multi_nodes(origin, sub_lst);
 	}

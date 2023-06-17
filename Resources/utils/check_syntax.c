@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:51 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/13 00:26:34 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/14 21:30:36 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int	check_pipe(t_list *node)
 int	syntax_error(char *token_value)
 {
 	g_global_exit.exit_status = 258;
-	ft_putstr_fd("❌❌ Syntax Error near: ", 2);
-	ft_putstr_fd(token_value, 2);
-	ft_putstr_fd("\n", 2);
+	ft_printf(2, "minishell: Syntax Error near: %s\n", token_value);
 	return (0);
 }
 

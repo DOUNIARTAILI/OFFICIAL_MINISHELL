@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 15:58:19 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:47:29 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/14 21:20:00 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "concate/concate.h"
 # include "parsing/parser.h"
 # include "libft/libft.h"
+# include "../ft_printf/ft_printf.h"
 
 # define PREV 0
 # define NEXT 1

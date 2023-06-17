@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 02:40:37 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/10 22:16:28 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/16 17:19:46 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	fill_mylist(t_list **expander, t_cmds **mynode_cmd)
 		if (!concate_all(mytoken, expander, mynode_cmd))
 			add_back(&((*mynode_cmd)->redirects),
 				new_node(new_token(mytoken->str, mytoken->token)));
-		if ((*expander))
+		if ((*expander) && (*expander)->content->token != PIPE)
 			(*expander) = (*expander)->next;
 	}
 	return (1);

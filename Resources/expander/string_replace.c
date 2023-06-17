@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 22:31:45 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:11:51 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/15 20:56:13 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*replace_all(char *old_str, t_list_env *myenv)
 	while (index != -1)
 	{
 		string_value = get_string_value(old_str, &index, &string_key, myenv);
+		if (!old_str[index])
+			break ;
 		if (!string_value)
 		{
 			string_value = ft_strdup("");
@@ -59,8 +61,16 @@ char	*var_string(char *str, int i, int start)
 	int	j;
 
 	j = 0;
-	while (str[++i] && (ft_isalnum(str[i]) || str[i] == '_'))
+	if (ft_isdigit(str[i + 1]) || str[i + 1] == '?')
+	{
+		i++;
 		j++;
+	}
+	else
+	{
+		while (str[++i] && (ft_isalnum(str[i]) || str[i] == '_'))
+			j++;
+	}
 	return (ft_substr(str, start, j + 1));
 }
 
