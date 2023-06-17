@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/16 23:20:02 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/18 00:16:25 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	concate_in_heredoc(t_list **head, int *flag, char **delemiter)
 		*delemiter = ft_strjoin_1(*delemiter, ft_strdup((*head)->content->str));
 		(*head) = (*head)->next;
 	}
-	*delemiter = ft_strjoin_1(*delemiter, ft_strdup("\n")); 
+	*delemiter = ft_strjoin_1(*delemiter, ft_strdup("\n"));
 }
 
 void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
@@ -37,7 +37,6 @@ void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 	int		flag;
 
 	buffer = NULL;
-	line = NULL;
 	flag = 0;
 	concate_in_heredoc(head, &flag, &delemiter);
 	while (!g_global_exit.heredoc)
