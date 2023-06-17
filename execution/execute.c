@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/17 18:14:48 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:13:56 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,20 +185,14 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 				else
 				{
 					execve(pathname, cmd_parsed, env_arr(new_env));
-					// if (execve(pathname, cmd_parsed, env_arr(new_env)) == -1)
-					// 	perror("minishell");
 				}
 				i++;
 			}
 			ft_putstr_fd("minishell: command not found\n", 2);
-			// printf("minishell: %s: command not found\n", cmd_parsed[0]);
 			g_global_exit.exit_status = 127;
 		}
 		exit(g_global_exit.exit_status);
 	}
-	else
-		g_global_exit.pid[j++] = id;
-	g_global_exit.len = j;
 	waitpid(-1, &status, 0);
 	exit_status(status);
 }

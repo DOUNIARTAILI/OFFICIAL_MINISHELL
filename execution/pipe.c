@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/17 17:46:14 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 00:13:35 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
 	int sig;
 	int i;
 	int old_fd_in, old_fd_out;
+	int j = 0;
 	// old_fd_in = -1;
 	// old_fd_out = -1;
 	fd[0] = -1;
@@ -90,12 +91,20 @@ void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
 				g_global_exit.exit_status = redirections(commands, mycommand->redirections, m_export, new_env);
 				exit(g_global_exit.exit_status);
 			}
+			else
+				g_global_exit.pid[j++] = id;
+			g_global_exit.len = j;
 			close(old_fd_in);
 			close(old_fd_out);
 			commands = commands->next;
 		}
 	}
-				// printf("%d\n",g_global_exit.exit_status);
-	while (waitpid(-1, &g_global_exit.exit_status, 0) > 0);
-	// exit_status(g_global_exit.exit_status);
+	int	k;
+
+	k = 0;
+	while (waitpid(g_global_exit.pid[k++], &g_global_exit.exit_status, 0) != -1)
+		;
+	if (WIFEXITED(g_global_exit.exit_status))
+		WEXITSTATUS(g_global_exit.exit_status);
+	g_global_exit.exit_status = g_global_exit.exit_status % 255;
 }
