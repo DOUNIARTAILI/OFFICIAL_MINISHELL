@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/16 22:44:11 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/17 17:46:14 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,15 @@ void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
 					in_between_commands(fd, old_fd_in, old_fd_out);
 				else
 					last_command(old_fd_in, old_fd_out);
-				exit(redirections(commands, mycommand->redirections, m_export, new_env));
+				g_global_exit.exit_status = redirections(commands, mycommand->redirections, m_export, new_env);
+				exit(g_global_exit.exit_status);
 			}
 			close(old_fd_in);
 			close(old_fd_out);
 			commands = commands->next;
 		}
 	}
+				// printf("%d\n",g_global_exit.exit_status);
 	while (waitpid(-1, &g_global_exit.exit_status, 0) > 0);
-	exit_status(g_global_exit.exit_status);
+	// exit_status(g_global_exit.exit_status);
 }

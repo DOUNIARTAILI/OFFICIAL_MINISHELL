@@ -6,7 +6,7 @@
 #    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/14 18:41:12 by drtaili          ###   ########.fr        #
+#    Updated: 2023/06/17 18:10:01 by drtaili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,19 @@ SRC =	main.c \
 		$(addprefix Resources/parsing/, parse_to_double_char.c parsing.c ) \
 		$(addprefix Resources/gnl/, get_next_line.c get_next_line_utils.c)
 
+HEADERS = $(addprefix Resources/, parsing.h utils/utils.h tokenizer/tokenizer.h \
+			gnl/get_next_line.h concate/concate.h \
+			new_linkedlist/list.h linked_lst/linked_lst.h libft/libft.h \
+			expander/expander.h compiler/compiler.h parsing/parser.h) \
+			ft_printf/ft_printf.h minishell.h
+FILES = $(addprefix Resources/libft/, ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_strlen.c \
+			ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c \
+			ft_strnstr.c ft_strlcpy.c ft_strlcat.c ft_atoi.c ft_strdup.c \
+			ft_substr.c ft_strjoin.c ft_itoa.c ft_split.c \
+			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_isprint.c \
+			ft_putnbr_fd.c ft_strtrim.c ft_memcpy.c ft_memmove.c ft_memset.c \
+			ft_memcmp.c ft_memchr.c ft_bzero.c ft_calloc.c ft_striteri.c ft_strmapi.c) \
+		$(addprefix ft_printf/, ft_printf.c ft_printf_utils.c ft_printf_utils2.c)
 
 # Object files
 OBJS = $(SRC:.c=.o)
@@ -65,36 +78,31 @@ PATH_PRINTF := ./ft_printf
 
 # The default target
 all: $(NAME)
-	@printf "$(BOLDGREEN) __  __ _____ _   _ _____  _____ _    _ ______ _      _      \n"
-	@printf "|  \/  |_   _| \ | |_   _|/ ____| |  | |  ____| |    | |     \n"
-	@printf "| \  / | | | |  \| | | | | (___ | |__| | |__  | |    | |     \n"
-	@printf "| |\/| | | | | . \` | | |  \___ \|  __  |  __| | |    | |     \n"
-	@printf "| |  | |_| |_| |\  |_| |_ ____) | |  | | |____| |____| |____ \n"	
-	@printf "|_|  |_|_____|_| \_|_____|_____/|_|  |_|______|______|______|\n$(RESET)"                                                                                       
+                                                                                    
 # Build the dependencies
 $(LIBFT):
-	@make -C $(PATH_LIBFT)
-	@make -C $(PATH_PRINTF)
+	make -C $(PATH_LIBFT)
+	make -C $(PATH_PRINTF)
 
 # Build the target executable
-$(NAME): $(LIBFT) $(PRINTF) $(OBJS)
-	@$(CC) $(FLAGS) $(RLFLAGS) $(LFLAGSS) $(OBJS) -o $(NAME) $(LIBFT) $(PRINTF)
+$(NAME): $(LIBFT) $(PRINTF) $(OBJS) $(HEADERS) $(FILES)
+	$(CC) $(FLAGS) $(RLFLAGS) $(LFLAGSS) $(OBJS) -o $(NAME) $(LIBFT) $(PRINTF)
 
 # Build object files
-%.o: %.c minishell.h
-	@$(CC) $(FLAGS) $(IFLAGS) -c $< -o $@
+%.o: %.c $(HEADERS) $(FILES)
+	$(CC) $(FLAGS) $(IFLAGS) -c $< -o $@
 
 # Clean the object files and dependencies
 clean:
-	@$(RM) $(OBJS)
-	@make clean -C $(PATH_LIBFT)
-	@make clean -C $(PATH_PRINTF)
+	$(RM) $(OBJS)
+	make clean -C $(PATH_LIBFT)
+	make clean -C $(PATH_PRINTF)
 
 # Remove all generated files
 fclean: clean
-	@$(RM) $(NAME)
-	@make fclean -C $(PATH_LIBFT)
-	@make fclean -C $(PATH_PRINTF)
+	$(RM) $(NAME)
+	make fclean -C $(PATH_LIBFT)
+	make fclean -C $(PATH_PRINTF)
 
 # Clean and rebuild the target executable
 re: fclean all

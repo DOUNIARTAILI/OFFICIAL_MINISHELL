@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/16 23:34:18 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/17 18:34:53 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ void handle_interrupt(int sig)
 			glob->exit_status = 130;
 		else
 			glob->exit_status = 1;
-		if (!g_global_exit.heredoc)
+		if (g_global_exit.heredoc)
 		{
 			glob->exit_status = 1;
 			close(0);
-			g_global_exit.heredoc = 1;
+			g_global_exit.heredoc = 0;
 		}
 		else
 		{
@@ -187,7 +187,7 @@ int	main(int ac, char **av, char **env)
 		commands = parse_to_args(commands);
 		// printf("red = %s\n", ((t_command *)(t_voidlst *)commands->content)->args[0]);
 		// printf("%d\n",g_global_exit.heredoc);
-		// display_args(commands);
+		display_args(commands);
 		// printf("fl main : %s\n", ((t_command *)(t_voidlst *)commands->content)->args[0]);
 		if (ttyname(0))
 			ft_pipe(&m_export, commands, &new_env);

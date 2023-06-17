@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 00:52:10 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/14 19:02:14 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/17 18:15:43 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ void	ft_exit(char **cmd)
 	else if (size_cmd(cmd) >= 2 && isWord(cmd[1]))
 	{
 		g_global_exit.exit_status = 255;
-		printf("minishell: exit : %s: numeric argument required\n", cmd[1]);
+		ft_printf(2, "minishell: exit : %s: numeric argument required\n", cmd[1]);
 	}
 	else if (size_cmd(cmd) > 2 && is_all_digits(cmd[1]))
 	{
 		g_global_exit.exit_status = 1;
-		printf("minishell: exit : too many arguments\n");
+		ft_printf(2, "minishell: exit : too many arguments\n");
 	}
 	// kill(getppid(),SIGUSR1);
 	exit(g_global_exit.exit_status);

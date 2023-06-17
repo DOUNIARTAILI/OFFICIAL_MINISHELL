@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/16 21:15:42 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/17 18:14:48 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,13 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 		{
 			// printf("minishell : .: filename argument required .: usage: . filename [arguments]\n");
 			ft_putstr_fd("minishell : .: filename argument required .: usage: . filename [arguments]\n", 2);
-			g_global_exit.exit_status = 258;
+			g_global_exit.exit_status = 2;
 			return ;	
 		}
 		else if (S_ISDIR(fileStat.st_mode) && ft_strcmp(cmd_parsed[0], ".."))
 		{
-			ft_putstr_fd("minishell : is a directory\n", 2);
-			// printf("minishell : %s: is a directory\n", cmd_parsed[0]);
+			// ft_putstr_fd("minishell : is a directory\n", 2);
+			ft_printf(2, "minishell : %s: is a directory\n", cmd_parsed[0]);
 		}
 		else if (!check_slash(cmd_parsed[0]))
 		{
@@ -155,8 +155,8 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 				execve(cmd_parsed[0], cmd_parsed, env_arr(new_env));
 			else
 			{
-				ft_putstr_fd("minishell : No such file or directory\n", 2);
-				// printf("minishell : %s: No such file or directory\n", cmd_parsed[0]);
+				// ft_putstr_fd("minishell : No such file or directory\n", 2);
+				ft_printf(2, "minishell : %s: No such file or directory\n", cmd_parsed[0]);
 				g_global_exit.exit_status = 127;
 				return;
 			}
@@ -165,6 +165,12 @@ void	execute(t_list_env **new_env, char **cmd_parsed)
 		{
 			// if (ft_strcmp(cmd_parsed[0], "ls"))
 			value = get_path_value(new_env);
+			if (!value)
+			{
+				ft_printf(2, "minishell : %s: no such file or directory\n", cmd_parsed[0]);
+				g_global_exit.exit_status = 127;
+				return ;
+			}
 			while (value[i] != NULL)
 			{
 				pathname = ft_strjoin(value[i], "/");
