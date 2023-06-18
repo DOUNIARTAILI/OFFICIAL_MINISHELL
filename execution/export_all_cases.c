@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 08:37:16 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 15:24:09 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 15:52:28 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
 	key_value = key_value_of_arg(cmd);
 	if (get_node_by_key(export_list, key_value[0]) != NULL)
 	{
-		puts("ok");
 		if (key_value[1] == NULL)
 			return ;
 		else
@@ -92,7 +91,6 @@ void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
 	}
 	else
 	{
-		puts("oops");
 		add_to_export_env(env, export_list, key_value);
 	}
 }
