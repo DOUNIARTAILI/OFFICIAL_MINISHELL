@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 18:29:33 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 22:49:40 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,21 @@ int			size_cmd(char **cmd);
 int			main_unset(t_list_env **new_env,
 				t_list_env **export_list, char **cmd);
 void		handle_interrupt(int sig);
+void		exit_status(int status);
+char		**env_arr(t_list_env **envr);
+void		ft_free(char **ret, int k);
+int			check_slash(char *cmd);
+int			check_value(char **value, char **cmd_parsed);
+void		close_fds(int old_fd_in, int old_fd_out, int i);
+void		init_piping(int *fd, int *i);
+void		last_command(int old_fd_in, int old_fd_out);
+void		in_between_commands(int *fd, int old_fd_in, int old_fd_out);
+void		first_command(int *fd);
+void		waitforchilds(void);
+void		init_glob(t_exit *glob);
+void		prompt(void);
+void		handle_interrupt(int sig);
+void		handler(int sig);
+int			ft_kill(t_exit *glob);
 
 #endif

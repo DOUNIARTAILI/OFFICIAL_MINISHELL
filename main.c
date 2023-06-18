@@ -3,125 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 22:07:17 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/18 23:07:36 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_glob(t_exit *glob)
+void	execution(t_list_env *m_export,
+	t_voidlst *commands, t_list_env *new_env)
 {
-	int	i;
+	char	*tty;
+	int		fd;
 
-	i = -1;
-	glob->heredoc = 0;
-	glob->killed = 0;
-	glob->gnl = 0;
-	glob->exit_status = 0;
-	glob->exit = 0;
-	glob->flag = 1;
-	while (++i < 1024)
-		glob->pid[i] = 0;
-}
-
-void	prompt(void)
-{
-	write(1, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-void	handle_interrupt(int sig)
-{
-	t_exit	*glob;
-
-	glob = &g_global_exit;
-	if (sig == SIGINT)
+	if (ttyname(0))
+		ft_pipe(&m_export, commands, &new_env);
+	else
 	{
-		if (ft_kill(glob))
-			glob->exit_status = 130;
-		else
-			glob->exit_status = 1;
-		if (g_global_exit.heredoc)
-		{
-			g_global_exit.flag = 0;
-			glob->exit_status = 1;
-			close(0);
-			g_global_exit.heredoc = 0;
-		}
-		else
-			prompt();
-		glob->killed = 0;
-	}
-	else if (sig == SIGQUIT)
-		glob->exit_status = 0;
-}
-
-void	handler(int sig)
-{
-	t_exit	*glob;
-
-	glob = &g_global_exit;
-	if (sig == SIGUSR1)
-	{
-		glob->exit = 1;
+		tty = ttyname(1);
+		fd = open(tty, O_RDONLY);
+		dup2(fd, 0);
 	}
 }
 
-int	ft_kill(t_exit *glob)
+void	signals(void)
 {
-	int	i;
-
-	i = 0;
-	while (i < glob->len)
-	{
-		glob->killed = 1;
-		kill(glob->pid[i], SIGKILL);
-		i++;
-	}
-	glob->len = 0;
-	if (i > 0)
-		return (1);
-	return (0);
+	signal(SIGINT, &handle_interrupt);
+	signal(SIGQUIT, &handle_interrupt);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGUSR1, &handler);
 }
 
-int	main(int ac, char **av, char **env)
+void	init_global(void)
 {
-	t_list_env	*new_env;
-	t_list_env	*m_export;
+	g_global_exit.flag = 1;
+	g_global_exit.heredoc = 0;
+	rl_catch_signals = 0;
+	g_global_exit.exit = 0;
+}
+
+void	minishell(t_list_env *m_export,
+	t_voidlst *commands, t_list_env *new_env)
+{
 	char		*cmd ;
-	char		**cmd_parsed;
-	t_list		*head = NULL;
-	t_list		*expander_list;
-	t_voidlst	*commands;
-	t_voidlst	*myenv;
-	char 		**cmds;
+	t_list		*head;
 
-	(void)ac;
-	(void)av;
-	new_env = get_env(env);
-	m_export = env_dup(new_env);
-	sort_list(m_export);
-	init_glob(&g_global_exit);
 	while (1)
 	{
-		g_global_exit.flag = 1;
-		g_global_exit.heredoc = 0;
-		rl_catch_signals = 0;
+		init_global();
 		head = NULL;
-		g_global_exit.exit = 0;
-		signal(SIGINT, &handle_interrupt);
-		signal(SIGQUIT, &handle_interrupt);
-		signal(SIGQUIT, SIG_IGN);
-		signal(SIGUSR1, &handler);
+		signals();
 		cmd = readline("\033[6;32mminishell>> \033[0m");
 		if (!cmd)
 		{
-			write(1,"exit\n",5);
+			write(1, "exit\n", 5);
 			exit(g_global_exit.exit_status);
 		}
 		signal(SIGINT, &handle_interrupt);
@@ -131,16 +68,24 @@ int	main(int ac, char **av, char **env)
 		if (!commands)
 			continue ;
 		commands = parse_to_args(commands);
-		if (ttyname(0))
-			ft_pipe(&m_export, commands, &new_env);
-		else
-		{
-			char *tty = ttyname(1);
-			int fd = open(tty, O_RDONLY);
-			dup2(fd, 0);
-		}
-		// free_and_reset(commands);
+		execution(m_export, commands, new_env);
+		free(head);
+		commands = NULL;
 	}
-	free_myenv(new_env);
+}
+
+int	main(int ac, char **av, char **env)
+{
+	t_list_env	*new_env;
+	t_list_env	*m_export;
+	t_voidlst	*commands;
+
+	(void)ac;
+	(void)av;
+	new_env = get_env(env);
+	m_export = env_dup(new_env);
+	sort_list(m_export);
+	init_glob(&g_global_exit);
+	minishell(m_export, commands, new_env);
 	return (0);
 }
