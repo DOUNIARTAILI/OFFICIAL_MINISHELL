@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:23:28 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/15 18:55:35 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 16:39:39 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_env(t_list_env *env)
 
 void	print_env(t_list_env **envr)
 {
-	t_list_env *env;
+	t_list_env	*env;
 
 	env = *envr;
 	while (env != NULL)
@@ -50,7 +50,7 @@ void	print_env(t_list_env **envr)
 
 void	print_env_export(t_list_env **envr)
 {
-	t_list_env *env;
+	t_list_env	*env;
 
 	env = *envr;
 	while (env != NULL)

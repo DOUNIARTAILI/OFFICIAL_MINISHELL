@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 04:48:36 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/15 19:10:00 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 17:59:35 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,17 @@ void	update_shelvl(t_list_env *new_env)
 		set_value_of_key(&new_env, "SHLVL", ft_itoa(nb));
 	}
 	else
-		add_back_to_list(&new_env, build_node("SHLVL", ft_itoa(1)));	
+		add_back_to_list(&new_env, build_node("SHLVL", ft_itoa(1)));
+}
+
+void	env_removed(t_list_env *node, t_list_env *curr_env, int j)
+{
+	if (j == 3)
+	{
+		node = build_node("PATH",
+				"/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+		curr_env->next = node;
+	}
 }
 
 t_list_env	*get_env(char **env)
@@ -60,7 +70,6 @@ t_list_env	*get_env(char **env)
 	t_list_env	*node;
 	char		**my_env;
 	int			i;
-	int 		j = 0;
 
 	i = 0;
 	new_env = NULL;
@@ -75,51 +84,8 @@ t_list_env	*get_env(char **env)
 			new_env = node;
 		curr_env = node;
 		i++;
-		j++;
 	}
-	if (j == 3)
-	{
-		node = build_node("PATH", "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
-		curr_env->next = node;
-	}
+	env_removed(node, curr_env, i);
 	update_shelvl(new_env);
 	return (new_env);
-}
-
-t_list_env	*ft_lstlast_node(t_list_env *lst)
-{
-	t_list_env	*tmp;
-
-	if (!lst)
-		return (NULL);
-	tmp = lst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	return (tmp);
-}
-
-t_list_env	*ft_lstnew_node(t_env content)
-{
-	t_list_env	*node;
-
-	node = malloc(sizeof(t_list_env));
-	if (!node)
-		return (NULL);
-	node->data.key = content.key;
-	node->data.value = content.value;
-	node->next = NULL;
-	return (node);
-}
-
-void	add_back_to_list(t_list_env **lst, t_list_env *new)
-{
-	t_list_env	*last;
-
-	if (!lst)
-		return ;
-	last = ft_lstlast_node(*lst);
-	if (last == NULL)
-		*lst = new;
-	else
-		last->next = new;
 }

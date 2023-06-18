@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
+#    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/18 16:05:48 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/06/18 18:25:09 by drtaili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 # Source files
 SRC =	main.c \
-		$(addprefix execution/,cd.c tools.c execute.c env_functions.c pwd.c exit.c \
+		$(addprefix execution/,cd.c tools.c cd_tools.c execute.c env_functions.c  env_functions_tools.c pwd.c exit.c \
 		echo.c env.c unset.c is_builtin.c export.c \
 		tools_env.c tools_env_.c check_arg_export.c export_tools.c valid_args_export.c \
 		export_all_cases.c pipe.c redirections.c) \
@@ -58,11 +58,11 @@ RESET = \033[0m
 
 # Readline flags
 RLFLAGS := -lreadline
-# LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
-# IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
+LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
+IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
 
-LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
-IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
+# LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
+# IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
 
 # Command-line utilities
 RM := rm -rf

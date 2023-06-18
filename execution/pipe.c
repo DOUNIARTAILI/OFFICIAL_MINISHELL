@@ -6,22 +6,22 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 13:42:33 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 00:13:35 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 16:44:28 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	execute_commands(char **cmds, t_list_env **new_env, t_list_env **m_export)
+void	execute_commands(char **cmds,
+	t_list_env **new_env, t_list_env **m_export)
 {
 	if (is_builtin(cmds))
-		g_global_exit.exit_status =  builtin_functions(new_env, m_export, cmds);
+		g_global_exit.exit_status = builtin_functions(new_env, m_export, cmds);
 	else
 		execute(new_env, cmds);
-	// printf("|%d|\n",g_global_exit.exit_status);
 }
 
-void first_command(int *fd)
+void	first_command(int *fd)
 {
 	close(fd[0]);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
@@ -41,12 +41,12 @@ void	in_between_commands(int *fd, int old_fd_in, int old_fd_out)
 	close(fd[1]);
 }
 
-void last_command(int old_fd_in, int old_fd_out)
+void	last_command(int old_fd_in, int old_fd_out)
 {
 	close(old_fd_out);
 	if (dup2(old_fd_in, STDIN_FILENO) == -1)
 		perror("dup2 failed");
-	close(old_fd_in);	
+	close(old_fd_in);
 }
 
 void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
@@ -58,8 +58,7 @@ void	ft_pipe(t_list_env **m_export, t_voidlst *commands, t_list_env **new_env)
 	int i;
 	int old_fd_in, old_fd_out;
 	int j = 0;
-	// old_fd_in = -1;
-	// old_fd_out = -1;
+
 	fd[0] = -1;
 	fd[1] = -1;
 	len = list_size(commands);

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:32:29 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/14 20:16:24 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 16:29:21 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,37 +75,12 @@ int	cd_to_absolute_path(t_list_env **env, char **cmd)
 	return (1);
 }
 
-int	look_for_key(char *str, t_list_env **env)
-{
-	t_list_env	*ev;
-
-	ev = *env;
-	while (ev)
-	{
-		if (ft_strcmp(str, ev->data.key) == 0)
-			return (0);
-		ev = ev->next;
-	}
-	return (1);
-}
-
 int	ft_cd(t_list_env **env, char **cmd)
 {
 	char	cwd[1024];
+
 	if (!cmd[1])
-	{
-		if (look_for_key("HOME", env))
-		{
-			printf("minishell: cd: HOME not set\n");
-			return (1);	
-		}
-		else if (!look_for_key("HOME", env) && !ft_strcmp(get_value_of_key(env, "HOME"), "\0"))
-		{
-			return (0);
-		}
-		else if (chdir(get_value_of_key(env, "HOME")) == -1)
-			perror("minishell");
-	}
+		return (cd_only(env));
 	else if (!ft_strcmp(cmd[1], "-") || !ft_strcmp(cmd[1], "~"))
 	{
 		if (!ft_strcmp(cmd[1], "~"))
@@ -116,7 +91,9 @@ int	ft_cd(t_list_env **env, char **cmd)
 	{
 		if (getcwd(cwd, sizeof(cwd)) == NULL)
 		{
-			printf("minishell: cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory\n");
+			printf("minishell: cd: error retrieving current directory:\
+			getcwd: cannot access parent directories: \
+			No such file or directory\n");
 			return (ft_cd_to_home(env));
 		}
 		else if (cmd[1][0] == '/')
@@ -126,4 +103,3 @@ int	ft_cd(t_list_env **env, char **cmd)
 	}
 	return (0);
 }
-// cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
