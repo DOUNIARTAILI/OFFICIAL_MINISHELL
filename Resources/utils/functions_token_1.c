@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 00:25:53 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 00:15:34 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:22:31 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	spechars_pase_1(t_list **mylist, char *str, int *i)
 		if (!tokeni_mychar(mylist, str, i, PIPE))
 			return (0);
 	}
-	else if (str[*i] == ' ')
+	else if (ft_isspace(str[*i]))
 	{
 		if (!tokeni_mychar(mylist, str, i, ESP))
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:31:05 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/08 02:11:46 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:45:31 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	token_qts_mark(t_list **mylist, int *i, int token)
 
 int	myspechars(char c)
 {
-	if (c == '|' || c == '<' || c == '>' || c == ' '
+	if (c == '|' || c == '<' || c == '>' || ft_isspace(c)
 		|| c == '$' || c == '\"' || c == '\'')
 		return (1);
 	return (0);
