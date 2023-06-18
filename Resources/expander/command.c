@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:23:39 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 00:47:42 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/18 01:31:58 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	handle_redirection(t_list **newlist,
 	join_str = ft_strtrim(join_str, " ");
 	if (ft_strchr(join_str, ' '))
 	{
-		ft_printf(2, "minishell: %s : ambiguous redirect\n", join_str);
+		ft_printf(2, "minishell: %s : Resources ambiguous redirect\n", join_str);
 		return (g_global_exit.exit_status = 1, 0);
 	}
 	if (join_str)

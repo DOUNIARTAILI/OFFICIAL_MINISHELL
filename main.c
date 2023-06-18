@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/17 19:13:24 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/18 01:29:51 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void init_glob(t_exit *glob)
 	glob->gnl = 0;
 	glob->exit_status = 0;
 	glob->exit = 0;
+	glob->flag = 1;
 	while (++i < 1024)
 		glob->pid[i] = 0;
 }
@@ -41,6 +42,7 @@ void handle_interrupt(int sig)
 			glob->exit_status = 1;
 		if (g_global_exit.heredoc)
 		{
+			g_global_exit.flag = 0;
 			glob->exit_status = 1;
 			close(0);
 			g_global_exit.heredoc = 0;
@@ -125,6 +127,7 @@ int	main(int ac, char **av, char **env)
 	init_glob(&g_global_exit);
 	while (1)
 	{
+		g_global_exit.flag = 1;
 		g_global_exit.heredoc = 0;
 		rl_catch_signals = 0;
 		head = NULL;
