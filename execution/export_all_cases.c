@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 08:37:16 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 14:35:55 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 15:24:09 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ void	add_to_export_only(t_list_env **export_list, char *cmd)
 	add_back_to_list(export_list, new);
 }
 
+void	add_to_env(t_list_env **env, char *key, char *value)
+{
+	t_list_env	*new;
+	t_env		content;
+
+	content.key = key;
+	content.value = value;
+	new = ft_lstnew_node(content);
+	add_back_to_list(env, new);
+}
+
 void	export_equ_only(t_list_env **env, t_list_env **export_list, char *cmd)
 {
 	char		**key_value;
@@ -49,6 +60,8 @@ void	export_equ_only(t_list_env **env, t_list_env **export_list, char *cmd)
 			key_value[1] = ft_strdup("");
 		set_value_of_key(env, key_value[0], key_value[1]);
 		set_value_of_key(export_list, key_value[0], key_value[1]);
+		if (get_node_by_key(env, key_value[0]) == NULL)
+			add_to_env(env, key_value[0], key_value[1]);
 	}
 	else
 	{
@@ -64,6 +77,7 @@ void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
 	key_value = key_value_of_arg(cmd);
 	if (get_node_by_key(export_list, key_value[0]) != NULL)
 	{
+		puts("ok");
 		if (key_value[1] == NULL)
 			return ;
 		else
@@ -72,10 +86,13 @@ void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
 						key_value[0]), key_value[1]);
 			set_value_of_key(env, key_value[0], new_value);
 			set_value_of_key(export_list, key_value[0], new_value);
+			if (get_node_by_key(env, key_value[0]) == NULL)
+				add_to_env(env, key_value[0], new_value);
 		}
 	}
 	else
 	{
+		puts("oops");
 		add_to_export_env(env, export_list, key_value);
 	}
 }

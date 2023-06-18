@@ -6,15 +6,11 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 08:35:43 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 01:49:13 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 15:39:17 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-
-// ./minishell < nn.txt sort > out.txt
-// 0			1 2		 3	  4	5		| ac = 6 | ac - 2 = 4
 
 void	red_output(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_list_env **new_env)
 {
@@ -22,8 +18,8 @@ void	red_output(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_li
 	int fd_out = open(((t_token *)red->content)->str, O_WRONLY | O_CREAT | O_TRUNC, 0666); // 0666 the 0 means that this is in octal
 	if (fd_out == -1)
 	{
-		// perror("minishell");
-		ft_printf(2, "minishell : %s: permission denied\n", ((t_token *)red->content)->str);
+		ft_printf(2, "minishell: %s ", ((t_token *)red->content)->str);
+		perror("");
 		return;
 	}
 	store_fd = dup(1);
@@ -38,7 +34,7 @@ void	red_input(t_voidlst *commands, t_voidlst *red, t_list_env **m_export, t_lis
 	int fd_in = open(((t_token *)red->content)->str, O_RDONLY, 0644);//str howa input file mnin anqraw
 	if (fd_in == -1)
 	{
-		ft_printf(2, "minishell : %s: ", ((t_token *)red->content)->str);
+		ft_printf(2, "minishell: %s ", ((t_token *)red->content)->str);
 		perror("");
 		return;
 	}
@@ -55,7 +51,8 @@ void	red_double_output(t_voidlst *commands, t_voidlst *red, t_list_env **m_expor
 	int d_fd_out = open(((t_token *)red->content)->str, O_WRONLY | O_CREAT |  O_APPEND, 0666);
 	if (d_fd_out == -1)
 	{
-		ft_printf(2, "minishell : %s: permission denied\n", ((t_token *)red->content)->str);
+		ft_printf(2, "minishell: %s ", ((t_token *)red->content)->str);
+		perror("");
 		return;
 	}
 	store_fd = dup(1);
