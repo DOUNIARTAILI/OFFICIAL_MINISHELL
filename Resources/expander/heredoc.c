@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 00:59:35 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 01:22:05 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	handle_heredoc(t_list **newlist, t_list **head, t_list_env *myenv)
 	}
 	manage_heredoc(head, &fd, myenv);
 	close (fd);
-	ft_lstadd_back(newlist, ft_lstnew(new_token(str, HERE_DOC)));
+	ft_lstadd_back(newlist, ft_lstnew(new_token(str, RE_IN)));
 	g_global_exit.heredoc = 0;
 	return (1);
 }
