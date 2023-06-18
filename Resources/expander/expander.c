@@ -6,25 +6,11 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 16:50:10 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/18 22:05:39 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
-
-int	split_char(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i])
-	{
-		if (ft_isspace(str[i]))
-			return (str[i]);
-		i++;
-	}
-	return (0);
-}
 
 t_list	*bash_expander(t_list *tokenizer, t_list_env *myenv)
 {
@@ -47,14 +33,12 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 	char		*string_value;
 	char		**split;
 	t_voidlst	*sub_lst;
-	char		mychar_split;
 
 	mytoken = (head)->content;
 	string_value = search_and_replace(&mytoken, myenv);
 	if (string_value && mytoken->token == DLR && ft_strlen(mytoken->str) > 1)
 	{
-		mychar_split = split_char(mytoken->str);
-		split = ft_split(mytoken->str, mychar_split);
+		split = ft_split_1(mytoken->str);
 		sub_lst = new_sublist(split);
 		if (sub_lst)
 			add_multi_nodes(origin, sub_lst);

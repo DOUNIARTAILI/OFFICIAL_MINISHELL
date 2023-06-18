@@ -6,7 +6,7 @@
 #    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 23:14:00 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/11 01:42:32 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/06/18 21:54:48 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ ft_strrchr.c\
 ft_strtrim.c\
 ft_substr.c\
 ft_tolower.c\
-ft_toupper.c
+ft_toupper.c \
+ft_split1.c
 
 
 OBJS = $(SRC:.c=.o)

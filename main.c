@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 18:13:20 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/18 22:07:17 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,16 +135,12 @@ int	main(int ac, char **av, char **env)
 			ft_pipe(&m_export, commands, &new_env);
 		else
 		{
-			// puts("hh");
 			char *tty = ttyname(1);
 			int fd = open(tty, O_RDONLY);
 			dup2(fd, 0);
-			// printf("%s\n", tty);
 		}
 		// free_and_reset(commands);
-		free(head);
-		commands = NULL;
 	}
-	// free_myenv(new_env);
+	free_myenv(new_env);
 	return (0);
 }
