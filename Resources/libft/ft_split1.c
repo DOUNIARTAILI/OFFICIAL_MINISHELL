@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:35:46 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 22:01:47 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/19 07:47:35 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static int	word_count(const char *str)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ' || str[i] == '\t')
+		if (ft_isspace(str[i]))
 			i++;
 		else
 		{
 			count++;
-			while (str[i] != ' ' && str[i] != '\t' && str[i])
+			while (str[i] && !ft_isspace(str[i]))
 				i++;
 		}
 	}
@@ -50,11 +50,11 @@ static char	*get_word_len(const char *s1, int *index)
 	size_t	word_len;
 	int		i;
 
-	while (s1[*index] && (s1[*index] == ' ' || s1[*index] == '\t'))
+	while (s1[*index] && ft_isspace(s1[*index]))
 		(*index)++;
 	i = *index;
 	word_len = 0;
-	while (s1[i] != ' ' && s1[i] != '\t' && s1[i])
+	while (!ft_isspace(s1[i]) && s1[i])
 	{
 		word_len++;
 		i++;
@@ -63,7 +63,7 @@ static char	*get_word_len(const char *s1, int *index)
 	if (!copy)
 		return (NULL);
 	i = 0;
-	while (s1[*index] && s1[*index] != ' ' && s1[*index] != '\t')
+	while (s1[*index] && !ft_isspace(s1[*index]))
 		copy[i++] = s1[(*index)++];
 	copy[i] = '\0';
 	return (copy);

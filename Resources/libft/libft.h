@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 00:39:52 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 21:53:22 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/19 07:50:05 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+int		ft_isspace(char c);
 char	**ft_split_1(char const *s);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
