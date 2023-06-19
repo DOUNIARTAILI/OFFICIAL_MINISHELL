@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 04:48:36 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 17:59:35 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/19 23:32:18 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_list_env	*fill_node_with_data(char **my_env)
 	node = malloc(sizeof(t_list_env));
 	if (!node)
 		return (NULL);
-	node->data.key = my_env[0];
-	node->data.value = my_env[1];
+	node->data.key = ft_strdup(my_env[0]);
+	node->data.value = ft_strdup(my_env[1]);
 	node->next = NULL;
 	return (node);
 }
@@ -50,15 +50,16 @@ void	update_shelvl(t_list_env *new_env)
 		set_value_of_key(&new_env, "SHLVL", ft_itoa(nb));
 	}
 	else
-		add_back_to_list(&new_env, build_node("SHLVL", ft_itoa(1)));
+		add_back_to_list(&new_env, build_node(ft_strdup("SHLVL"),
+				ft_strdup("1")));
 }
 
 void	env_removed(t_list_env *node, t_list_env *curr_env, int j)
 {
 	if (j == 3)
 	{
-		node = build_node("PATH",
-				"/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+		node = build_node(ft_strdup("PATH"),
+				ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
 		curr_env->next = node;
 	}
 }
@@ -78,6 +79,7 @@ t_list_env	*get_env(char **env)
 	{
 		my_env = ft_split(env[i], '=');
 		node = fill_node_with_data(my_env);
+		free_args(my_env);
 		if (curr_env)
 			curr_env->next = node;
 		else

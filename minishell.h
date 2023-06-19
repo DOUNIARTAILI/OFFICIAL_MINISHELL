@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/19 17:30:04 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/20 00:52:21 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,12 @@ void		handle_interrupt(int sig);
 void		handler(int sig);
 int			ft_kill(t_exit *glob);
 void		build_new_oldpwd_pwd(t_list_env **env);
+void		free_args(char **args);
+void		free_commands(t_voidlst *commands);
+void		free_envs(t_list_env *m_export,
+				t_voidlst *commands, t_list_env *new_env);
+void		free_commands(t_voidlst *commands);
+void		free_redirection(t_voidlst *redirections);
+void		free_args(char **args);
 
 #endif

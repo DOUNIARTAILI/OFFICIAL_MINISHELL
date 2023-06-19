@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 01:58:27 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 16:31:31 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/20 00:02:35 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	ft_echo(char **cmd)
 		printf("\n");
 	else if (!ft_strcmp(cmd[1], "-n") || check_n(cmd[1]))
 	{
+		if (!cmd[2])
+			return (0);
 		i = skip_n(cmd);
 		echo_printer(i, cmd);
 	}

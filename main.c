@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/19 18:28:33 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/20 00:40:07 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	minishell(t_list_env *m_export,
 	t_list		*head;
 
 	while (1)
-	{
+	{		
 		init_global();
 		head = NULL;
 		signals();
@@ -69,12 +69,8 @@ void	minishell(t_list_env *m_export,
 			continue ;
 		commands = parse_to_args(commands);
 		execution(m_export, commands, new_env);
+		free_commands(commands);
 	}
-}
-
-void	leaks(void)
-{
-	system("leaks minishell");
 }
 
 int	main(int ac, char **av, char **env)
@@ -83,7 +79,6 @@ int	main(int ac, char **av, char **env)
 	t_list_env	*m_export;
 	t_voidlst	*commands;
 
-	// atexit(leaks);
 	(void)ac;
 	(void)av;
 	commands = NULL;
@@ -92,5 +87,6 @@ int	main(int ac, char **av, char **env)
 	sort_list(m_export);
 	init_glob(&g_global_exit);
 	minishell(m_export, commands, new_env);
+	free_envs(m_export, commands, new_env);
 	return (0);
 }

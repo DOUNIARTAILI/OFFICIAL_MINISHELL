@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 00:52:10 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 16:33:18 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/20 00:08:58 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_exit(char **cmd)
 	printf("exit\n");
 	if (size_cmd(cmd) == 2 && is_all_digits(cmd[1]))
 		g_global_exit.exit_status = ft_atoi(cmd[1]);
-	else if (size_cmd(cmd) >= 2 && isword(cmd[1]))
+	else if (size_cmd(cmd) >= 2 && !is_all_digits(cmd[1]))
 	{
 		g_global_exit.exit_status = 255;
 		ft_printf(2, "minishell: exit : %s: numeric \

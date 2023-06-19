@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:58:37 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/11 02:04:22 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/19 21:16:32 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_list_env	*env_dup_node(t_env data)
 	t_list_env	*node;
 
 	node = malloc(sizeof(t_list_env));
-	node->data.key = data.key;
-	node->data.value = data.value;
+	node->data.key = ft_strdup(data.key);
+	node->data.value = ft_strdup(data.value);
 	node->next = NULL;
 	return (node);
 }
