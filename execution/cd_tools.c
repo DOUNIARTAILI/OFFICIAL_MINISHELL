@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 16:24:31 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 16:25:05 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/19 17:29:51 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,28 @@ int	cd_only(t_list_env **env)
 	else if (chdir(get_value_of_key(env, "HOME")) == -1)
 		perror("minishell");
 	return (1);
+}
+
+void	build_new_oldpwd_pwd(t_list_env **env)
+{
+	t_env		content1;
+	t_env		content2;
+	char		cwd[1024];
+	t_list_env	*new1;
+	t_list_env	*new2;
+
+	if (look_for_key("PWD", env))
+	{
+		content1.key = "PWD";
+		content1.value = getcwd(cwd, sizeof(cwd));
+		new1 = ft_lstnew_node(content1);
+		add_back_to_list(env, new1);
+	}
+	if (look_for_key("OLDPWD", env))
+	{
+		content2.key = "OLDPWD";
+		content2.value = getcwd(cwd, sizeof(cwd));
+		new2 = ft_lstnew_node(content2);
+		add_back_to_list(env, new2);
+	}
 }

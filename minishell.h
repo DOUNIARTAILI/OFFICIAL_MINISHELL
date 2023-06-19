@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 22:49:40 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/19 17:30:04 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void		prompt(void);
 void		handle_interrupt(int sig);
 void		handler(int sig);
 int			ft_kill(t_exit *glob);
+void		build_new_oldpwd_pwd(t_list_env **env);
 
 #endif
