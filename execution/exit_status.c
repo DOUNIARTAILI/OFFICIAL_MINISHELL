@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 22:30:22 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 22:31:24 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/19 15:51:49 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	exit_status(int status)
 {
 	int	exit_status;
 
+	exit_status = 0;
 	if (g_global_exit.exit > 0)
 	{
 		if (g_global_exit.exit == 1)

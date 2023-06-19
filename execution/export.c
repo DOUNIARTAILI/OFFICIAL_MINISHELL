@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:26:49 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 17:20:20 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/19 15:52:48 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,8 @@ void	all_args_not_valid(int len, char **cmd)
 
 int	ft_export(t_list_env **env, t_list_env **export_list, char **cmd)
 {
-	int	i;
 	int	err;
 	int	len;
-	int	error;
 
 	len = size_cmd(cmd);
 	err = 0;

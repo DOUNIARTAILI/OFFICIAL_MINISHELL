@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/19 07:52:08 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:51:00 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	execute_p2(t_list_env **new_env, char **cmd_parsed)
 
 void	execute(t_list_env **new_env, char **cmd_parsed)
 {
-	char	*pathname;
 	int		status;
 	int		id;
 
