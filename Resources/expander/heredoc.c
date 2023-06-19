@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 01:28:19 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/19 22:55:14 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	concate_in_heredoc(t_list **head, int *flag, char **delemiter)
 	*delemiter = NULL;
 	(*head) = (*head)->next;
 	while ((*head) && (*head)->content->token != ESP
-		&& !is_redirect((*head)->content->token))
+		&& !is_redirect((*head)->content->token)
+		&& (*head)->content->token != PIPE)
 	{
 		if ((*head)->content->token == QUOTE
 			|| (*head)->content->token == S_QUOTE)
@@ -44,7 +45,7 @@ void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 		line = readline("heredoc> ");
 		if (line)
 			line = ft_strjoin_1(line, ft_strdup("\n"));
-		if (!line || !str_cmp(line, delemiter) || !g_global_exit.heredoc)
+		if (!line || !str_cmp(line, delemiter))
 		{
 			free(delemiter);
 			if (buffer)
