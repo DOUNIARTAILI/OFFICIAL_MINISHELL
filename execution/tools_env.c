@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:23:31 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/20 22:35:28 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/20 23:00:44 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	set_value_of_key(t_list_env **envr, char *key, char *value)
 			tmp = env->data.value;
 			env->data.value = ft_strdup(value);
 			free(tmp);
+			free(value);
 		}
 		env = env->next;
 	}

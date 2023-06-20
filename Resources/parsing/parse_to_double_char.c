@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_to_double_char.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 04:27:25 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/16 23:03:58 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/20 23:17:40 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	fill_command(t_voidlst *cmds, t_voidlst *redirs, t_voidlst **new_list)
 		mytoken = redirs->content;
 		add_back(&mycommand->redirections,
 			new_node(new_token(mytoken->str, mytoken->token)));
+		// free(mytoken->str);
+		// free(mytoken);
 		redirs = redirs->next;
 	}
 	add_back(new_list, new_node(mycommand));
