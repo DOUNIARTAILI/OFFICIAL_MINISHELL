@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:23:31 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/20 04:33:41 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/20 22:35:28 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	set_value_of_key(t_list_env **envr, char *key, char *value)
 		if (ft_strcmp(env->data.key, key) == 0)
 		{
 			tmp = env->data.value;
-			env->data.value = value;
+			env->data.value = ft_strdup(value);
 			free(tmp);
 		}
 		env = env->next;

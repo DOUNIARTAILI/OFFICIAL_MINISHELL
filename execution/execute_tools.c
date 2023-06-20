@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 22:31:57 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 22:38:32 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/20 21:10:59 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ int	check_value(char **value, char **cmd_parsed)
 {
 	if (!value)
 	{
-		ft_printf(2, "minishell : %s: \
-			no such file or directory\n", cmd_parsed[0]);
+		ft_printf(2, "minishell : %s: ", cmd_parsed[0]);
+		ft_printf(2, "no such file or directory\n");
 		g_global_exit.exit_status = 127;
-		return (1);
+		exit (g_global_exit.exit_status);
 	}
 	return (0);
 }
