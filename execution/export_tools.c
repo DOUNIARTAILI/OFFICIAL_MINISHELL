@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/13 07:58:37 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 22:31:24 by mouaammo         ###   ########.fr       */
+/*   Created: 2023/06/22 00:12:37 by mouaammo          #+#    #+#             */
+/*   Updated: 2023/06/22 00:12:39 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ char	**key_value_of_arg(char *cmd)
 	k = 0;
 	while (k < 2)
 	{
-		key_value[k] = ft_substr(cmd, i, index_key_end);
 		if (check_equal_existance(cmd) && check_plus_existance(cmd) && (k == 0))
 			key_value[k] = ft_substr(cmd, i, (index_key_end - 1));
+		else
+			key_value[k] = ft_substr(cmd, i, index_key_end);
 		if (!key_value[k])
 		{
 			return (NULL);

@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/07 04:48:36 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/22 00:08:13 by mouaammo         ###   ########.fr       */
+/*   Created: 2023/06/22 00:12:11 by mouaammo          #+#    #+#             */
+/*   Updated: 2023/06/22 00:12:14 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -81,7 +82,7 @@ char	**split_keyvalue(char *env)
 	key_value[0] = ft_strdup(split[0]);
 	key_value[1] = ft_substr(env, ft_strlen(split[0]) + 1, ft_strlen(env));
 	key_value[2] = NULL;
-	free_all(split);
+	free_args(split);
 	return (key_value);
 }
 

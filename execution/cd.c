@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/07 02:32:29 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 21:53:05 by mouaammo         ###   ########.fr       */
+/*   Created: 2023/06/22 00:11:16 by mouaammo          #+#    #+#             */
+/*   Updated: 2023/06/22 00:11:18 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 
@@ -80,8 +81,6 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 		return (0);
 	}
 	free(new_path);
-	// free(g_global_exit.garbege.str_1);
-	// free(g_global_exit.garbege.str_2);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 16:42:34 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/19 21:36:49 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 20:25:41 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ t_list_env	*ft_lstnew_node(t_env content)
 	node = malloc(sizeof(t_list_env));
 	if (!node)
 		return (NULL);
-	node->data.key = ft_strdup(content.key);
-	node->data.value = ft_strdup(content.value);
+	node->data.key = content.key;
+	node->data.value = content.value;
 	node->next = NULL;
 	return (node);
 }
