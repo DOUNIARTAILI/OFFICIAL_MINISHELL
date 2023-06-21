@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:58:37 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/19 21:16:32 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 22:31:24 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ char	**key_value_of_arg(char *cmd)
 		index_key_end = ft_strlen(cmd) - (index_key_end + 1);
 		k++;
 	}
+	key_value[k] = NULL;
 	return (key_value);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 04:48:36 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 17:30:30 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/22 00:08:13 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,19 @@ t_list_env	*build_node(char *key, char *value)
 
 void	update_shelvl(t_list_env *new_env)
 {
-	int	nb;
+	int		nb;
+	char	*get_value;
+	char	*counter;
 
 	nb = 0;
-	if (get_value_of_key(&new_env, "SHLVL") != NULL)
+	get_value = get_value_of_key(&new_env, "SHLVL");
+	if (get_value != NULL)
 	{
-		nb = ft_atoi(get_value_of_key(&new_env, "SHLVL"));
+		nb = ft_atoi(get_value);
 		nb++;
-		set_value_of_key(&new_env, "SHLVL", ft_itoa(nb));
+		counter = ft_itoa(nb); 
+		set_value_of_key(&new_env, "SHLVL", counter);
+		free(counter);
 	}
 	else
 		add_back_to_list(&new_env, build_node(ft_strdup("SHLVL"),

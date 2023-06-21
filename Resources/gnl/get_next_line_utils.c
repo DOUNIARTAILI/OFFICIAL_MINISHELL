@@ -6,30 +6,11 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 13:47:03 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/11 20:50:17 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/22 00:06:34 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*ft_strdup(const char *s1)
-{
-	int		len;
-	char	*str;
-	int		i;
-
-	if (!s1)
-		return (NULL);
-	len = ft_strlen(s1);
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		str[i] = s1[i];
-	str[i] = '\0';
-	return (str);
-}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

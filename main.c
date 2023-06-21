@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/21 17:58:20 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 22:02:22 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ void	init_global(void)
 	g_global_exit.heredoc = 0;
 	rl_catch_signals = 0;
 	g_global_exit.exit = 0;
+	g_global_exit.garbege.str_1 = NULL;
+	g_global_exit.garbege.str_2 = NULL;
+	g_global_exit.garbege.str_3 = NULL;
+	g_global_exit.garbege.str_4 = NULL;
 }
 
 void	minishell(t_list_env *m_export,
@@ -69,6 +73,7 @@ void	minishell(t_list_env *m_export,
 			continue ;
 		t_voidlst *my_arguments = parse_to_args(commands);
 		execution(m_export, my_arguments, new_env);
+		free(g_global_exit.garbege.str_2);
 		free_commands(my_arguments);
 	}
 }

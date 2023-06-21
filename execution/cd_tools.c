@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 16:24:31 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/19 17:29:51 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 21:49:06 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	build_new_oldpwd_pwd(t_list_env **env)
 		content1.key = "PWD";
 		content1.value = getcwd(cwd, sizeof(cwd));
 		new1 = ft_lstnew_node(content1);
+		free(content1.key);
+		free(content1.value);
 		add_back_to_list(env, new1);
 	}
 	if (look_for_key("OLDPWD", env))
@@ -63,6 +65,8 @@ void	build_new_oldpwd_pwd(t_list_env **env)
 		content2.key = "OLDPWD";
 		content2.value = getcwd(cwd, sizeof(cwd));
 		new2 = ft_lstnew_node(content2);
+		free(content2.key);
+		free(content2.value);
 		add_back_to_list(env, new2);
 	}
 }

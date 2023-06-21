@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 04:45:35 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 18:05:56 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 18:59:53 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void	ft_unset(t_list_env **env, char *key)
 				prev->next = curr->next;
 			}
 			free_node(curr);
+			// curr->data.value = ft_strdup("");
+			curr = NULL;
+			// CAST_USE
 			g_global_exit.exit_status = 0;
 			return ;
 		}
