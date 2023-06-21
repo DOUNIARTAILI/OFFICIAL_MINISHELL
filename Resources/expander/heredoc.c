@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/19 22:55:14 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/21 02:49:13 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 			free(delemiter);
 			if (buffer)
 				write(*fd, buffer, ft_strlen(buffer));
+			free(line);
 			free(buffer);
 			break ;
 		}
@@ -78,6 +79,7 @@ int	handle_heredoc(t_list **newlist, t_list **head, t_list_env *myenv)
 	manage_heredoc(head, &fd, myenv);
 	close (fd);
 	ft_lstadd_back(newlist, ft_lstnew(new_token(str, RE_IN)));
+	free(str);
 	g_global_exit.heredoc = 0;
 	return (1);
 }

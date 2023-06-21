@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/20 00:40:07 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 03:25:02 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	init_global(void)
 void	minishell(t_list_env *m_export,
 	t_voidlst *commands, t_list_env *new_env)
 {
-	char		*cmd ;
+	char		*cmd;
 	t_list		*head;
 
 	while (1)
@@ -67,9 +67,10 @@ void	minishell(t_list_env *m_export,
 		commands = tokenizer_and_grammar(cmd, head, new_env);
 		if (!commands)
 			continue ;
-		commands = parse_to_args(commands);
-		execution(m_export, commands, new_env);
-		free_commands(commands);
+		t_voidlst *my_arguments = parse_to_args(commands);
+		free_big_list(commands);
+		execution(m_export, my_arguments, new_env);
+		free_commands(my_arguments);
 	}
 }
 

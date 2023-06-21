@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 23:28:08 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/20 00:53:05 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 01:58:12 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ void	free_redirection(t_voidlst *redirections)
 	t_token		*my_red;
 
 	tmp = redirections;
-	while (tmp)
+	while (redirections)
 	{
-		my_red = tmp->content;
-		tmp = tmp->next;
+		tmp = redirections->next;
+		my_red = redirections->content;
 		free(my_red->str);
-		// free(my_red->token);
 		free(my_red);
+		free(redirections);
+		redirections = tmp;
 	}
 }
 
@@ -46,14 +47,15 @@ void	free_commands(t_voidlst *commands)
 	t_voidlst	*tmp;
 	t_command	*mycommand;
 
-	tmp = commands;
-	while (tmp)
+	while (commands)
 	{
-		mycommand = tmp->content;
-		tmp = tmp->next;
+		tmp = commands->next;
+		mycommand = commands->content;
 		free_args(mycommand->args);
 		free_redirection(mycommand->redirections);
 		free(mycommand);
+		free(commands);
+		commands = tmp;
 	}
 }
 

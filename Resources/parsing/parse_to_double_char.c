@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_to_double_char.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 04:27:25 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/20 23:17:40 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 02:16:34 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int	fill_command(t_voidlst *cmds, t_voidlst *redirs, t_voidlst **new_list)
 		mytoken = redirs->content;
 		add_back(&mycommand->redirections,
 			new_node(new_token(mytoken->str, mytoken->token)));
-		// free(mytoken->str);
-		// free(mytoken);
 		redirs = redirs->next;
 	}
 	add_back(new_list, new_node(mycommand));
@@ -64,10 +62,8 @@ t_voidlst	*parse_to_args(t_voidlst *h_list)
 {
 	t_cmds		*tmp;
 	t_voidlst	*new_list;
-	t_voidlst	*temp_list;
 
 	new_list = NULL;
-	temp_list = h_list;
 	while (h_list)
 	{
 		tmp = h_list->content;
@@ -76,5 +72,5 @@ t_voidlst	*parse_to_args(t_voidlst *h_list)
 		h_list = h_list->next;
 	}
 	signal(SIGINT, SIG_IGN);
-	return (free_big_list(temp_list), new_list);
+	return (new_list);
 }
