@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:26:49 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 00:16:01 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 17:46:52 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,20 @@ void	all_args_not_valid(int len, char **cmd)
 	{
 		error_exp(cmd[i]);
 		i++;
+	}
+}
+
+void	build_path(t_list_env **env)
+{
+	t_env		content;
+	t_list_env	*new;
+
+	if (look_for_key("PATH", env))
+	{
+		content.key = "PATH";
+		content.value = "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.";
+		new = ft_lstnew_node(content);
+		add_back_to_list(env, new);
 	}
 }
 

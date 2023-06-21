@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 04:48:36 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/19 23:32:18 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 17:30:30 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,22 @@ void	env_removed(t_list_env *node, t_list_env *curr_env, int j)
 	}
 }
 
+char	**split_keyvalue(char *env)
+{
+	char	**split;
+	char	**key_value;
+
+	key_value = malloc (3 * sizeof(char *));
+	if (!key_value)
+		return (NULL);
+	split = ft_split(env, '=');
+	key_value[0] = ft_strdup(split[0]);
+	key_value[1] = ft_substr(env, ft_strlen(split[0]) + 1, ft_strlen(env));
+	key_value[2] = NULL;
+	free_all(split);
+	return (key_value);
+}
+
 t_list_env	*get_env(char **env)
 {
 	t_list_env	*new_env;
@@ -77,7 +93,7 @@ t_list_env	*get_env(char **env)
 	curr_env = NULL;
 	while (env[i] != NULL)
 	{
-		my_env = ft_split(env[i], '=');
+		my_env = split_keyvalue(env[i]);
 		node = fill_node_with_data(my_env);
 		free_args(my_env);
 		if (curr_env)

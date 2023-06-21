@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:18:12 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/21 03:25:02 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:58:20 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	minishell(t_list_env *m_export,
 		if (!commands)
 			continue ;
 		t_voidlst *my_arguments = parse_to_args(commands);
-		free_big_list(commands);
 		execution(m_export, my_arguments, new_env);
 		free_commands(my_arguments);
 	}

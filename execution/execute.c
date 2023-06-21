@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/20 21:10:12 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 17:05:32 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	execute_p2(t_list_env **new_env, char **cmd_parsed)
 			execve(pathname, cmd_parsed, env_arr(new_env));
 		i++;
 	}
-	ft_putstr_fd("minishell: command not found\n", 2);
+	ft_printf(2, "minishell : %s: command not found\n", cmd_parsed[0]);
 	g_global_exit.exit_status = 127;
 	return (g_global_exit.exit_status);
 }

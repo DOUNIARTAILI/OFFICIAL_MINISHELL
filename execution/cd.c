@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:32:29 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/19 18:03:33 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 16:32:23 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	ft_cd_get_back_again(t_list_env **env)
 			build_new_oldpwd_pwd(env);
 		else
 		{
-			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
-			set_value_of_key(env, "PWD", get_value_of_key(env, "OLDPWD"));
+			set_value_of_key(env, "OLDPWD",
+				ft_strdup(get_value_of_key(env, "PWD")));
+			set_value_of_key(env, "PWD",
+				ft_strdup(get_value_of_key(env, "OLDPWD")));
 		}
 		return (0);
 	}
@@ -44,8 +46,10 @@ int	ft_cd_to_home(t_list_env **env)
 			build_new_oldpwd_pwd(env);
 		else
 		{
-			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
-			set_value_of_key(env, "PWD", get_value_of_key(env, "HOME"));
+			set_value_of_key(env, "OLDPWD",
+				ft_strdup(get_value_of_key(env, "PWD")));
+			set_value_of_key(env, "PWD",
+				ft_strdup(get_value_of_key(env, "HOME")));
 		}
 		return (0);
 	}
@@ -69,8 +73,9 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 			build_new_oldpwd_pwd(env);
 		else
 		{
-			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
-			set_value_of_key(env, "PWD", new_path);
+			set_value_of_key(env, "OLDPWD",
+				ft_strdup(get_value_of_key(env, "PWD")));
+			set_value_of_key(env, "PWD", ft_strdup(new_path));
 		}
 		return (0);
 	}
@@ -87,8 +92,9 @@ int	cd_to_absolute_path(t_list_env **env, char **cmd)
 			build_new_oldpwd_pwd(env);
 		else
 		{
-			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
-			set_value_of_key(env, "PWD", cmd[1]);
+			set_value_of_key(env, "OLDPWD",
+				ft_strdup(get_value_of_key(env, "PWD")));
+			set_value_of_key(env, "PWD", ft_strdup(cmd[1]));
 		}
 		return (0);
 	}

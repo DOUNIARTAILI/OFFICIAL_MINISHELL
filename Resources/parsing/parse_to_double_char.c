@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_to_double_char.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 04:27:25 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/21 02:16:34 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:58:05 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ t_voidlst	*parse_to_args(t_voidlst *h_list)
 {
 	t_cmds		*tmp;
 	t_voidlst	*new_list;
+	t_voidlst	*new_list_1;
 
 	new_list = NULL;
+	new_list_1 = h_list;
 	while (h_list)
 	{
 		tmp = h_list->content;
@@ -72,5 +74,5 @@ t_voidlst	*parse_to_args(t_voidlst *h_list)
 		h_list = h_list->next;
 	}
 	signal(SIGINT, SIG_IGN);
-	return (new_list);
+	return (free_big_list(new_list_1), new_list);
 }
