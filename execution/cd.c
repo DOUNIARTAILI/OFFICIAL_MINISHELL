@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:32:29 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 16:32:23 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 19:22:01 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 		{
 			set_value_of_key(env, "OLDPWD",
 				ft_strdup(get_value_of_key(env, "PWD")));
-			set_value_of_key(env, "PWD", ft_strdup(new_path));
+			set_value_of_key(env, "PWD", new_path);
 		}
 		return (0);
 	}

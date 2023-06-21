@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 04:48:36 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 17:30:30 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 21:26:26 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ t_list_env	*build_node(char *key, char *value)
 void	update_shelvl(t_list_env *new_env)
 {
 	int	nb;
+	char *tmp;
 
 	nb = 0;
 	if (get_value_of_key(&new_env, "SHLVL") != NULL)
 	{
 		nb = ft_atoi(get_value_of_key(&new_env, "SHLVL"));
 		nb++;
-		set_value_of_key(&new_env, "SHLVL", ft_itoa(nb));
+		tmp = ft_itoa(nb);
+		set_value_of_key(&new_env, "SHLVL", tmp);
+		free(tmp);
 	}
 	else
 		add_back_to_list(&new_env, build_node(ft_strdup("SHLVL"),
@@ -76,7 +79,7 @@ char	**split_keyvalue(char *env)
 	key_value[0] = ft_strdup(split[0]);
 	key_value[1] = ft_substr(env, ft_strlen(split[0]) + 1, ft_strlen(env));
 	key_value[2] = NULL;
-	free_all(split);
+	free_args(split);
 	return (key_value);
 }
 

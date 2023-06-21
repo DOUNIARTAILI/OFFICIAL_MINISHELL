@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:58:37 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/19 21:16:32 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/21 22:59:08 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,10 @@ char	**key_value_of_arg(char *cmd)
 	k = 0;
 	while (k < 2)
 	{
-		key_value[k] = ft_substr(cmd, i, index_key_end);
 		if (check_equal_existance(cmd) && check_plus_existance(cmd) && (k == 0))
 			key_value[k] = ft_substr(cmd, i, (index_key_end - 1));
+		else
+			key_value[k] = ft_substr(cmd, i, index_key_end);
 		if (!key_value[k])
 		{
 			return (NULL);
@@ -93,5 +94,6 @@ char	**key_value_of_arg(char *cmd)
 		index_key_end = ft_strlen(cmd) - (index_key_end + 1);
 		k++;
 	}
+	key_value[k] = NULL;
 	return (key_value);
 }

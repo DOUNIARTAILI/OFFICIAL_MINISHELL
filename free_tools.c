@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 23:28:08 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 01:58:12 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:43:25 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_args(char **args)
 	int	i;
 
 	i = 0;
+	if (!args && !args[0])
+		return ;
 	while (args[i])
 	{
 		free(args[i]);

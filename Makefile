@@ -6,7 +6,7 @@
 #    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-#    Updated: 2023/06/21 18:01:55 by drtaili          ###   ########.fr        #
+#    Updated: 2023/06/21 21:11:36 by drtaili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ FILES = $(addprefix Resources/libft/, ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_
 OBJS = $(SRC:.c=.o)
 
 # Compiler
-CC = cc -fsanitize=address -g
+CC = cc #-fsanitize=address -g
 
 # Compiler flags
 FLAGS := -Wall -Wextra -Werror
