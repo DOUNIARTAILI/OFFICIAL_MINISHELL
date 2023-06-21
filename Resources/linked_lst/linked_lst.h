@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:50:13 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/22 00:07:25 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/22 00:14:34 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef struct s_exit
 	int		gnl;
 	int		flag;
 	int		len_cmd;
-	t_garbege	garbege;
 }t_exit;
 
 t_exit	g_global_exit;

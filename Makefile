@@ -5,18 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/21 20:30:29 by drtaili           #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/06/21 22:42:33 by mouaammo         ###   ########.fr        #
-=======
-#    Updated: 2023/06/21 21:11:36 by drtaili          ###   ########.fr        #
->>>>>>> 6a21cf72b2e8e36fb01cbe5a98bdf28b74ce8de4
+#    Created: 2023/06/22 00:14:07 by mouaammo          #+#    #+#              #
+#    Updated: 2023/06/22 00:23:00 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.DEFAULT_GOAL := all
 
-# Source files
 SRC =	main.c main_tools.c free_tools.c \
 		$(addprefix execution/,cd.c tools.c cd_tools.c execute.c env_functions.c exit_status.c env_functions_tools.c pwd.c exit.c \
 		echo.c env.c unset.c is_builtin.c export.c execute_tools.c pipe_cases.c \
@@ -54,7 +48,7 @@ OBJS = $(SRC:.c=.o)
 CC = cc #-fsanitize=address -g
 
 # Compiler flags
-# FLAGS := -Wall -Wextra -Werror
+FLAGS := -Wall -Wextra -Werror
 
 BOLDGREEN=\033[1m\033[32m
 RESET = \033[0m
@@ -90,7 +84,7 @@ $(LIBFT):
 	@echo "\033[1m\033[32m FT_PRINTF COMPILED \033[0m"
 
 # Build the target executable
-$(NAME): $(LIBFT) $(PRINTF) $(OBJS) $(HEADERS) $(FILES)
+$(NAME): $(LIBFT) $(OBJS) $(HEADERS) $(FILES) $(PRINTF)
 	@$(CC) $(FLAGS) $(RLFLAGS) $(LFLAGSS) $(OBJS) -o $(NAME) $(LIBFT) $(PRINTF)
 	@echo "\033[1m\033[32m MINISHELL CREATED \033[0m"
 # Build object files
