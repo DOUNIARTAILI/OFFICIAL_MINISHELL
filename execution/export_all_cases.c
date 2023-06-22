@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:27 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/22 22:00:53 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/22 23:16:27 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	add_to_export_env(t_list_env **env,
 	t_list_env	*new2;
 	t_env		content;
 
-	content.key = key_value[0];
-	content.value = key_value[1];
+	content.key = ft_strdup(key_value[0]);
+	content.value = ft_strdup(key_value[1]);
 	new1 = ft_lstnew_node(content);
 	add_back_to_list(env, new1);
 	new2 = ft_lstnew_node(content);
@@ -43,8 +43,8 @@ void	add_to_env(t_list_env **env, char *key, char *value)
 	t_list_env	*new;
 	t_env		content;
 
-	content.key = key;
-	content.value = value;
+	content.key = ft_strdup(key);
+	content.value = ft_strdup(value);
 	new = ft_lstnew_node(content);
 	add_back_to_list(env, new);
 }
@@ -68,10 +68,10 @@ void	export_equ_only(t_list_env **env, t_list_env **export_list, char *cmd)
 	{
 		add_to_export_env(env, export_list, key_value);
 	}
-	// free(key_value[0]);
-	// if (key_value[1] != NULL)
-	// 	free(key_value[1]);
-	// free(key_value);
+	free(key_value[0]);
+	if (key_value[1] != NULL)
+		free(key_value[1]);
+	free(key_value);
 }
 
 void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
@@ -101,9 +101,9 @@ void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
 	{
 		add_to_export_env(env, export_list, key_value);
 	}
-	// if (key_value[1] != NULL)
-	// 	free(key_value[1]);
-	// free(key_value[0]);
-	// free(key_value);
+	if (key_value[1] != NULL)
+		free(key_value[1]);
+	free(key_value[0]);
+	free(key_value);
 }
 	
