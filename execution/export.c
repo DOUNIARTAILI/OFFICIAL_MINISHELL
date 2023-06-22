@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 23:26:49 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 21:30:18 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/22 22:29:00 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ int	check_export_args(char **cmd)
 		i++;
 	}
 	return (tmp);
-}
-
-void	error_exp(char *c)
-{
-	ft_printf(2, "minishell : export: `%s': not a valid identifier\n", c);
 }
 
 int	export_some(t_list_env **env, t_list_env **export_list, char **cmd, int len)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_all_cases.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:27 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/22 00:12:31 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:00:53 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	export_equ_only(t_list_env **env, t_list_env **export_list, char *cmd)
 	{
 		add_to_export_env(env, export_list, key_value);
 	}
-	free(key_value[0]);
-	if (key_value[1] != NULL)
-		free(key_value[1]);
-	free(key_value);
+	// free(key_value[0]);
+	// if (key_value[1] != NULL)
+	// 	free(key_value[1]);
+	// free(key_value);
 }
 
 void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
@@ -95,13 +95,15 @@ void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
 				add_to_env(env, key_value[0], new_value);
 			else
 				set_value_of_key(env, key_value[0], new_value);
-			free(key_value[1]);
-			free(key_value[0]);
 		}
 	}
 	else
 	{
 		add_to_export_env(env, export_list, key_value);
 	}
-	free(key_value);
+	// if (key_value[1] != NULL)
+	// 	free(key_value[1]);
+	// free(key_value[0]);
+	// free(key_value);
 }
+	

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/20 23:41:00 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/22 22:29:20 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void		free_commands(t_voidlst *commands);
 void		free_redirection(t_voidlst *redirections);
 void		free_args(char **args);
 int			check_export_args(char **cmd);
+void		error_exp(char *c);
 
 #endif

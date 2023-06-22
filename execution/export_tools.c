@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:37 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/22 00:12:39 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:29:40 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,16 @@ char	**key_value_of_arg(char *cmd)
 		else
 			key_value[k] = ft_substr(cmd, i, index_key_end);
 		if (!key_value[k])
-		{
 			return (NULL);
-		}
 		i = index_key_end + 1;
 		index_key_end = ft_strlen(cmd) - (index_key_end + 1);
 		k++;
 	}
 	key_value[k] = NULL;
 	return (key_value);
+}
+
+void	error_exp(char *c)
+{
+	ft_printf(2, "minishell : export: `%s': not a valid identifier\n", c);
 }
