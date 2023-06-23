@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   env_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:11 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/22 00:12:14 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/23 02:04:04 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -51,7 +50,7 @@ void	update_shelvl(t_list_env *new_env)
 	{
 		nb = ft_atoi(get_value);
 		nb++;
-		counter = ft_itoa(nb); 
+		counter = ft_itoa(nb);
 		set_value_of_key(&new_env, "SHLVL", counter);
 		free(counter);
 	}
@@ -68,22 +67,6 @@ void	env_removed(t_list_env *node, t_list_env *curr_env, int j)
 				ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
 		curr_env->next = node;
 	}
-}
-
-char	**split_keyvalue(char *env)
-{
-	char	**split;
-	char	**key_value;
-
-	key_value = malloc (3 * sizeof(char *));
-	if (!key_value)
-		return (NULL);
-	split = ft_split(env, '=');
-	key_value[0] = ft_strdup(split[0]);
-	key_value[1] = ft_substr(env, ft_strlen(split[0]) + 1, ft_strlen(env));
-	key_value[2] = NULL;
-	free_args(split);
-	return (key_value);
 }
 
 t_list_env	*get_env(char **env)

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:11:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/22 00:11:18 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/23 02:01:25 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -30,8 +29,6 @@ int	ft_cd_get_back_again(t_list_env **env)
 		}
 		return (0);
 	}
-	// free(g_global_exit.garbege.str_1);
-	// free(g_global_exit.garbege.str_2);
 	return (1);
 }
 
@@ -47,13 +44,11 @@ int	ft_cd_to_home(t_list_env **env)
 			build_new_oldpwd_pwd(env);
 		else
 		{
-			set_value_of_key(env, "OLDPWD",get_value_of_key(env, "PWD"));
-			set_value_of_key(env, "PWD",get_value_of_key(env, "HOME"));
+			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
+			set_value_of_key(env, "PWD", get_value_of_key(env, "HOME"));
 		}
 		return (0);
 	}
-	// free(g_global_exit.garbege.str_1);
-	// free(g_global_exit.garbege.str_2);
 	return (1);
 }
 
@@ -99,8 +94,6 @@ int	cd_to_absolute_path(t_list_env **env, char **cmd)
 		}
 		return (0);
 	}
-	// free(g_global_exit.garbege.str_1);
-	// free(g_global_exit.garbege.str_2);
 	return (1);
 }
 

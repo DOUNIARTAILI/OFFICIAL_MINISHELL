@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:37 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/22 22:29:40 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/23 01:59:59 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ int	when_key_ends(char *cmd)
 	while (cmd[i] != '\0')
 	{
 		if (cmd[i] == '=')
-		{
 			return (i);
-			break ;
-		}
 		i++;
 	}
 	return (0);
@@ -69,31 +66,22 @@ int	when_key_ends(char *cmd)
 
 char	**key_value_of_arg(char *cmd)
 {
-	char	**key_value;
-	int		index_key_end;	
-	int		k;
-	int		i;
+	char	**tmp;
 
-	index_key_end = when_key_ends(cmd);
-	key_value = (char **)malloc(sizeof(char *) * (2 + 1));
-	if (!key_value)
-		return (NULL);
-	i = 0;
-	k = 0;
-	while (k < 2)
+	tmp = malloc(sizeof(char *) * 3);
+	if (check_p_e_existance(cmd))
 	{
-		if (check_equal_existance(cmd) && check_plus_existance(cmd) && (k == 0))
-			key_value[k] = ft_substr(cmd, i, (index_key_end - 1));
-		else
-			key_value[k] = ft_substr(cmd, i, index_key_end);
-		if (!key_value[k])
-			return (NULL);
-		i = index_key_end + 1;
-		index_key_end = ft_strlen(cmd) - (index_key_end + 1);
-		k++;
+		tmp[0] = ft_substr(cmd, 0, when_key_ends(cmd) - 1);
+		tmp[1] = ft_substr(cmd, when_key_ends(cmd) + 1, ft_strlen(cmd));
+		tmp[2] = NULL;
 	}
-	key_value[k] = NULL;
-	return (key_value);
+	else if (check_equal_existance(cmd))
+	{
+		tmp[0] = ft_substr(cmd, 0, when_key_ends(cmd));
+		tmp[1] = ft_substr(cmd, when_key_ends(cmd) + 1, ft_strlen(cmd));
+		tmp[2] = NULL;
+	}
+	return (tmp);
 }
 
 void	error_exp(char *c)
