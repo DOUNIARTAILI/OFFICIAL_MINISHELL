@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 16:24:31 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/24 00:51:59 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/25 00:04:59 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	cd_only(t_list_env **env)
 {
 	if (look_for_key("HOME", env))
 	{
-		printf("minishell: cd: HOME not set\n");
+		ft_printf(2, "minishell: cd: HOME not set\n");
 		return (0);
 	}
 	else if (!look_for_key("HOME", env)
@@ -50,23 +50,33 @@ void	build_new_oldpwd_pwd(t_list_env **env)
 	char		cwd[1024];
 	t_list_env	*new1;
 	t_list_env	*new2;
+	char		*pwd;
 
 	if (look_for_key("PWD", env))
 	{
-		content1.key = "PWD";
-		content1.value = getcwd(cwd, sizeof(cwd));
+		content1.key = ft_strdup("PWD");
+		content1.value = ft_strdup(getcwd(cwd, sizeof(cwd)));
 		new1 = ft_lstnew_node(content1);
-		free(content1.key);
-		free(content1.value);
+		if (content1.key)
+			free(content1.key);
+		if (content1.value)
+			free(content1.value);
 		add_back_to_list(env, new1);
 	}
-	if (look_for_key("OLDPWD", env))
+	else
 	{
-		content2.key = "OLDPWD";
-		content2.value = getcwd(cwd, sizeof(cwd));
-		new2 = ft_lstnew_node(content2);
-		free(content2.key);
-		free(content2.value);
-		add_back_to_list(env, new2);
+		pwd = get_value_of_key(env, ft_strdup("PWD"));
+		if (look_for_key("OLDPWD", env))
+		{
+			puts("here");
+			content2.key = ft_strdup("OLDPWD");
+			content2.value = ft_strdup(pwd);
+			new2 = ft_lstnew_node(content2);
+			if (content2.key)
+				free(content2.key);
+			if (content2.value)
+				free(content2.value);
+			add_back_to_list(env, new2);
+		}
 	}
 }
