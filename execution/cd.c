@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:11:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/23 02:01:25 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/24 02:46:59 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_cd_get_back_again(t_list_env **env)
 {
 	if (chdir(get_value_of_key(env, "OLDPWD")) == -1)
 	{
-		perror("minishell");
+		perror("minishell: cd");
 	}
 	else
 	{
@@ -36,7 +36,7 @@ int	ft_cd_to_home(t_list_env **env)
 {
 	if (chdir(get_value_of_key(env, "HOME")) == -1)
 	{
-		perror("minishell");
+		perror("minishell: cd");
 	}
 	else
 	{
@@ -57,12 +57,11 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 	char	*new_path;
 	char	cwd[1024];
 
-	if (getcwd(cwd, sizeof(cwd)) == NULL)
-		perror("minishell");
+	getcwd(cwd, sizeof(cwd));
 	new_path = ft_strjoin_1(ft_strdup("/"), ft_strdup(cmd[1]));
 	new_path = ft_strjoin_1(ft_strdup(cwd), new_path);
 	if (chdir(new_path) == -1)
-		perror("minishell");
+		perror("minishell: cd");
 	else
 	{
 		if (look_for_key("PWD", env) || look_for_key("OLDPWD", env))
@@ -82,7 +81,7 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 int	cd_to_absolute_path(t_list_env **env, char **cmd)
 {
 	if (chdir(cmd[1]) == -1)
-		perror("minishell");
+		perror("minishell: cd");
 	else
 	{
 		if (look_for_key("PWD", env) || look_for_key("OLDPWD", env))
@@ -113,9 +112,9 @@ int	ft_cd(t_list_env **env, char **cmd)
 	{
 		if (getcwd(cwd, sizeof(cwd)) == NULL)
 		{
-			printf("minishell: cd: error retrieving current directory:\
-			getcwd: cannot access parent directories: \
-			No such file or directory\n");
+			printf("minishell: cd: error retrieving current directory:"\
+			"getcwd: cannot access parent directories:"\
+			"No such file or directory\n");
 			return (ft_cd_to_home(env));
 		}
 		else if (cmd[1][0] == '/')

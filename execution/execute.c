@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/22 22:23:11 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/24 01:52:07 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	execute_p_1(t_list_env **new_env, char **cmd)
 			execve(cmd[0], cmd, env_arr(new_env));
 		else
 		{
-			ft_printf(2, "minishell : %s: No such file or directory\n", cmd[0]);
-			return (g_global_exit.exit_status = 127, g_global_exit.exit_status);
+			ft_printf(2, "minishell : %s: Permission denied\n", cmd[0]);
+			return (g_global_exit.exit_status = 126, g_global_exit.exit_status);
 		}
 	}
 	return (0);

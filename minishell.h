@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/23 02:06:49 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/24 02:31:38 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_list_env	*get_env(char **env);
 t_list_env	*get_node_by_key(t_list_env **env, char *key);
 t_list_env	*env_dup(t_list_env *env);
 t_list_env	*ft_lstnew_node(t_env content);
+t_list_env	*build_node(char *key, char *value);
 char		**get_path_value(t_list_env **env);
 char		**key_value_of_arg(char *cmd);
 char		*get_value_of_key(t_list_env **env, char *key);

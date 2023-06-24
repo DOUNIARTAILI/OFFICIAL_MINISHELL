@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 16:24:31 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 21:49:06 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/24 00:51:59 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	cd_only(t_list_env **env)
 	if (look_for_key("HOME", env))
 	{
 		printf("minishell: cd: HOME not set\n");
-		return (1);
+		return (0);
 	}
 	else if (!look_for_key("HOME", env)
 		&& !ft_strcmp(get_value_of_key(env, "HOME"), "\0"))

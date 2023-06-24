@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 16:42:34 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 20:25:41 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/06/24 02:31:07 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,17 @@ void	add_back_to_list(t_list_env **lst, t_list_env *new)
 		*lst = new;
 	else
 		last->next = new;
+}
+
+t_list_env	*build_node(char *key, char *value)
+{
+	t_list_env	*node;
+
+	node = malloc(sizeof(t_list_env));
+	if (!node)
+		return (NULL);
+	node->data.key = key;
+	node->data.value = value;
+	node->next = NULL;
+	return (node);
 }

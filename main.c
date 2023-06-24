@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:10:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/22 00:10:18 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/06/24 03:26:27 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -48,8 +47,9 @@ void	init_global(void)
 void	minishell(t_list_env *m_export,
 	t_voidlst *commands, t_list_env *new_env)
 {
-	char		*cmd;
+	t_voidlst	*my_arguments;
 	t_list		*head;
+	char		*cmd;
 
 	while (1)
 	{		
@@ -68,7 +68,7 @@ void	minishell(t_list_env *m_export,
 		commands = tokenizer_and_grammar(cmd, head, new_env);
 		if (!commands)
 			continue ;
-		t_voidlst *my_arguments = parse_to_args(commands);
+		my_arguments = parse_to_args(commands);
 		execution(m_export, my_arguments, new_env);
 		free_commands(my_arguments);
 	}
@@ -91,3 +91,4 @@ int	main(int ac, char **av, char **env)
 	free_envs(m_export, commands, new_env);
 	return (0);
 }
+// export test="file1 file2" >hey >$test
