@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 23:28:08 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 20:43:25 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/04 14:16:08 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_args(char **args)
 	i = 0;
 	if (!args && !args[0])
 		return ;
-	while (args[i])
+	while (args && args[i])
 	{
 		free(args[i]);
 		i++;
@@ -65,7 +65,7 @@ void	free_envs(t_list_env *m_export,
 	t_voidlst *commands, t_list_env *new_env)
 {
 	commands = NULL;
-	// free_commands(commands);
+	free_commands(commands);
 	free_env(m_export);
 	free_env(new_env);
 }

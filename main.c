@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:10:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/24 03:26:27 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/04 14:50:25 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	minishell(t_list_env *m_export,
 		commands = tokenizer_and_grammar(cmd, head, new_env);
 		if (!commands)
 			continue ;
-		my_arguments = parse_to_args(commands);
-		execution(m_export, my_arguments, new_env);
-		free_commands(my_arguments);
+		commands = parse_to_args(commands);
+		execution(m_export, commands, new_env);
+		free_commands(commands);
 	}
 }
 
