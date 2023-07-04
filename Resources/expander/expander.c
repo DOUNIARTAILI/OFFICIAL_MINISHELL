@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/04 17:17:10 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:54:19 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*bash_expander(t_list *tokenizer, t_list_env *myenv)
 	while (tokenizer)
 	{
 		if (!handle_cmd(&new_list, &tokenizer, myenv))
-			return (NULL);
+			break ;
 	}
 	return (free_linked_list(tmphead), new_list);
 }
