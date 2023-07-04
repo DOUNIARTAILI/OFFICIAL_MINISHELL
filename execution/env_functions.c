@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:11 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/24 21:35:05 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/04 11:12:46 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_list_env	*get_env(char **env)
 	i = 0;
 	new_env = NULL;
 	curr_env = NULL;
-	while (env[i] != NULL)
+	while (env && env[i] != NULL)
 	{
 		my_env = split_keyvalue(env[i]);
 		node = fill_node_with_data(my_env);

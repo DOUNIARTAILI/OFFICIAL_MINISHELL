@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 23:31:05 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/18 16:45:31 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:39:32 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	myspechars(char c)
 
 int	tokens_part_1(t_list **tokenizer, char *str, int *i)
 {
-	if (ft_isalnum(str[*i]) || !myspechars(str[*i]))
+	if (!myspechars(str[*i]))
 	{
 		if (!set_token_word(tokenizer, i, str))
 			return (0);
