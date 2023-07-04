@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:10:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/04 14:50:25 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:21:59 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	init_global(void)
 void	minishell(t_list_env *m_export,
 	t_voidlst *commands, t_list_env *new_env)
 {
-	t_voidlst	*my_arguments;
 	t_list		*head;
 	char		*cmd;
 

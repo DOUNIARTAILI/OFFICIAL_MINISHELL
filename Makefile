@@ -6,7 +6,7 @@
 #    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 00:14:07 by mouaammo          #+#    #+#              #
-#    Updated: 2023/07/04 14:17:46 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/07/04 17:21:35 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,10 @@ SRC =	main.c main_tools.c free_tools.c \
 		$(addprefix Resources/utils/, display.c free_functions.c functions_token_1.c functions_token_2.c utils.c check_syntax.c) \
 		$(addprefix Resources/expander/, command.c expander.c heredoc.c utils1.c string_replace.c utils2.c exit_status_and_dbdollar.c env.c ) \
 		$(addprefix Resources/concate/, concate.c ) \
-		$(addprefix Resources/parsing/, parse_to_double_char.c parsing.c ) \
-		$(addprefix Resources/gnl/, get_next_line.c get_next_line_utils.c)
+		$(addprefix Resources/parsing/, parse_to_double_char.c parsing.c )
 
 HEADERS = $(addprefix Resources/, parsing.h utils/utils.h tokenizer/tokenizer.h \
-			gnl/get_next_line.h concate/concate.h \
+			concate/concate.h \
 			new_linkedlist/list.h linked_lst/linked_lst.h libft/libft.h \
 			expander/expander.h compiler/compiler.h parsing/parser.h) \
 			ft_printf/ft_printf.h minishell.h
@@ -48,7 +47,7 @@ OBJS = $(SRC:.c=.o)
 CC = cc #-fsanitize=address -g
 
 # Compiler flags
-# FLAGS := -Wall -Wextra -Werror
+FLAGS := -Wall -Wextra -Werror
 
 BOLDGREEN=\033[1m\033[32m
 RESET = \033[0m

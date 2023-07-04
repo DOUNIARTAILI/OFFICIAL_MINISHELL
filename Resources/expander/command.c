@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:23:39 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/21 03:24:28 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:15:54 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	handle_redirection(t_list **newlist,
 		&& !is_redirect((*head)->content->token))
 	{
 		join_str = ft_strjoin_1(join_str,
-				ft_strdup(replace_all((*head)->content->str, myenv)));
+				ft_strdup(replace_all(ft_strdup((*head)->content->str), myenv)));
 		(*head) = (*head)->next;
 	}
 	tmp_join = join_str;

@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/21 03:24:34 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:17:10 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 	string_value = search_and_replace(&mytoken, myenv);
 	if (string_value && mytoken->token == DLR && ft_strlen(mytoken->str) > 1)
 	{
-		free(string_value);
 		split = ft_split_1(mytoken->str);
 		sub_lst = new_sublist(split, mytoken->str);
 		if (sub_lst)
@@ -49,6 +48,7 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 			&& ft_strlen(mytoken->str) == 1))
 		ft_lstadd_back(origin, ft_lstnew(new_token(mytoken->str,
 					mytoken->token)));
+	free(string_value);
 }
 
 void	command_expansion(t_list **origin, t_list **head, t_list_env *myenv)
