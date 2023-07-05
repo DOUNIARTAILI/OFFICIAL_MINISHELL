@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/04 12:14:32 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:06:38 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	concate_in_heredoc(t_list **head, int *flag, char **delemiter)
 {
+	*flag = 0;
 	*delemiter = NULL;
 	(*head) = (*head)->next;
 	while ((*head) && (*head)->content->token != ESP
@@ -38,7 +39,6 @@ void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 	int		flag;
 
 	buffer = NULL;
-	flag = 0;
 	concate_in_heredoc(head, &flag, &delemiter);
 	while (g_global_exit.flag)
 	{

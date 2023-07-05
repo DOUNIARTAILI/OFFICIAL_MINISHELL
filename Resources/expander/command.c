@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:23:39 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/04 17:47:05 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:03:33 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ int	handle_redirection(t_list **newlist,
 	if (ft_strchr(join_str, ' '))
 	{
 		ft_printf(2, "minishell: %s : Resources ambiguous redirect\n", join_str);
-		free(join_str);
-		return (g_global_exit.exit_status = 1, 0);
+		return (free(join_str), g_global_exit.exit_status = 1, 0);
 	}
 	if (join_str)
 		ft_lstadd_back(newlist, ft_lstnew(new_token(join_str, mytoken)));
-	free(join_str);
-	return (1);
+	return (free(join_str), 1);
 }
 
 int	handle_cmd(t_list **newlist, t_list **head, t_list_env *myenv)

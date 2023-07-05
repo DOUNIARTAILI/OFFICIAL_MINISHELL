@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_all_cases.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:27 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/23 02:07:54 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/05 14:01:49 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,3 @@ void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
 		free(key_value[1]);
 	free(key_value);
 }
-	

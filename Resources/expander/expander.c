@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/04 17:54:19 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:24:24 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	command_expansion(t_list **origin, t_list **head, t_list_env *myenv)
 	else if (mytoken->token == QST_MARK)
 	{
 		exit_value = ft_itoa(g_global_exit.exit_status);
-		ft_lstadd_back(origin, ft_lstnew(new_token(exit_value, mytoken->token)));
+		ft_lstadd_back(origin, ft_lstnew(new_token(exit_value,
+			mytoken->token)));
 		free(exit_value);
 	}
 	else
