@@ -18,3 +18,20 @@ minishell>> pwd
 /Users/mouaammo/Desktop
 minishell>> echo $PWD
 /Users/mouaammo/Desktop/minishell_final
+
+
+
+------------------
+minishell>> cd Desktop/minishell
+minishell: cd: No such file or directory
+minishell>> cd Desktop/minishell_final/
+2
+minishell>> cd ../../Desktop/minishell
+minishell: cd: No such file or directory
+minishell>> cd ../../Desktop/minishell_final/
+2
+minishell>> pwd
+/Users/mouaammo/Desktop/minishell_final
+minishell>> echo $PWD
+/Users/mouaammo/Desktop/minishell_final/../../Desktop/minishell_final/
+minishell>> 

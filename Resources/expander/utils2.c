@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 02:32:23 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/04 17:18:35 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:11:57 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*string_replace(char *phrase, char *oldstring, char *newstring)
 	char	*new_phrase;
 	int		total_len;
 
-	if (!oldstring || !newstring)
+	if (!oldstring || !newstring || !phrase)
 		return (phrase);
 	newlen = ft_strlen(newstring);
 	phraselen = ft_strlen(phrase);
