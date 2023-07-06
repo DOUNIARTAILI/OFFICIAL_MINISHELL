@@ -6,7 +6,7 @@
 #    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 00:14:07 by mouaammo          #+#    #+#              #
-#    Updated: 2023/07/05 18:13:54 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/07/06 17:04:18 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ FILES = $(addprefix Resources/libft/, ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_
 OBJS = $(SRC:.c=.o)
 
 # Compiler
-CC = cc -fsanitize=address -g
+CC = cc #-fsanitize=address -g
 
 # Compiler flags
 # FLAGS := -Wall -Wextra -Werror
