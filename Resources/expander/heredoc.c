@@ -6,14 +6,14 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/05 14:06:38 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:44:09 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 #include "../../minishell.h"
 
-void	concate_in_heredoc(t_list **head, int *flag, char **delemiter)
+void	get_delemiter(t_list **head, int *flag, char **delemiter)
 {
 	*flag = 0;
 	*delemiter = NULL;
@@ -39,7 +39,7 @@ void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 	int		flag;
 
 	buffer = NULL;
-	concate_in_heredoc(head, &flag, &delemiter);
+	get_delemiter(head, &flag, &delemiter);
 	while (g_global_exit.flag)
 	{
 		line = readline("heredoc> ");

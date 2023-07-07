@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/06 18:06:03 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:37:12 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 
 	mytoken = (head)->content;
 	string_value = search_and_replace(&mytoken, myenv);
-	if (string_value && mytoken->token == DLR && ft_strlen(mytoken->str) > 1)
+	if (string_value && (mytoken->token == DLR |
+		mytoken->token == QST_MARK) && ft_strlen(mytoken->str) > 1)
 	{
 		split = ft_split_1(mytoken->str);
 		sub_lst = new_sublist(split, mytoken->str);
@@ -44,8 +45,7 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 			add_multi_nodes(origin, sub_lst);
 		free_sublinked_list(sub_lst);
 	}
-	else if (mytoken->token == QUOTE || (mytoken->token == DLR
-			&& ft_strlen(mytoken->str) == 1))
+	else if (mytoken->token == QUOTE || (mytoken->token == QST_MARK && ft_strlen(mytoken->str) == 1))
 		ft_lstadd_back(origin, ft_lstnew(new_token(mytoken->str,
 					mytoken->token)));
 	free(string_value);
@@ -57,15 +57,9 @@ void	command_expansion(t_list **origin, t_list **head, t_list_env *myenv)
 	char	*exit_value;
 
 	mytoken = (*head)->content;
-	if ((mytoken->token == DLR || mytoken->token == QUOTE))
+	if (mytoken->token == DLR ||
+		mytoken->token == QUOTE || mytoken->token == QST_MARK)
 		expande(*head, myenv, origin);
-	else if (mytoken->token == QST_MARK)
-	{
-		exit_value = ft_itoa(g_global_exit.exit_status);
-		ft_lstadd_back(origin, ft_lstnew(new_token(exit_value,
-			mytoken->token)));
-		free(exit_value);
-	}
 	else
 		ft_lstadd_back(origin, ft_lstnew(new_token(mytoken->str,
 					mytoken->token)));
