@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 04:45:35 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/22 22:27:50 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/07 19:40:40 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,11 @@ int	unset_some(t_list_env **env, t_list_env **export_list, char **cmd, int len)
 	{
 		if (check_key_value_isvalid_export(cmd[i]))
 		{
-			ft_unset(env, cmd[i]);
-			ft_unset(export_list, cmd[i]);
+			if (ft_strcmp(cmd[i], "_"))
+			{
+				ft_unset(env, cmd[i]);
+				ft_unset(export_list, cmd[i]);
+			}
 		}
 		else
 		{

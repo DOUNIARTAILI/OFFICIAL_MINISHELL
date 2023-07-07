@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:11 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/04 11:12:46 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/07 19:40:24 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	env_removed_bash(t_list_env *new_env, t_list_env *node,
 {
 	if (j == 3)
 	{
+		g_global_exit.unset = 1;
 		node = build_node(ft_strdup("PATH"),
 				ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
 		curr_env->next = node;
@@ -94,6 +95,7 @@ t_list_env	*get_env(char **env)
 	i = 0;
 	new_env = NULL;
 	curr_env = NULL;
+	g_global_exit.unset = 0;
 	while (env && env[i] != NULL)
 	{
 		my_env = split_keyvalue(env[i]);

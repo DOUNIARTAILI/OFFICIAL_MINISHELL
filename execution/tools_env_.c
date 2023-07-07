@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:23:28 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/20 22:24:41 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/07 19:44:27 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	free_node(t_list_env *node)
 {
 	free(node->data.key);
 	free(node->data.value);
-	free(node);
+	if (!g_global_exit.unset)
+		free(node);
 }
 
 void	free_env(t_list_env *env)
