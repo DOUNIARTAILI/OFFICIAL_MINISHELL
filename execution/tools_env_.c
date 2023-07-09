@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:23:28 by drtaili           #+#    #+#             */
-/*   Updated: 2023/07/07 19:44:27 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/09 02:03:25 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	free_node(t_list_env *node)
 {
 	free(node->data.key);
 	free(node->data.value);
-	if (!g_global_exit.unset)
-		free(node);
+	free(node);
 }
 
 void	free_env(t_list_env *env)
@@ -45,7 +44,8 @@ void	print_env(t_list_env **envr)
 	env = *envr;
 	while (env != NULL)
 	{
-		printf("%s=%s\n", env->data.key, env->data.value);
+		if (!(g_global_exit.unset == 1 && !ft_strcmp(env->data.key, "PATH")))
+			printf("%s=%s\n", env->data.key, env->data.value);
 		env = env->next;
 	}
 }
@@ -57,10 +57,13 @@ void	print_env_export(t_list_env **envr)
 	env = *envr;
 	while (env != NULL)
 	{
-		if (env->data.value == NULL)
-			printf("declare -x %s\n", env->data.key);
-		else
-			printf("declare -x %s=\"%s\"\n", env->data.key, env->data.value);
+		if (!(g_global_exit.unset == 1 && !ft_strcmp(env->data.key, "PATH")))
+		{
+			if (env->data.value == NULL)
+				printf("declare -x %s\n", env->data.key);
+			else
+				printf("declare -x %s=\"%s\"\n", env->data.key, env->data.value);
+		}
 		env = env->next;
 	}
 }

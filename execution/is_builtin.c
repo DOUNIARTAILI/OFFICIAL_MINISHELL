@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 05:22:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/21 16:54:26 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/09 02:06:07 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int	handle_env(t_list_env **new_env, char **cmd_parsed)
 {
-	if (!cmd_parsed[1] && !ft_strcmp(get_value_of_key(new_env, "PATH"), "/"))
+	if (g_global_exit.unset)
+	{
+		ft_putstr_fd("minishell: env: No such file or directory\n", 2);
+		return (127);
+	}
+	else if (!cmd_parsed[1] && !ft_strcmp(get_value_of_key(new_env, "PATH"), "/"))
 	{
 		ft_putstr_fd("minishell: env: command not found\n", 2);
 		return (127);

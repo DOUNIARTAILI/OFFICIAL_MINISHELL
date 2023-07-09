@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:10:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/07 19:39:51 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/09 01:33:21 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	commands = NULL;
+	new_env = NULL;
 	new_env = get_env(env);
 	m_export = env_dup(new_env);
 	sort_list(m_export);

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:12:11 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/07 19:40:24 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/09 01:44:21 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,15 @@ t_list_env	*env_removed(t_list_env *new_env)
 	t_list_env	*node3;
 	char		cwd[1024];
 
-	node = build_node(ft_strdup("PATH"),
+	g_global_exit.unset = 1;
+	node = build_node(ft_strdup("_"),
+			ft_strdup("/usr/bin/env"));
+	node3 = build_node(ft_strdup("PATH"),
 			ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
 	node1 = build_node(ft_strdup("PWD"),
 			ft_strdup(getcwd(cwd, sizeof(cwd))));
 	node2 = build_node(ft_strdup("SHLVL"),
 			ft_strdup("0"));
-	node3 = build_node(ft_strdup("_"),
-			ft_strdup("/usr/bin/env"));
 	node->next = node1;
 	node1->next = node2;
 	node2->next = node3;
@@ -76,7 +77,6 @@ void	env_removed_bash(t_list_env *new_env, t_list_env *node,
 {
 	if (j == 3)
 	{
-		g_global_exit.unset = 1;
 		node = build_node(ft_strdup("PATH"),
 				ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
 		curr_env->next = node;
@@ -92,11 +92,14 @@ t_list_env	*get_env(char **env)
 	char		**my_env;
 	int			i;
 
-	i = 0;
 	new_env = NULL;
 	curr_env = NULL;
-	g_global_exit.unset = 0;
-	while (env && env[i] != NULL)
+	while(env[i] != NULL)
+		i++;
+	if (i == 0 || i == 3)
+		return (env_removed(new_env));
+	i = 0;
+	while (env[i] != NULL)
 	{
 		my_env = split_keyvalue(env[i]);
 		node = fill_node_with_data(my_env);
@@ -108,8 +111,6 @@ t_list_env	*get_env(char **env)
 		curr_env = node;
 		i++;
 	}
-	if (i == 0)
-		return (env_removed(new_env));
-	env_removed_bash(new_env, node, curr_env, i);
+	// env_removed_bash(new_env, node, curr_env, i);
 	return (new_env);
 }

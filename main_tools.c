@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 22:46:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/18 22:47:21 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/09 01:55:09 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_glob(t_exit *glob)
 	glob->exit_status = 0;
 	glob->exit = 0;
 	glob->flag = 1;
+	glob->unset = 0;
 	while (++i < 1024)
 		glob->pid[i] = 0;
 }
