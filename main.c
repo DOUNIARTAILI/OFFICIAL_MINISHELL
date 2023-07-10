@@ -6,20 +6,20 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:10:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/09 01:33:21 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/10 22:36:47 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	execution(t_list_env *m_export,
-	t_voidlst *commands, t_list_env *new_env)
+void	execution(t_list_env **m_export,
+	t_voidlst *commands, t_list_env **new_env)
 {
 	char	*tty;
 	int		fd;
 
 	if (ttyname(0))
-		ft_pipe(&m_export, commands, &new_env);
+		ft_pipe(m_export, commands, new_env);
 	else
 	{
 		tty = ttyname(1);
@@ -68,7 +68,7 @@ void	minishell(t_list_env *m_export,
 		if (!commands)
 			continue ;
 		commands = parse_to_args(commands);
-		execution(m_export, commands, new_env);
+		execution(&m_export, commands, &new_env);
 		free_commands(commands);
 	}
 }

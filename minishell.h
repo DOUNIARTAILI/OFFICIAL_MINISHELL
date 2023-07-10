@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 02:16:18 by drtaili           #+#    #+#             */
-/*   Updated: 2023/06/24 02:31:38 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/10 22:42:55 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int			check_p_e_existance(char *cmd);
 char		**split_keyvalue(char *env);
 int			key_check_without_equ(char *cmd1);
 int			check_key_export_with_equ(char *cmd1);
+int			ft_cd_to_home(t_list_env **env);
 
 #endif

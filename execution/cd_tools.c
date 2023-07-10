@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_tools.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 16:24:31 by drtaili           #+#    #+#             */
-/*   Updated: 2023/07/06 17:01:53 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:43:44 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	cd_only(t_list_env **env)
 	{
 		return (0);
 	}
-	else if (chdir(get_value_of_key(env, "HOME")) == -1)
-		perror("minishell");
+	else
+		ft_cd_to_home(env);
 	return (1);
 }
 

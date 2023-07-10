@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
+#    By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 00:14:07 by mouaammo          #+#    #+#              #
-#    Updated: 2023/07/07 19:59:14 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/07/10 22:01:17 by drtaili          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ FILES = $(addprefix Resources/libft/, ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_
 OBJS = $(SRC:.c=.o)
 
 # Compiler
-CC = cc #-fsanitize=address -g
+CC = cc -fsanitize=address -g
 
 # Compiler flags
 # FLAGS := -Wall -Wextra -Werror
@@ -55,11 +55,11 @@ RESET = \033[0m
 
 # Readline flags
 RLFLAGS := -lreadline
-# LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
-# IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
+LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
+IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
 
-LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
-IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
+# LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
+# IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
 
 # Command-line utilities
 RM := rm -rf

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 04:45:35 by drtaili           #+#    #+#             */
-/*   Updated: 2023/07/09 02:00:32 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/10 22:38:52 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_unset(t_list_env **env, char *key)
 	t_list_env	*curr;
 
 	prev = NULL;
+	int i = 0;
 	curr = *env;
 	while (curr != NULL)
 	{
