@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:04 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/07 14:44:09 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:29:29 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	manage_heredoc(t_list **head, int *fd, t_list_env *myenv)
 	get_delemiter(head, &flag, &delemiter);
 	while (g_global_exit.flag)
 	{
-		line = readline("heredoc> ");
+		line = readline("> ");
 		if (line)
 			line = ft_strjoin_1(line, ft_strdup("\n"));
 		if (!line || !str_cmp(line, delemiter))
