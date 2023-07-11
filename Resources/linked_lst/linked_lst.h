@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_lst.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:50:13 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/07 19:39:14 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/10 23:53:56 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_list_env
 
 typedef struct s_exit
 {
-	int		exit_status;	
+	int		exit_status;
 	pid_t	pid[1024];
 	pid_t	pid_p;
 	int		len;

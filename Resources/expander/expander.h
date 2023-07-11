@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:25:24 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/06/19 22:39:44 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:39:29 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define  EXPANDER_H
 
 //string_replace.c
+int			handle_redirection(t_list **newlist, t_list **head,
+				t_list_env *myenv, int mytoken);
+int			get_space(char *str);
 char		*search_and_replace(t_token **mytoken, t_list_env *myenv);
 char		*replace_all(char *old_str, t_list_env *myenv);
 char		*var_string(char *str, int i, int start);
