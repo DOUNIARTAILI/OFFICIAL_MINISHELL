@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:10:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/10 22:36:47 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/11 01:35:09 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	minishell(t_list_env *m_export,
 		init_global();
 		head = NULL;
 		signals();
-		cmd = readline("\033[6;32mminishell>> \033[0m");
+		cmd = readline("mminishell>> ");
 		if (!cmd)
 		{
 			write(1, "exit\n", 5);

@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:34:44 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/11 01:22:37 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/11 01:32:54 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ void	myfunc(t_list **newlist, char **join_str, int flag, int mytoken)
 	{
 		ft_printf(1, "minishell: ambiguous redirect\n");
 		g_global_exit.exit_status = 1;
-		ft_lstadd_back(newlist, ft_lstnew(new_token("", 0)));
+		mytoken = 0;
 	}
-	else
-		ft_lstadd_back(newlist, ft_lstnew(new_token(*join_str, mytoken)));
+	ft_lstadd_back(newlist, ft_lstnew(new_token(*join_str, mytoken)));
 }
 
 int	handle_redirection(t_list **newlist,
