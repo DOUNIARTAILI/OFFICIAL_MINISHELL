@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 22:31:57 by drtaili           #+#    #+#             */
-/*   Updated: 2023/07/09 01:54:23 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/11 22:02:58 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**env_arr(t_list_env **envr)
 
 int	check_value(char **value, char **cmd_parsed)
 {
-	if (!value || g_global_exit.unset)
+	if (!value)
 	{
 		ft_printf(2, "minishell : %s: ", cmd_parsed[0]);
 		ft_printf(2, "no such file or directory\n");

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 02:55:39 by drtaili           #+#    #+#             */
-/*   Updated: 2023/07/09 02:15:14 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/11 22:03:32 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@ int	execute_p_1(t_list_env **new_env, char **cmd)
 	struct stat	filestat;
 
 	stat(cmd[0], &filestat);
-	if (g_global_exit.unset)
-	{
-		ft_printf(2, "minishell : %s: ", cmd[0]);
-		ft_printf(2, "no such file or directory\n");
-		exit (127);
-	}
 	if (!ft_strcmp(cmd[0], "."))
 	{
 		ft_printf(2, "minishell: .: filename argument required\n"

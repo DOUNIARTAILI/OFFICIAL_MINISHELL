@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 01:58:27 by drtaili           #+#    #+#             */
-/*   Updated: 2023/07/09 02:41:39 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/11 22:05:40 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,9 @@ void	echo_printer(int i, char **cmd)
 {
 	while (cmd[i] != NULL)
 	{
-		if (!(!ft_strcmp(cmd[i], "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.") && g_global_exit.unset))
-		{
-			printf("%s", cmd[i]);
-			if (cmd[i + 1] != NULL)
-				printf(" ");
-		}
+		printf("%s", cmd[i]);
+		if (cmd[i + 1] != NULL)
+			printf(" ");
 		i++;
 	}
 }
@@ -68,7 +65,7 @@ int	ft_echo(char **cmd)
 
 	if (!cmd[1])
 		printf("\n");
-	else if ((!ft_strcmp(cmd[1], "-n") || check_n(cmd[1])))
+	else if (!ft_strcmp(cmd[1], "-n") || check_n(cmd[1]))
 	{
 		if (!cmd[2])
 			return (0);

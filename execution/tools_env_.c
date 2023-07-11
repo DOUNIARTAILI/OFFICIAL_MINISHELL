@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 07:23:28 by drtaili           #+#    #+#             */
-/*   Updated: 2023/07/09 02:03:25 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/11 22:04:36 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	print_env(t_list_env **envr)
 	env = *envr;
 	while (env != NULL)
 	{
-		if (!(g_global_exit.unset == 1 && !ft_strcmp(env->data.key, "PATH")))
-			printf("%s=%s\n", env->data.key, env->data.value);
+		printf("%s=%s\n", env->data.key, env->data.value);
 		env = env->next;
 	}
 }
@@ -57,13 +56,10 @@ void	print_env_export(t_list_env **envr)
 	env = *envr;
 	while (env != NULL)
 	{
-		if (!(g_global_exit.unset == 1 && !ft_strcmp(env->data.key, "PATH")))
-		{
-			if (env->data.value == NULL)
-				printf("declare -x %s\n", env->data.key);
-			else
-				printf("declare -x %s=\"%s\"\n", env->data.key, env->data.value);
-		}
+		if (env->data.value == NULL)
+			printf("declare -x %s\n", env->data.key);
+		else
+			printf("declare -x %s=\"%s\"\n", env->data.key, env->data.value);
 		env = env->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: drtaili <drtaili@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 04:45:35 by drtaili           #+#    #+#             */
-/*   Updated: 2023/07/10 22:38:52 by drtaili          ###   ########.fr       */
+/*   Updated: 2023/07/11 22:22:28 by drtaili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_unset(t_list_env **env, char *key)
 	t_list_env	*curr;
 
 	prev = NULL;
-	int i = 0;
 	curr = *env;
 	while (curr != NULL)
 	{
@@ -99,14 +98,9 @@ int	unset_some(t_list_env **env, t_list_env **export_list, char **cmd, int len)
 		{
 			if (ft_strcmp(cmd[i], "_"))
 			{
-				if (!(ft_strcmp(cmd[i], "PATH") == 0 && env_size(*env) < 5))
-				{
-					ft_unset(env, cmd[i]);
-					ft_unset(export_list, cmd[i]);
-				}
+				ft_unset(env, cmd[i]);
+				ft_unset(export_list, cmd[i]);
 			}
-			if (ft_strcmp(cmd[i], "PATH") == 0 && env_size(*env) < 5)
-				g_global_exit.unset = 1;
 		}
 		else
 		{
