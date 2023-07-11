@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 00:10:16 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/11 01:35:09 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/11 01:41:55 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	minishell(t_list_env *m_export,
 		init_global();
 		head = NULL;
 		signals();
-		cmd = readline("mminishell>> ");
+		cmd = readline("minishell>> ");
 		if (!cmd)
 		{
 			write(1, "exit\n", 5);
