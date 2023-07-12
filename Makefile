@@ -6,7 +6,7 @@
 #    By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/22 00:14:07 by mouaammo          #+#    #+#              #
-#    Updated: 2023/07/12 22:40:50 by mouaammo         ###   ########.fr        #
+#    Updated: 2023/07/12 22:55:32 by mouaammo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ OBJS = $(SRC:.c=.o)
 CC = cc #-fsanitize=address -g
 
 # Compiler flags
-# FLAGS := -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 BOLDGREEN=\033[1m\033[32m
 RESET = \033[0m

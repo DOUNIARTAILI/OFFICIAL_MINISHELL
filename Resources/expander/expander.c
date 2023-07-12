@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/12 22:40:38 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:01:36 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 			add_multi_nodes(origin, sub_lst);
 		free_sublinked_list(sub_lst);
 	}
-	else if (mytoken->token == QUOTE || mytoken->token == QST_MARK || mytoken->token == DLR)
+	else if (mytoken->token == QUOTE
+		|| mytoken->token == QST_MARK || mytoken->token == DLR)
 		ft_lstadd_back(origin, ft_lstnew(new_token(mytoken->str,
 					mytoken->token)));
 	free(string_value);
@@ -53,7 +54,6 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 void	command_expansion(t_list **origin, t_list **head, t_list_env *myenv)
 {
 	t_token	*mytoken;
-	char	*exit_value;
 
 	mytoken = (*head)->content;
 	if (mytoken->token == DLR
