@@ -77,7 +77,10 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 	new_path = ft_strjoin_1(ft_strdup("/"), ft_strdup(cmd[1]));
 	new_path = ft_strjoin_1(ft_strdup(cwd), new_path);
 	if (chdir(new_path) == -1)
-		perror("minishell: cd");
+	{
+		ft_printf(2, "minishell: cd: %s: ", cmd[1]);
+		perror("");
+	}
 	else
 	{
 		if (look_for_key("PWD", env))
@@ -102,7 +105,10 @@ int	cd_to_absolute_path(t_list_env **env, char **cmd)
 	char	cwd[1024];
 
 	if (chdir(cmd[1]) == -1)
-		perror("minishell: cd");
+	{
+		ft_printf(2, "minishell: cd: %s: ", cmd[1]);
+		perror("");
+	}
 	else
 	{
 		if (look_for_key("PWD", env))
