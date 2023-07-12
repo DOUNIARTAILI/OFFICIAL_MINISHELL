@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:18:20 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/12 23:01:36 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:53:57 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	expande(t_list *head, t_list_env *myenv, t_list **origin)
 		free_sublinked_list(sub_lst);
 	}
 	else if (mytoken->token == QUOTE
-		|| mytoken->token == QST_MARK || mytoken->token == DLR)
+		|| mytoken->token == QST_MARK
+		|| (mytoken->token == DLR && ft_strlen(mytoken->str) == 1))
 		ft_lstadd_back(origin, ft_lstnew(new_token(mytoken->str,
 					mytoken->token)));
 	free(string_value);
