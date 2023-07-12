@@ -77,10 +77,7 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 	new_path = ft_strjoin_1(ft_strdup("/"), ft_strdup(cmd[1]));
 	new_path = ft_strjoin_1(ft_strdup(cwd), new_path);
 	if (chdir(new_path) == -1)
-	{
-		ft_printf(2, "minishell: cd: %s: ", cmd[1]);
-		perror("");
-	}
+		disp_err(cmd[1]);
 	else
 	{
 		if (look_for_key("PWD", env))

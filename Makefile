@@ -55,11 +55,11 @@ RESET = \033[0m
 
 # Readline flags
 RLFLAGS := -lreadline
-# LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
-# IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
+LFLAGSS := -L /Users/${USER}/goinfre/.brew/opt/readline/lib
+IFLAGS := -I /Users/${USER}/goinfre/.brew/opt/readline/include
 
-LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
-IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
+# LFLAGSS="-L/Users/mouaammo/.brew/opt/readline/lib"
+# IFLAGS="-I/Users/mouaammo/.brew/opt/readline/include"
 
 # Command-line utilities
 RM := rm -rf

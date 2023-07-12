@@ -107,5 +107,6 @@ int			ft_cd_to_home(t_list_env **env);
 int			export_join_norm(t_list_env **env, t_list_env **export_list,
 				char **key_value);
 void		add_to_env(t_list_env **env, char *key, char *value);
+void		disp_err(char *cmd);
 
 #endif

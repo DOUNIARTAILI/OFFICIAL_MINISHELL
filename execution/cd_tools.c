@@ -77,3 +77,9 @@ void	build_new_oldpwd_pwd(t_list_env **env)
 	else
 		oldpwdbuild(env);
 }
+
+void	disp_err(char *cmd)
+{
+	ft_printf(2, "minishell: cd: %s: ", cmd);
+	perror("");
+}
