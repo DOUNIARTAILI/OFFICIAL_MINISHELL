@@ -6,7 +6,7 @@
 /*   By: mouaammo <mouaammo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:34:44 by mouaammo          #+#    #+#             */
-/*   Updated: 2023/07/11 01:32:54 by mouaammo         ###   ########.fr       */
+/*   Updated: 2023/07/12 22:46:11 by mouaammo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	handle_redirection(t_list **newlist,
 			tmp_join = replace_all(ft_strdup((*head)->content->str), myenv);
 		else
 			tmp_join = ft_strdup((*head)->content->str);
-		if (str_cmp(tmp_join, "$") == 0)
-			tmp_join = ft_strdup("");
 		if ((*head)->content->token == DLR && get_space(tmp_join))
 			flag = 1;
 		join_str = ft_strjoin_1(join_str, tmp_join);
