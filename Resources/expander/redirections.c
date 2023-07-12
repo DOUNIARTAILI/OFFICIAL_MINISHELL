@@ -18,13 +18,13 @@ void	myfunc(t_list **newlist, char **join_str, int flag, int mytoken)
 
 	tmp_join = *join_str;
 	*join_str = ft_strtrim(tmp_join, " ");
-	free(tmp_join);
-	if (flag)
+	if (flag || !ft_strlen(tmp_join))
 	{
 		ft_printf(1, "minishell: ambiguous redirect\n");
 		g_global_exit.exit_status = 1;
 		mytoken = 0;
 	}
+	free(tmp_join);
 	ft_lstadd_back(newlist, ft_lstnew(new_token(*join_str, mytoken)));
 }
 

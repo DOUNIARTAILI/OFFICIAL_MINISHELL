@@ -54,6 +54,7 @@ t_list_env	*env_removed(t_list_env *new_env)
 	t_list_env	*node3;
 	char		cwd[1024];
 
+	g_global_exit.env_re0 = 1;
 	node = build_node(ft_strdup("PATH"),
 			ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
 	node1 = build_node(ft_strdup("PWD"),
@@ -74,8 +75,10 @@ t_list_env	*env_removed(t_list_env *new_env)
 void	env_removed_bash(t_list_env *new_env, t_list_env *node,
 	t_list_env *curr_env, int j)
 {
+	g_global_exit.env_re = 0;
 	if (j == 3)
 	{
+		g_global_exit.env_re = 1;
 		node = build_node(ft_strdup("PATH"),
 				ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."));
 		curr_env->next = node;
@@ -91,10 +94,11 @@ t_list_env	*get_env(char **env)
 	char		**my_env;
 	int			i;
 
-	i = 0;
+	i = -1;
 	new_env = NULL;
 	curr_env = NULL;
-	while (env[i] != NULL)
+	g_global_exit.env_re0 = 0;
+	while (env && env[++i] != NULL)
 	{
 		my_env = split_keyvalue(env[i]);
 		node = fill_node_with_data(my_env);
@@ -104,7 +108,6 @@ t_list_env	*get_env(char **env)
 		else
 			new_env = node;
 		curr_env = node;
-		i++;
 	}
 	if (i == 0)
 		return (env_removed(new_env));

@@ -73,6 +73,7 @@ int			main_unset(t_list_env **new_env,
 void		handle_interrupt(int sig);
 void		exit_status(int status);
 char		**env_arr(t_list_env **envr);
+char		**split_keyvalue(char *env);
 void		ft_free(char **ret, int k);
 int			check_slash(char *cmd);
 int			check_value(char **value, char **cmd_parsed);
@@ -92,15 +93,19 @@ void		free_args(char **args);
 void		free_commands(t_voidlst *commands);
 void		free_envs(t_list_env *m_export,
 				t_voidlst *commands, t_list_env *new_env);
+void		nor_unset(t_list_env **env, t_list_env **export_list,
+				char **cmd, int i);
 void		free_commands(t_voidlst *commands);
 void		free_redirection(t_voidlst *redirections);
+void		error_exp(char *c);
 void		free_args(char **args);
 int			check_export_args(char **cmd);
-void		error_exp(char *c);
 int			check_p_e_existance(char *cmd);
-char		**split_keyvalue(char *env);
 int			key_check_without_equ(char *cmd1);
 int			check_key_export_with_equ(char *cmd1);
 int			ft_cd_to_home(t_list_env **env);
+int			export_join_norm(t_list_env **env, t_list_env **export_list,
+				char **key_value);
+void		add_to_env(t_list_env **env, char *key, char *value);
 
 #endif

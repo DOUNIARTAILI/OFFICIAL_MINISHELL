@@ -82,13 +82,13 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 	{
 		if (look_for_key("PWD", env))
 			build_new_oldpwd_pwd(env);
-		else if (!look_for_key("PWD", env) && look_for_key("OLDPWD", env))
+		else if (!look_for_key("PWD", env) && look_for_key("OLDPWD", env)
+			&& !g_global_exit.env_re)
 			build_new_oldpwd_pwd(env);
 		else
 		{
-			puts("2");
 			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
-			set_value_of_key(env, "PWD", new_path);
+			set_value_of_key(env, "PWD", getcwd(cwd, sizeof(cwd)));
 		}
 		free(new_path);
 		return (0);
@@ -99,18 +99,21 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 
 int	cd_to_absolute_path(t_list_env **env, char **cmd)
 {
+	char	cwd[1024];
+
 	if (chdir(cmd[1]) == -1)
 		perror("minishell: cd");
 	else
 	{
 		if (look_for_key("PWD", env))
 			build_new_oldpwd_pwd(env);
-		else if (!look_for_key("PWD", env) && look_for_key("OLDPWD", env))
+		else if (!look_for_key("PWD", env) && look_for_key("OLDPWD", env)
+			&& !g_global_exit.env_re0)
 			build_new_oldpwd_pwd(env);
 		else
 		{
 			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
-			set_value_of_key(env, "PWD", cmd[1]);
+			set_value_of_key(env, "PWD", getcwd(cwd, sizeof(cwd)));
 		}
 		return (0);
 	}

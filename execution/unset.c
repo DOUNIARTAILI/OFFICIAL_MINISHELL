@@ -95,13 +95,7 @@ int	unset_some(t_list_env **env, t_list_env **export_list, char **cmd, int len)
 	while (i < len)
 	{
 		if (check_key_value_isvalid_export(cmd[i]))
-		{
-			if (ft_strcmp(cmd[i], "_"))
-			{
-				ft_unset(env, cmd[i]);
-				ft_unset(export_list, cmd[i]);
-			}
-		}
+			nor_unset(env, export_list, cmd, i);
 		else
 		{
 			err = handle_err(cmd[i]);

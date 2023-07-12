@@ -91,4 +91,3 @@ int	main(int ac, char **av, char **env)
 	free_envs(m_export, commands, new_env);
 	return (0);
 }
-// export test="file1 file2" >hey >$test

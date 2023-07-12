@@ -82,3 +82,12 @@ void	sort_list(t_list_env *list)
 		i = i->next;
 	}
 }
+
+void	nor_unset(t_list_env **env, t_list_env **export_list, char **cmd, int i)
+{
+	if (ft_strcmp(cmd[i], "_"))
+	{
+		ft_unset(env, cmd[i]);
+		ft_unset(export_list, cmd[i]);
+	}
+}

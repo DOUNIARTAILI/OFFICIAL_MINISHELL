@@ -82,26 +82,12 @@ void	export_equ_only(t_list_env **env, t_list_env **export_list, char *cmd)
 void	export_join(t_list_env **env, t_list_env **export_list, char *cmd)
 {
 	char	**key_value;
-	char	*new_value;
-	char	*tmp;
 
 	key_value = key_value_of_arg(cmd);
 	if (get_node_by_key(export_list, key_value[0]) != NULL)
 	{
-		if (key_value[1] == NULL)
+		if (export_join_norm(env, export_list, key_value))
 			return ;
-		else
-		{
-			tmp = get_value_of_key(export_list,
-						key_value[0]);
-			new_value = ft_strjoin_export(tmp, key_value[1]);
-			set_value_of_key(export_list, key_value[0], new_value);
-			if (get_node_by_key(env, key_value[0]) == NULL)
-				add_to_env(env, ft_strdup(key_value[0]), ft_strdup(new_value));
-			else
-				set_value_of_key(env, key_value[0], new_value);
-			free(new_value);
-		}
 	}
 	else
 	{

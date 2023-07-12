@@ -74,7 +74,8 @@ typedef struct s_exit
 	int		gnl;
 	int		flag;
 	int		len_cmd;
-	int		unset;
+	int		env_re;
+	int		env_re0;
 }t_exit;
 
 t_exit	g_global_exit;

@@ -43,40 +43,39 @@ int	cd_only(t_list_env **env)
 	return (1);
 }
 
+void	oldpwdbuild(t_list_env **env)
+{
+	t_list_env	*new2;
+	t_env		content2;
+	char		*pwd;
+
+	pwd = get_value_of_key(env, "PWD");
+	if (look_for_key("OLDPWD", env))
+	{
+		content2.key = ft_strdup("OLDPWD");
+		content2.value = ft_strdup(pwd);
+		new2 = ft_lstnew_node(content2);
+		add_back_to_list(env, new2);
+	}
+}
+
 void	build_new_oldpwd_pwd(t_list_env **env)
 {
 	t_env		content1;
-	t_env		content2;
 	char		cwd[1024];
 	t_list_env	*new1;
-	t_list_env	*new2;
-	char		*pwd;
 
 	if (look_for_key("PWD", env))
 	{
 		content1.key = ft_strdup("PWD");
 		content1.value = ft_strdup(getcwd(cwd, sizeof(cwd)));
 		new1 = ft_lstnew_node(content1);
+		add_back_to_list(env, new1);
 		if (content1.key)
 			free(content1.key);
 		if (content1.value)
 			free(content1.value);
-		add_back_to_list(env, new1);
 	}
 	else
-	{
-		pwd = get_value_of_key(env, "PWD");
-		if (look_for_key("OLDPWD", env))
-		{
-			puts("here");
-			content2.key = ft_strdup("OLDPWD");
-			content2.value = ft_strdup(pwd);
-			new2 = ft_lstnew_node(content2);
-			// if (content2.key)
-			// 	free(content2.key);
-			// if (content2.value)
-			// 	free(content2.value);
-			add_back_to_list(env, new2);
-		}
-	}
+		oldpwdbuild(env);
 }

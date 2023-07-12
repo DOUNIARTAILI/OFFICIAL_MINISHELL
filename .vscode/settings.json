@@ -30,6 +30,7 @@
 		"libft.h": "c",
 		"ft_printf.h": "c",
 		"history.h": "c",
-		"list.h": "c"
+		"list.h": "c",
+		"ostream": "c"
 	}
 }
