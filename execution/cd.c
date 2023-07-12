@@ -73,7 +73,6 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 	char	*new_path;
 	char	cwd[1024];
 
-	puts("here");
 	getcwd(cwd, sizeof(cwd));
 	new_path = ft_strjoin_1(ft_strdup("/"), ft_strdup(cmd[1]));
 	new_path = ft_strjoin_1(ft_strdup(cwd), new_path);

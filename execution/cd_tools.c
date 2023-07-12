@@ -71,7 +71,6 @@ void	build_new_oldpwd_pwd(t_list_env **env)
 	{
 		content1.key = "PWD";
 		content1.value = ft_strdup(getcwd(cwd, sizeof(cwd)));
-		printf("%s\n", cwd);
 		new1 = ft_lstnew_node(content1);
 		add_back_to_list(env, new1);
 	}
