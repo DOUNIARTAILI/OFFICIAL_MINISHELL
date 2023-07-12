@@ -48,14 +48,16 @@ void	oldpwdbuild(t_list_env **env)
 	t_list_env	*new2;
 	t_env		content2;
 	char		*pwd;
+	char		cwd[1024];
 
 	pwd = get_value_of_key(env, "PWD");
 	if (look_for_key("OLDPWD", env))
 	{
-		content2.key = ft_strdup("OLDPWD");
+		content2.key = "OLDPWD";
 		content2.value = ft_strdup(pwd);
 		new2 = ft_lstnew_node(content2);
 		add_back_to_list(env, new2);
+		set_value_of_key(env, "PWD", getcwd(cwd, sizeof(cwd)));
 	}
 }
 
@@ -67,14 +69,11 @@ void	build_new_oldpwd_pwd(t_list_env **env)
 
 	if (look_for_key("PWD", env))
 	{
-		content1.key = ft_strdup("PWD");
+		content1.key = "PWD";
 		content1.value = ft_strdup(getcwd(cwd, sizeof(cwd)));
+		printf("%s\n", cwd);
 		new1 = ft_lstnew_node(content1);
 		add_back_to_list(env, new1);
-		if (content1.key)
-			free(content1.key);
-		if (content1.value)
-			free(content1.value);
 	}
 	else
 		oldpwdbuild(env);

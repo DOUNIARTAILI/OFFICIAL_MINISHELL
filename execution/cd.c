@@ -73,6 +73,7 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 	char	*new_path;
 	char	cwd[1024];
 
+	puts("here");
 	getcwd(cwd, sizeof(cwd));
 	new_path = ft_strjoin_1(ft_strdup("/"), ft_strdup(cmd[1]));
 	new_path = ft_strjoin_1(ft_strdup(cwd), new_path);
@@ -81,12 +82,20 @@ int	cd_to_relative_path(t_list_env **env, char **cmd)
 	else
 	{
 		if (look_for_key("PWD", env))
+		{
+			puts("1");
 			build_new_oldpwd_pwd(env);
+		}
 		else if (!look_for_key("PWD", env) && look_for_key("OLDPWD", env)
 			&& !g_global_exit.env_re)
+		{
+			puts("2");
+			printf("%s\n", cwd);
 			build_new_oldpwd_pwd(env);
+		}
 		else
 		{
+			puts("3");
 			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
 			set_value_of_key(env, "PWD", getcwd(cwd, sizeof(cwd)));
 		}
@@ -106,12 +115,19 @@ int	cd_to_absolute_path(t_list_env **env, char **cmd)
 	else
 	{
 		if (look_for_key("PWD", env))
+		{
+			puts("/ 1");
 			build_new_oldpwd_pwd(env);
+		}
 		else if (!look_for_key("PWD", env) && look_for_key("OLDPWD", env)
 			&& !g_global_exit.env_re0)
+		{
+			puts("/ 2");
 			build_new_oldpwd_pwd(env);
+		}
 		else
 		{
+			puts("/ 3");
 			set_value_of_key(env, "OLDPWD", get_value_of_key(env, "PWD"));
 			set_value_of_key(env, "PWD", getcwd(cwd, sizeof(cwd)));
 		}
